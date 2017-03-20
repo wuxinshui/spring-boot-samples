@@ -37,10 +37,10 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.removeDialogTabs = 'image:advanced;link:advanced';
 
      // Upload images to a CKFinder connector (note that the response type is set to JSON).
- 	  config.uploadUrl= '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-       // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+ 	 //  config.uploadUrl= '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+
       config.filebrowserBrowseUrl= '/file/browser/browse.html?type=File',
-      config.filebrowserImageBrowseUrl= '/file/browser/browse.html?type=Images',
       config.filebrowserUploadUrl= '/file/upload/file/upload.html',
-      config.filebrowserImageUploadUrl= '/file/upload/image/upload.html'
+      config.filebrowserImageBrowseUrl= '/files/browse/image',
+      config.filebrowserImageUploadUrl= '/files/upload/image'
 };
