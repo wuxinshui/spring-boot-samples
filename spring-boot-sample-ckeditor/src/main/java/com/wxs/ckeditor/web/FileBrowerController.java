@@ -1,13 +1,10 @@
 package com.wxs.ckeditor.web;
 
 import com.wxs.ckeditor.constants.MueasConstants;
-import com.wxs.ckeditor.enums.FileType;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,15 +28,6 @@ public class FileBrowerController {
     protected final Logger logger = Logger.getLogger(getClass());
 
     private static final String IMAGE_DIR = MueasConstants.FILE_UPLOAD_DIR + MueasConstants.FILE_UPLOAD_SUB_IMG_DIR;
-
-
-//    @RequestMapping(value = "/browse/image", method = RequestMethod.GET)
-//    public void processBrower(ModelMap modelMap, HttpServletRequest request,
-//                              HttpServletResponse response) {
-//        logger.info(System.currentTimeMillis());
-//        processBrowerPost(modelMap, request, response);
-//        return;
-//    }
 
     @RequestMapping(value = "/browse/image", method = RequestMethod.GET)
     public void processBrowerPost(HttpServletRequest request, HttpServletResponse response) {
@@ -156,11 +143,11 @@ public class FileBrowerController {
                 while (subFileerSetIndex.hasNext()) {
                     String ftemp = subFileerSetIndex.next();
                     String f = getDefaultFolderFromMueasRunningData(folder);
-                    String fileUrl = f + File.separator + ftemp;
-                    fileUrl = StringUtils.replace(fileUrl, "//", "/");
+                    String fileUrl = "http://localhost:8080/data/file/image" + File.separator + ftemp;
+//                    fileUrl = StringUtils.replace(fileUrl, "//", "/");
                     String div4 = "<div style=‘width:150px;height:150px;float:left;word-break:break-all;padding:5px;background:#666699;margin:5px;‘>"
-                            + "<a href=‘javascript:void(0)‘ onclick=choose(‘" + fileUrl + "‘)>"
-                            + "<img style=‘border:none;width:145px;height:145px;‘ src=‘" + fileUrl + "‘ title=‘" + fileUrl + "‘/>"
+                            + "<a href=‘javascript:void(0)‘ onclick=choose(" + fileUrl + ")>"
+                            + "<img style=‘border:none;width:145px;height:145px;‘ src=" + fileUrl + " title=‘" + fileUrl + "‘/>"
                             + "</a>"
                             + "</div>";
                     //logger.info(div4);
