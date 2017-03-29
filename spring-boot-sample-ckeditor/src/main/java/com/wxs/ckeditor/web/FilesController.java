@@ -1,6 +1,5 @@
 package com.wxs.ckeditor.web;
 
-import com.wxs.ckeditor.constants.MueasConstants;
 import com.wxs.ckeditor.enums.FileType;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +16,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 /**
@@ -28,10 +28,18 @@ import java.io.PrintWriter;
 @Controller
 @RequestMapping("/files")
 public class FilesController {
-    @Value(value = "${ckeditor.storage.file.path}")
-    private String ckeditorStorageFilePath;
-    private static final String SERVER_IMAGE_PATH ="http://localhost:8080/data/file/image/" ;
+
+    private Path rootLocation=Paths.get("F:\\data\\file\\image");
+
     Logger logger= org.apache.log4j.Logger.getLogger(FilesController.class);
+
+    @Value(value = "${ckeditor.storage.image.path}")
+    private String ckeditorStorageFilePath;
+
+    private static final String SERVER_IMAGE_PATH ="http://localhost:8180/public/image/" ;
+
+
+
     @RequestMapping(value = "/upload/image",method = RequestMethod.POST)
     @ResponseBody
     public String uploadImage(@RequestParam("upload") MultipartFile file, HttpServletRequest request, HttpServletResponse response){
@@ -44,6 +52,7 @@ public class FilesController {
                 PrintWriter out = response.getWriter();
 
                 String fileClientName = file.getOriginalFilename();
+                Path path= Paths.get(rootLocation.toString()+"/"+fileClientName);
 
                 if (logger.isInfoEnabled()) {
                     logger.info("Begin uploading: " + file.getName());
@@ -51,7 +60,8 @@ public class FilesController {
 
                 // 为了客户端已经设置好了图片名称在服务器继续能够明确识别，这里不改名称
                 // 获取目录
-                File floder = buildFolder(request, FileType.IMAGE);
+//                File floder = buildFolder(request, FileType.IMAGE);
+                File floder = path.getParent().toFile();
                 if (null == floder) {
                     logger.info("folder is null");
                     return null;
@@ -68,6 +78,7 @@ public class FilesController {
                 }
 
                 // 组装返回url，以便于ckeditor定位图片
+//                String fileUrl = SERVER_IMAGE_PATH+ File.separator + newfile.getName();
                 String fileUrl = SERVER_IMAGE_PATH+ File.separator + newfile.getName();
 
                 // 将上传的图片的url返回给ckeditor
