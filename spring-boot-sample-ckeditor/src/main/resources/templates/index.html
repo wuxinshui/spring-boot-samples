@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
     <script th:src="@{/ckeditor/custom_config.js}"></script>
+    <script th:src="@{/ckfinder/ckfinder.js}"></script>
 </head>
 <body>
 <div class="container">
@@ -90,6 +91,7 @@
                 image2_alignClasses: [ 'image-align-left', 'image-align-center', 'image-align-right' ],
                 image2_disableResizer: true
             } );
+            CKFinder.setupCKEditor( editor, { basePath : '/ckfinder/', rememberLastFolder : false } )
         </script>
         <input type="submit" name="提交"/>
 
