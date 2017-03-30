@@ -15,6 +15,23 @@
     <name>spring-boot-sample-ckeditor</name>
 
     <dependencies>
+        <!--CKFinder start-->
+        <dependency>
+            <groupId>com.ckfinder</groupId>
+            <artifactId>CKFinder</artifactId>
+            <version>2.6.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.8</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <!--CKFinder end-->
         <dependency>
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
