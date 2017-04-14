@@ -37,4 +37,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
     config.filebrowserImageUploadUrl= '/files/upload/image'
+    config.filebrowserImageBrowseUrl= '/ckfinder/ckfinder.html?type=Images'
 };

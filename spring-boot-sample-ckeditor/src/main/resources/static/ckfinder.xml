@@ -17,8 +17,8 @@
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
-	<baseDir></baseDir>
-	<baseURL>>http://127.0.0.1:8180/public/image/userfiles/</baseURL>
+	<baseDir>F:\\data\\file\\image\\</baseDir>
+	<baseURL>http://localhost:8180/public/image/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<!--
