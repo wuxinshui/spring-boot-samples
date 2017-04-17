@@ -16,8 +16,10 @@
   <name>spring-boot-samples</name>
 
   <modules>
-    <module>spring-boot-sample-simple</module>
+    <module>spring-boot-sample-base</module>
     <module>spring-boot-sample-ckeditor</module>
+    <module>spring-boot-sample-simple</module>
+    <module>spring-boot-sample-tkmybatis</module>
   </modules>
 
   <dependencies>
@@ -34,6 +36,20 @@
   </dependencies>
 
   <build>
-    <finalName>spring-boot-web</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+
+      </plugin>
+    </plugins>
   </build>
 </project>
