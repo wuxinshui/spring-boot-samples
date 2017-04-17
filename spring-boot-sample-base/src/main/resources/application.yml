@@ -1,0 +1,29 @@
+spring:  
+  profiles:  
+    active: dev 
+---  
+spring:  
+  profiles: dev
+server:
+  port: 9090
+logging:
+  level:
+    tk:
+      mybatis: TRACE
+druid:
+  url: jdbc:mysql://127.0.0.1:3306/test
+  driver-class: com.mysql.jdbc.Driver
+  username: root
+  password: admin
+  initial-size: 1
+  min-idle: 1
+  max-active: 20
+  test-on-borrow: true
+mybatis:
+  type-aliases-package: com.qf.openchannel.model
+  mapper-locations: classpath:mapper/*.xml
+mapper:
+  mappers:
+    - com.qf.openchannel.util.QkMapper
+  not-empty: false
+  identity: MYSQL
