@@ -9,6 +9,13 @@ import org.springframework.ui.ModelMap;
  */
 public class BaseController {
 
+    /**
+     * 接口返回通用规范
+     * @param code
+     * @param msg
+     * @param data
+     * @return
+     */
     public ModelMap result(String code, String msg, String data) {
         ModelMap modelMap = new ModelMap();
         modelMap.put("code", code);
