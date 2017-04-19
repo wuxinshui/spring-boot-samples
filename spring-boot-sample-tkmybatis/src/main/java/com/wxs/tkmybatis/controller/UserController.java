@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import static com.wxs.tkmybatis.util.Constants.*;
 
@@ -23,8 +25,8 @@ public class UserController extends BaseController {
     private LoginService loginService;
 
 
-    @RequestMapping(name = "/login", method = RequestMethod.POST)
-    public ModelMap login(String username, String password) {
+    @RequestMapping(name = "/login/{username}/{password}", method = RequestMethod.POST)
+    public ModelMap login(@PathVariable String username, @PathVariable String password) {
         try {
             if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
                 return result(FAIL_CODE, FAIL_MSG, null);

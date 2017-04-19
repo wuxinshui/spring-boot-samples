@@ -13,8 +13,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @SpringBootApplication
 @MapperScan(basePackages = "com.wxs.tkmybatis.mapper")
-public class Application {
+public class TKApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(TKApplication.class, args);
 	}
 }
