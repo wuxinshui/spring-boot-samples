@@ -3,11 +3,11 @@ package com.wxs.tkmybatis.mapper;
 import com.wxs.tkmybatis.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -17,8 +17,9 @@ import java.util.Date;
  * @Date:2017/4/18 19:00
  */
 @RunWith(SpringRunner.class)
+@MybatisTest
 @AutoConfigureTestDatabase
-@Transactional(propagation = Propagation.NOT_SUPPORTED)
+@SpringBootTest(value = "com.wxs.tkmybatis.TKApplication")
 public class UserMapperTest{
 
 	@Autowired
