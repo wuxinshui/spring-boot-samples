@@ -8,7 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.wxs.tkmybatis.util.Constants.*;
+import static com.wxs.tkmybatis.util.Constant.*;
 
 /**
  * @Description:模拟登录，不同的参数请求方式

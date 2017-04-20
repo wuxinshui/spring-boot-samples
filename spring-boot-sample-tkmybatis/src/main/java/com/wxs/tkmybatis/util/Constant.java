@@ -1,11 +1,11 @@
 package com.wxs.tkmybatis.util;
 
 /**
- * <p>Constants</p>
+ * <p>Constant</p>
  *
  * @author wuxinshui
  */
-public class Constants {
+public class Constant {
     public static final String SUCCESS_CODE="200";
     public static final String SUCCESS_MSG="SUCCESS";
 
