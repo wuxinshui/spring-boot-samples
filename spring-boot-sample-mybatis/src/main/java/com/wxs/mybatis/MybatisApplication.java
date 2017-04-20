@@ -1,4 +1,4 @@
-package com.wxs.tkmybatis;
+package com.wxs.mybatis;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -12,9 +12,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @EnableWebMvc
 @SpringBootApplication
-@MapperScan(basePackages = "com.wxs.tkmybatis.mapper")
-public class TKApplication {
+@MapperScan(basePackages = "com.wxs.mybatis.mapper")
+public class MybatisApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(TKApplication.class, args);
+		SpringApplication.run(MybatisApplication.class, args);
 	}
 }

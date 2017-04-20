@@ -1,4 +1,4 @@
-package com.wxs.tkmybatis.vo;
+package com.wxs.mybatis.vo;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @Author:Wuxinshui
  * @Date:2017/4/19 16:35
  */
-public class UserVo implements Serializable{
+public class UserVo implements Serializable {
 	/**
 	 * 用户名
 	 */
