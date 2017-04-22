@@ -1,4 +1,5 @@
 # spring-boot-samples
+>说明：本分支收录仅功能实现的工程，不包括优化，优化指改动比较大。用于区分master分支，master分支是最佳实践。
 
 ## [spring-boot-sample-base]
 Spring Boot 使用实例基础工程，待完善。
@@ -18,4 +19,3 @@ Spring Boot ☞ Hello World
   1. Spring Boot
   2. CKEditor
   3. CKFinder
-
