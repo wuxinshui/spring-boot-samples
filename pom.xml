@@ -20,6 +20,7 @@
     <module>spring-boot-sample-ckeditor</module>
     <module>spring-boot-sample-simple</module>
     <module>spring-boot-sample-tkmybatis</module>
+    <module>spring-boot-sample-mybatis</module>
   </modules>
 
   <dependencies>
