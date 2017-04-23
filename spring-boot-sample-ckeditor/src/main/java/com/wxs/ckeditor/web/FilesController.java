@@ -48,7 +48,14 @@ public class FilesController {
 				PrintWriter out = response.getWriter();
 
 				String fileClientName = file.getOriginalFilename();
-				String pathName = ckeditorStorageImagePath + fileClientName;
+				String rootFilePath=ckeditorStorageImagePath+"\\images\\";
+
+				File rootFile=new File(rootFilePath);
+				if (!rootFile.exists()){
+					rootFile.mkdir();
+				}
+
+				String pathName = rootFile +File.separator+ fileClientName;
 				File newfile = new File(pathName);
 				byte[] bytes = file.getBytes();
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(newfile));
@@ -56,7 +63,7 @@ public class FilesController {
 				stream.close();
 
 				// 组装返回url，以便于ckeditor定位图片
-				String fileUrl = ckeditorAccessImageUrl + File.separator + newfile.getName();
+				String fileUrl = ckeditorAccessImageUrl +"/public/image/images/"+ File.separator + newfile.getName();
 
 				// 将上传的图片的url返回给ckeditor
 				String callback = request.getParameter("CKEditorFuncNum");

@@ -18,7 +18,7 @@
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
 	<baseDir>F:\\data\\file\\image\\</baseDir>
-	<baseURL>http://localhost:8180/public/image/</baseURL>
+	<baseURL>http://localhost:8180</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<!--
