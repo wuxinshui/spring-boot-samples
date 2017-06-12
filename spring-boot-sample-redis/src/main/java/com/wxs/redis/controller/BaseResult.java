@@ -4,7 +4,7 @@ import org.springframework.ui.ModelMap;
 
 /**
  * @Description:
- * @Author:FujiRen
+ * @Author:Wuxisnhui
  * @Date:2017/6/12 18:13
  */
 public class BaseResult {

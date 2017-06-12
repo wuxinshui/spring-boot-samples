@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * @Description:
- * @Author:FujiRen
+ * @Author:Wuxisnhui
  * @Date:2017/6/12 16:50
  */
 @Entity
