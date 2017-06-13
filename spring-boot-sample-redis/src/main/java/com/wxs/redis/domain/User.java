@@ -1,5 +1,7 @@
 package com.wxs.redis.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -26,11 +28,13 @@ public class User implements Serializable {
 	private String createUser;
 
 	@Column(name = "create_time")
+	@JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
 	private Date createTime;
 
 	@Column(name = "update_user")
 	private String updateUser;
 
+	@JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
 	@Column(name = "update_time")
 	private Date updateTime;
 

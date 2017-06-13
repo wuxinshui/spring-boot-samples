@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Author:Wuxinshui
  * @Date:2017/4/18 20:19
  */
-//@EnableWebMvc
 @SpringBootApplication
 public class RedisApplication {
 	public static void main(String[] args) {
