@@ -34,8 +34,8 @@ public class User implements Serializable {
 	@Column(name = "update_user")
 	private String updateUser;
 
-	@JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
 	@Column(name = "update_time")
+	@JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
 	private Date updateTime;
 
 	public Integer getId() {
