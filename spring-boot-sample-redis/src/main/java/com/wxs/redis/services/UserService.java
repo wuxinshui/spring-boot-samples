@@ -11,4 +11,8 @@ import java.util.List;
  */
 public interface UserService {
 	List<User> selectAll();
+
+	User save(User user);
+
+	List<User> selectByUsernameAndPassword(User user);
 }

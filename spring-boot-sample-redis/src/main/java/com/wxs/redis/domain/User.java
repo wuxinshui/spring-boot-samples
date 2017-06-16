@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description:
@@ -37,6 +38,9 @@ public class User implements Serializable {
 	@Column(name = "update_time")
 	@JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
 	private Date updateTime;
+
+	@Transient
+	private List<Integer> userIdList;
 
 	public Integer getId() {
 		return id;
@@ -94,7 +98,15 @@ public class User implements Serializable {
 		this.updateTime = updateTime;
 	}
 
-	protected User() {
+	public List<Integer> getUserIdList() {
+		return userIdList;
+	}
+
+	public void setUserIdList(List<Integer> userIdList) {
+		this.userIdList = userIdList;
+	}
+
+	public User() {
 	}
 
 	public User(String username, String password, String createUser, Date createTime, String updateUser, Date updateTime) {
