@@ -11,4 +11,12 @@ import java.util.List;
  */
 public interface UserService {
 	List<User> selectAll();
+
+	User selectOne(Integer id);
+
+	void selectDelete(Integer id);
+
+	List<User> selectPost(String username,String password);
+
+	User selectPut(Integer id);
 }
