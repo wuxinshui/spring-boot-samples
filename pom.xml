@@ -23,6 +23,7 @@
     <module>spring-boot-sample-mybatis</module>
     <module>spring-boot-sample-redis</module>
     <module>spring-boot-sample-scheduling</module>
+    <module>spring-boot-sample-data-jpa</module>
   </modules>
 
   <dependencies>
