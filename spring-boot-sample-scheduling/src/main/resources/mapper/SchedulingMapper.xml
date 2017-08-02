@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wxs.schedule.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.wxs.schedule.model.User" >
+<mapper namespace="com.wxs.schedule.mapper.SchedulingMapper" >
+  <resultMap id="BaseResultMap" type="com.wxs.schedule.model.Scheduling" >
     <!--
       WARNING - @mbg.generated
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="task_class" property="taskClass" jdbcType="VARCHAR" />
+    <result column="execute_class" property="executeClass" jdbcType="VARCHAR" />
+    <result column="trigger_cron" property="triggerCron" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_user" property="updateUser" jdbcType="VARCHAR" />

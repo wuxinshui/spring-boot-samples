@@ -12,7 +12,7 @@ logging:
       mybatis: TRACE
 druid:
  # url: jdbc:mysql://127.0.0.1:3306/test
-  url: jdbc:mysql://127.0.0.1:3306/tkmybatis
+  url: jdbc:mysql://127.0.0.1:3306/chnlms
   driver-class: com.mysql.jdbc.Driver
   username: root
   password: admin

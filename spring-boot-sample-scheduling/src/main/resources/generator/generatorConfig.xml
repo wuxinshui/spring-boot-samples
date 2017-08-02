@@ -11,23 +11,31 @@
         <property name="endingDelimiter" value="`"/>
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.wxs.tkmybatis.util.TKMapper"/>
+            <property name="mappers" value="com.wxs.schedule.util.TKMapper"/>
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/tkmybatis"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/chnlms"
                         userId="root"
                         password="admin">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.wxs.tkmybatis.model" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.wxs.schedule.model" targetProject="src/main/java"/>
 
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="com.wxs.tkmybatis.mapper" targetProject="src/main/java"
+        <javaClientGenerator targetPackage="com.wxs.schedule.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="%">
+        <table tableName="t_scheduling">
+            <!--% 全部表-->
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!--oracle 配置-->
+            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
+
+        <table tableName="t_scheduling_his">
             <!--% 全部表-->
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
