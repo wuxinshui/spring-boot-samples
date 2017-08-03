@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wxs.schedule.mapper.SchedulingHisMapper" >
-  <resultMap id="BaseResultMap" type="com.wxs.schedule.model.SchedulingHis" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="job_id" property="jobId" jdbcType="VARCHAR" />
-    <result column="execute_time" property="executeTime" jdbcType="TIMESTAMP" />
-    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-  </resultMap>
+<mapper namespace="com.wxs.schedule.mapper.SchedulingHisMapper">
+    <resultMap id="BaseResultMap" type="com.wxs.schedule.model.SchedulingHis">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="job_id" property="jobId" jdbcType="VARCHAR"/>
+        <result column="execute_time" property="executeTime" jdbcType="TIMESTAMP"/>
+        <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
 </mapper>

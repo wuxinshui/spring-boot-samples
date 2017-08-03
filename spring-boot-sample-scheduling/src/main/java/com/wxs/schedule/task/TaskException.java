@@ -1,14 +1,18 @@
 package com.wxs.schedule.task;
 
+import org.springframework.scheduling.SchedulingException;
+
 /**
  * <p>TaskException</p>
  *
  * @author wuxinshui
  */
-public class TaskException extends Exception {
-    public TaskException(String s) {
-    }
+public class TaskException extends SchedulingException {
+	public TaskException(String msg) {
+		super(msg);
+	}
 
-    public TaskException(Exception e) {
-    }
+	public TaskException(String msg, Exception e) {
+		super(msg, e);
+	}
 }

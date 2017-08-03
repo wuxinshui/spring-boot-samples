@@ -1,16 +1,15 @@
 package com.wxs.schedule.controller;
 
 import com.wxs.schedule.services.SchedulingService;
-import com.wxs.schedule.task.PrintTask;
 import com.wxs.schedule.task.Task;
 import com.wxs.schedule.task.TaskException;
 import com.wxs.schedule.util.LoggerUtil;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,10 +34,6 @@ public class SchedulingController extends BaseController {
 	@Autowired
 	private SchedulingService taskService;
 
-	/**
-	 * logger日志.
-	 */
-	public static final Logger LOGGER = Logger.getLogger(SchedulingController.class);
 	private static final Map<String, Task> TASKS = new HashMap<>(12);
 	private static final Map<String, ScheduledFuture<?>> SCHEDULED_FUTURE = new HashMap<>(16);
 	private final static int POOL_SIZE = 64;
@@ -47,9 +42,9 @@ public class SchedulingController extends BaseController {
 
 
 	@RequestMapping(value = "/start/{taskId}", method = RequestMethod.GET)
-	public ModelMap startTask(Integer taskId) {
+	public ModelMap startTask(@PathVariable Integer taskId) {
 		try {
-			PrintTask printTask = taskService.selectById(taskId);
+			Task printTask = taskService.selectById(taskId);
 			start(printTask);
 			return result(SUCCESS_CODE, SUCCESS_MSG, null);
 		} catch (Exception e) {
@@ -58,8 +53,8 @@ public class SchedulingController extends BaseController {
 		return result(FAIL_CODE, FAIL_MSG, null);
 	}
 
-	@RequestMapping(value = "/stop", method = RequestMethod.POST)
-	public ModelMap stopTask(Integer taskId) {
+	@RequestMapping(value = "/stop/{taskId}", method = RequestMethod.GET)
+	public ModelMap stopTask(@PathVariable Integer taskId) {
 		try {
 			stop(taskId.toString());
 			return result(SUCCESS_CODE, SUCCESS_MSG, null);
@@ -69,8 +64,8 @@ public class SchedulingController extends BaseController {
 		return result(FAIL_CODE, FAIL_MSG, null);
 	}
 
-	@RequestMapping(value = "/del", method = RequestMethod.POST)
-	public ModelMap delTask(Integer taskId) {
+	@RequestMapping(value = "/del/{taskId}", method = RequestMethod.GET)
+	public ModelMap delTask(@PathVariable Integer taskId) {
 		try {
 			stop(taskId.toString());
 
@@ -81,7 +76,7 @@ public class SchedulingController extends BaseController {
 		return result(FAIL_CODE, FAIL_MSG, null);
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelMap searchAllTasks() {
 		try {
 			return result(SUCCESS_CODE, SUCCESS_MSG, null);
@@ -110,10 +105,10 @@ public class SchedulingController extends BaseController {
 			ScheduledFuture<?> scheduledFuture = ct.schedule(task, new CronTrigger(task.getTrigger()));
 			SCHEDULED_FUTURE.put(task.getTaskId(), scheduledFuture);
 			TASKS.put(task.getTaskId(), task);
-			LOGGER.info("the task with " + task.getTaskId() + "has bean already started.");
+			LoggerUtil.info("the task with " + task.getTaskId() + "has bean already started.");
 		} catch (Exception e) {
-			LOGGER.info(null, e);
-			throw new TaskException(e);
+			LoggerUtil.info("the task starts failed", e);
+			throw e;
 		}
 	}
 
@@ -123,7 +118,7 @@ public class SchedulingController extends BaseController {
 	 * @param taskId 任务编号.
 	 */
 	public void stop(String taskId) throws TaskException {
-		LOGGER.info("正在停止任务 " + taskId);
+		LoggerUtil.info("正在停止任务 " + taskId);
 		if (StringUtils.isEmpty(taskId)) {
 			throw new TaskException("the taskid must be not empty.");
 		}
@@ -139,8 +134,8 @@ public class SchedulingController extends BaseController {
 				}
 			}
 		} catch (Exception e) {
-			LOGGER.info(null, e);
-			throw new TaskException(e);
+			LoggerUtil.info("the task stop failed", e);
+			throw e;
 		}
 	}
 
@@ -150,7 +145,7 @@ public class SchedulingController extends BaseController {
 	 * @param taskId 任务编号.
 	 */
 	public void resetTrigger(String taskId, String cronExpression) throws TaskException {
-		LOGGER.info("正在修改当前任务 " + taskId + "执行频率.");
+		LoggerUtil.info("正在修改当前任务 " + taskId + "执行频率.");
 		if (StringUtils.isEmpty(taskId)) {
 			throw new TaskException("the taskid must be not empty.");
 		}
@@ -194,14 +189,14 @@ public class SchedulingController extends BaseController {
 	 * 销毁线程池中的任务.
 	 */
 	public void destrory() {
-		LOGGER.info("正在终止自动任务的线程池资源.");
+		LoggerUtil.info("正在终止自动任务的线程池资源.");
 		ScheduledExecutorService scheduledExecutor = (ScheduledExecutorService) ct.getConcurrentExecutor();
 		try {
 			scheduledExecutor.shutdownNow();
 		} catch (Exception e) {
-			LOGGER.info("自动任务的线程池资源清理发生异常.", e);
+			LoggerUtil.info("自动任务的线程池资源清理发生异常.", e);
 		} finally {
-			LOGGER.info("自动任务的线程池资源清理完成.");
+			LoggerUtil.info("自动任务的线程池资源清理完成.");
 		}
 	}
 }

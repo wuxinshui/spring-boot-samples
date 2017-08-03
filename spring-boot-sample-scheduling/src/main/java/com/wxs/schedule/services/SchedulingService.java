@@ -1,6 +1,8 @@
 package com.wxs.schedule.services;
 
 import com.wxs.schedule.task.PrintTask;
+import com.wxs.schedule.task.SayTask;
+import com.wxs.schedule.task.Task;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,9 +18,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class SchedulingService {
 
-	public PrintTask selectById(Integer id) {
+	public Task selectById(Integer id) {
 		if (id == 1) {
-			PrintTask printTask = new PrintTask();
+			Task printTask = new PrintTask();
+			printTask.setTaskId("1");
+			printTask.setTrigger("0/1 * *  * * * ");
+			return printTask;
+		} else if (id == 2) {
+			Task printTask = new SayTask();
 			printTask.setTaskId("1");
 			printTask.setTrigger("0/1 * *  * * * ");
 			return printTask;
