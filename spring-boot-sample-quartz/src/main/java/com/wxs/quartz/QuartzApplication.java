@@ -15,8 +15,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @SpringBootApplication
 @ComponentScan(basePackages = "com.wxs")
-public class SchedulingApplication {
+public class QuartzApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SchedulingApplication.class, args);
+		SpringApplication.run(QuartzApplication.class, args);
 	}
 }

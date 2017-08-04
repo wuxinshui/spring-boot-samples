@@ -20,22 +20,14 @@
                         password="admin">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.wxs.schedule.model" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.wxs.quartz.model" targetProject="src/main/java"/>
 
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="com.wxs.schedule.mapper" targetProject="src/main/java"
+        <javaClientGenerator targetPackage="com.wxs.quartz.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="t_scheduling">
-            <!--% 全部表-->
-            <!--mysql 配置-->
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-            <!--oracle 配置-->
-            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
-        </table>
-
-        <table tableName="t_scheduling_his">
+        <table tableName="t_task_info">
             <!--% 全部表-->
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
