@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Controller
 @EnableWebMvc
 @SpringBootApplication
-@ComponentScan(basePackages = "com.wxs")
+@ComponentScan(basePackages = "com.wxs.quartz")
 public class QuartzApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(QuartzApplication.class, args);

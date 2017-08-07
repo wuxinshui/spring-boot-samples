@@ -5,7 +5,7 @@ package com.wxs.quartz.task;
  *
  * @author wuxinshui
  */
-public abstract class Task implements Runnable {
+public abstract class Task {
 	private String taskId;
 	private String trigger;
 
