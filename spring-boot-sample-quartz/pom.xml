@@ -16,6 +16,7 @@
 
     <dependencies>
         <!--quartz-->
+        <!-- 该依赖必加，里面有spring对schedule的支持 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
