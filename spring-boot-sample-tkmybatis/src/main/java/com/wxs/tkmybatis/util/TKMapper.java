@@ -1,4 +1,4 @@
-package com.wxs.schedule.util;
+package com.wxs.tkmybatis.util;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;

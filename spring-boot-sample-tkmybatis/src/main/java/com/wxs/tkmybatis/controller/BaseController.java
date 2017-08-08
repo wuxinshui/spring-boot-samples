@@ -1,4 +1,4 @@
-package com.wxs.schedule.controller;
+package com.wxs.tkmybatis.controller;
 
 import org.springframework.ui.ModelMap;
 

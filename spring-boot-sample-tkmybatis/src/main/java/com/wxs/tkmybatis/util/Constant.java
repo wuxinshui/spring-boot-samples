@@ -1,4 +1,4 @@
-package com.wxs.schedule.util;
+package com.wxs.tkmybatis.util;
 
 /**
  * <p>Constant</p>
