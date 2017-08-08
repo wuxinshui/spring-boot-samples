@@ -24,5 +24,5 @@ CREATE TABLE t_job_info (
 -- ----------------------------
 -- Records of t_job_info
 -- ----------------------------
-INSERT INTO t_job_info VALUES ('1', 'Job1', 'JobGroup1', 'JobGroup.Job1', 'GOING', 'com.wxs.quartz.task.Job1', 'trigger1', 'TriggerGroup1', 'GOING', 'TriggerGroup.trigger1', '0/1 * * * * ?', null, '2017-08-08 15:25:10', null, '2017-08-08 15:25:10');
-INSERT INTO t_job_info VALUES ('2', 'Job2', 'JobGroup2', 'JobGroup.Job2', 'GOING', 'com.wxs.quartz.task.Job2', 'trigger2', 'TriggerGroup2', 'GOING', 'TriggerGroup.trigger1', '0/1 * * * * ?', '', '2017-08-08 15:25:10', '', '2017-08-08 15:25:10');
+INSERT INTO t_job_info VALUES ('1', 'Job1', 'JobGroup1', 'JobGroup.Job1', 'GOING', 'com.wxs.quartz.job.Job1', 'trigger1', 'TriggerGroup1', 'GOING', 'TriggerGroup.trigger1', '0/1 * * * * ?', null, '2017-08-08 15:25:10', null, '2017-08-08 15:25:10');
+INSERT INTO t_job_info VALUES ('2', 'Job2', 'JobGroup2', 'JobGroup.Job2', 'GOING', 'com.wxs.quartz.job.Job2', 'trigger2', 'TriggerGroup2', 'GOING', 'TriggerGroup.trigger1', '0/1 * * * * ?', '', '2017-08-08 15:25:10', '', '2017-08-08 15:25:10');

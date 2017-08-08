@@ -1,4 +1,4 @@
-package com.wxs.quartz.task;
+package com.wxs.quartz.job;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -14,11 +14,11 @@ import org.quartz.JobExecutionException;
  * @Description: [TODO(用一句话描述该文件做什么)]
  * @version: [V1.0]
  */
-public class Job2 implements Job {
+public class Job1 implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		System.out.println("Job2:This is quartz print test!!! " + System.currentTimeMillis());
+		System.out.println("Job1:This is quartz print test!!! " + System.currentTimeMillis());
 	}
 
 }

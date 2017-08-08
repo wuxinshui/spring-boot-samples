@@ -1,8 +1,6 @@
-package com.wxs.quartz.task;
+package com.wxs.quartz.job;
 
-import com.wxs.quartz.mapper.JobInfoMapper;
 import org.quartz.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 /**

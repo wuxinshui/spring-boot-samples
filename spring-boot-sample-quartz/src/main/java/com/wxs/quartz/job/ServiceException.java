@@ -1,4 +1,4 @@
-package com.wxs.quartz.task;
+package com.wxs.quartz.job;
 
 /**
  * 自定义针对service异常
