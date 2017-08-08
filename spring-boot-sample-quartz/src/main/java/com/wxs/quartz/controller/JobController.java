@@ -1,17 +1,14 @@
 package com.wxs.quartz.controller;
 
-import com.wxs.quartz.task.Job1;
 import com.wxs.quartz.task.Job2;
 import com.wxs.quartz.util.LoggerUtil;
+import com.wxs.quartz.vo.JobVo;
 import org.quartz.*;
 import org.quartz.impl.JobDetailImpl;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,15 +46,15 @@ public class JobController extends BaseController {
 		}
 	}
 
-	@RequestMapping(value = "/add/{group}/{name}", method = RequestMethod.GET)
-	public ModelMap addJob(@PathVariable String group, @PathVariable String name) {
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public ModelMap addJob(@RequestBody JobVo jobVo) {
 		try {
 			JobDetail job1 = newJob(Job2.class)
-					.withIdentity("job2", "test1")
+					.withIdentity(jobVo.getJobName(), jobVo.getJobGroup())
 					.storeDurably()
 					.build();
-			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule("0/1 * * * * ?"))
-					.withIdentity("trigger1", "test1")
+			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
+					.withIdentity(jobVo.getTriggerName(), jobVo.getTriggerGroup())
 					.build();
 
 			scheduler.scheduleJob(job1, trigger);
@@ -86,7 +83,6 @@ public class JobController extends BaseController {
 		try {
 			JobKey jobKey = new JobKey(name, group);
 			scheduler.resumeJob(jobKey);
-			listingAllJobs(scheduler);
 			return result(SUCCESS_CODE, SUCCESS_MSG, null);
 		} catch (Exception e) {
 			LoggerUtil.error("SchedulingController pauseJob", e);
