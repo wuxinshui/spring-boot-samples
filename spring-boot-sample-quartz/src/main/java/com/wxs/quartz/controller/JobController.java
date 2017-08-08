@@ -1,12 +1,11 @@
 package com.wxs.quartz.controller;
 
 import com.wxs.quartz.task.Job1;
+import com.wxs.quartz.task.Job2;
 import com.wxs.quartz.util.LoggerUtil;
-import org.quartz.JobDetail;
-import org.quartz.JobKey;
-import org.quartz.Scheduler;
-import org.quartz.Trigger;
+import org.quartz.*;
 import org.quartz.impl.JobDetailImpl;
+import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 import static com.wxs.quartz.util.Constant.*;
 import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
@@ -52,20 +52,18 @@ public class JobController extends BaseController {
 	@RequestMapping(value = "/add/{group}/{name}", method = RequestMethod.GET)
 	public ModelMap addJob(@PathVariable String group, @PathVariable String name) {
 		try {
-			JobDetail job1 = newJob(Job1.class)
-					.withIdentity("job2", "test")
+			JobDetail job1 = newJob(Job2.class)
+					.withIdentity("job2", "test1")
 					.storeDurably()
 					.build();
-			Trigger trigger = newTrigger()
-					.withIdentity("trigger1", "test")
-					.startNow().forJob(job1)
+			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule("0/1 * * * * ?"))
+					.withIdentity("trigger1", "test1")
 					.build();
-			;
 
-			scheduler.scheduleJob(job1, (org.quartz.Trigger) trigger);
+			scheduler.scheduleJob(job1, trigger);
 			return result(SUCCESS_CODE, SUCCESS_MSG, null);
 		} catch (Exception e) {
-			LoggerUtil.error("SchedulingController startJob", e);
+			LoggerUtil.error("SchedulingController addJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
 		}
 	}
@@ -75,9 +73,23 @@ public class JobController extends BaseController {
 		try {
 			JobKey jobKey = new JobKey(name, group);
 			scheduler.pauseJob(jobKey);
+			listingAllJobs(scheduler);
 			return result(SUCCESS_CODE, SUCCESS_MSG, null);
 		} catch (Exception e) {
-			LoggerUtil.error("SchedulingController startJob", e);
+			LoggerUtil.error("SchedulingController pauseJob", e);
+			return result(FAIL_CODE, FAIL_MSG, null);
+		}
+	}
+
+	@RequestMapping(value = "/resume/{group}/{name}", method = RequestMethod.GET)
+	public ModelMap resumeJob(@PathVariable String group, @PathVariable String name) {
+		try {
+			JobKey jobKey = new JobKey(name, group);
+			scheduler.resumeJob(jobKey);
+			listingAllJobs(scheduler);
+			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+		} catch (Exception e) {
+			LoggerUtil.error("SchedulingController pauseJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
 		}
 	}
@@ -87,11 +99,51 @@ public class JobController extends BaseController {
 	public ModelMap delJob(@PathVariable String group, @PathVariable String name) {
 		try {
 			JobKey jobKey = new JobKey(name, group);
-			scheduler.deleteJob(jobKey);
+			if (scheduler.checkExists(jobKey)) {
+				scheduler.deleteJob(jobKey);
+			}
+
+			listingAllJobs(scheduler);
 			return result(SUCCESS_CODE, SUCCESS_MSG, null);
 		} catch (Exception e) {
-			LoggerUtil.error("SchedulingController startJob", e);
+			LoggerUtil.error("SchedulingController delJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
+		}
+	}
+
+	@RequestMapping(value = "/execute/{group}/{name}", method = RequestMethod.GET)
+	public ModelMap executeJob(@PathVariable String group, @PathVariable String name) {
+		try {
+			JobKey jobKey = new JobKey(name, group);
+			TriggerKey triggerKey = new TriggerKey(name, group);
+			if (scheduler.checkExists(jobKey)) {
+				JobDetail jobDetail = scheduler.getJobDetail(jobKey);
+				scheduler.getTriggersOfJob(jobKey);
+				List<JobExecutionContext> jobExecutionContextList = scheduler.getCurrentlyExecutingJobs();
+				for (JobExecutionContext context : jobExecutionContextList) {
+					Job job = context.getJobInstance();
+					System.out.println(job + "----------------------");
+					job.execute(context);
+				}
+				//Class jobClass = jobDetail.getJobClass();
+				//Method method = jobClass.getDeclaredMethod("execute");
+				//method.invoke("");
+			}
+
+			listingAllJobs(scheduler);
+			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+		} catch (Exception e) {
+			LoggerUtil.error("SchedulingController delJob", e);
+			return result(FAIL_CODE, FAIL_MSG, null);
+		}
+	}
+
+	public void listingAllJobs(Scheduler sched) throws SchedulerException {
+		for (String group : sched.getJobGroupNames()) {
+			// enumerate each job in group
+			for (JobKey jobKey : sched.getJobKeys(GroupMatcher.<JobKey>groupEquals(group))) {
+				System.out.println("Found job identified by: " + jobKey);
+			}
 		}
 	}
 }
