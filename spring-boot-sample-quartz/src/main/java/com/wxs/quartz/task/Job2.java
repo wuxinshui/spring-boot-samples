@@ -14,7 +14,7 @@ import org.quartz.JobExecutionException;
  * @Description: [TODO(用一句话描述该文件做什么)]
  * @version: [V1.0]
  */
-public class Job2 extends Task implements Job {
+public class Job2 implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
