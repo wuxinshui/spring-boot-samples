@@ -27,7 +27,7 @@
         <javaClientGenerator targetPackage="com.wxs.quartz.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="t_task_info">
+        <table tableName="t_job_info">
             <!--% 全部表-->
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
