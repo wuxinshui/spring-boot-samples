@@ -2,11 +2,12 @@ package com.wxs.quartz.conf;
 
 import com.wxs.quartz.mapper.JobInfoMapper;
 import com.wxs.quartz.model.JobInfo;
-import org.quartz.*;
+import org.quartz.CronScheduleBuilder;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.Trigger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -36,7 +37,8 @@ public class InitJobConfig implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         List<JobInfo> jobInfoList = jobInfoMapper.selectAll();
-        for (JobInfo jobVo : jobInfoList) {
+        for (int i=0;i<jobInfoList.size();i++) {
+            JobInfo jobVo=jobInfoList.get(i);
             Class jobClass = Class.forName(jobVo.getJobClass());
             JobDetail job1 = newJob(jobClass)
                     .withIdentity(jobVo.getJobName(), jobVo.getJobGroup())
