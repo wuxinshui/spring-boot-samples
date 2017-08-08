@@ -12,16 +12,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class InitJob implements Job {
-    @Autowired
-    private Scheduler scheduler;
-
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        try {
-            // scheduler.getContext();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // System.out.println("This is init method!!!");
     }
 }

@@ -4,8 +4,10 @@ import com.wxs.quartz.mapper.JobInfoMapper;
 import com.wxs.quartz.model.JobInfo;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -22,26 +24,28 @@ import static org.quartz.TriggerBuilder.newTrigger;
  * @Description: [TODO(用一句话描述该文件做什么)]
  * @version: [V1.0]
  */
-public class InitJobConfig {
+@Component
+public class InitJobConfig implements CommandLineRunner {
 
-	// @Autowired
-	// private JobInfoMapper jobInfoMapper;
-    //
-	// @Autowired
-	// private Scheduler scheduler;
-    //
-	// public void initScheduler() throws SchedulerException, ClassNotFoundException {
-	// 	List<JobInfo> jobInfoList = jobInfoMapper.selectAll();
-	// 	for (JobInfo jobVo : jobInfoList) {
-	// 		Class jobClass = Class.forName(jobVo.getJobClass());
-	// 		JobDetail job1 = newJob(jobClass)
-	// 				.withIdentity(jobVo.getJobName(), jobVo.getJobGroup())
-	// 				.storeDurably()
-	// 				.build();
-	// 		Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
-	// 				.withIdentity(jobVo.getTriggerName(), jobVo.getTriggerGroup())
-	// 				.build();
-	// 		scheduler.scheduleJob(job1, trigger);
-	// 	}
-	// }
+    @Autowired
+    private JobInfoMapper jobInfoMapper;
+
+    @Autowired
+    private Scheduler scheduler;
+
+    @Override
+    public void run(String... strings) throws Exception {
+        List<JobInfo> jobInfoList = jobInfoMapper.selectAll();
+        for (JobInfo jobVo : jobInfoList) {
+            Class jobClass = Class.forName(jobVo.getJobClass());
+            JobDetail job1 = newJob(jobClass)
+                    .withIdentity(jobVo.getJobName(), jobVo.getJobGroup())
+                    .storeDurably()
+                    .build();
+            Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
+                    .withIdentity(jobVo.getTriggerName(), jobVo.getTriggerGroup())
+                    .build();
+            scheduler.scheduleJob(job1, trigger);
+        }
+    }
 }

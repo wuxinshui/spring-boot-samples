@@ -4,6 +4,9 @@ import com.wxs.quartz.task.InitJob;
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.core.QuartzScheduler;
+import org.quartz.impl.StdScheduler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
@@ -25,6 +28,13 @@ import java.text.ParseException;
 @Configuration
 public class JobConfig {
 
+
+    // @Bean(name = "scheduler")
+    // public Scheduler scheduler() throws SchedulerException {
+    //     SchedulerFactoryBean schedulerFactoryBean=new SchedulerFactoryBean();
+    //     Scheduler scheduler=schedulerFactoryBean.getScheduler();
+    //     return scheduler;
+    // }
 
     @Bean(name = "scheduler")
     public Scheduler scheduler(CronTrigger cronTrigger) {
