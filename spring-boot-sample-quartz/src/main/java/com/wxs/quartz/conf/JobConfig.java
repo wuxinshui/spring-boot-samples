@@ -1,16 +1,11 @@
 package com.wxs.quartz.conf;
 
-import com.wxs.quartz.task.Job1;
-import org.quartz.CronTrigger;
-import org.quartz.JobDetail;
 import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
+import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
-import org.springframework.scheduling.quartz.JobDetailFactoryBean;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-
-import java.text.ParseException;
 
 /**
  * @ClassName: JobConfig
@@ -25,40 +20,57 @@ import java.text.ParseException;
 @Configuration
 public class JobConfig {
 	@Bean(name = "scheduler")
-	public Scheduler scheduler(CronTrigger cronTrigger) {
-		SchedulerFactoryBean factoryBean = new SchedulerFactoryBean();
-		factoryBean.setTriggers(cronTrigger);
-		Scheduler scheduler = null;
+	public Scheduler scheduler() {
 		try {
-			factoryBean.afterPropertiesSet();
-			scheduler = factoryBean.getScheduler();
-			scheduler.start();
-		} catch (Exception e) {
+			SchedulerFactory sf = new StdSchedulerFactory();
+			Scheduler scheduler = sf.getScheduler();
+			InitJob initJob = new InitJob();
+			initJob.initScheduler();
+			return scheduler;
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return scheduler;
+		return null;
 	}
 
-	@Bean(name = "cronTrigger")
-	public CronTrigger cronTrigger(JobDetail jobDetail) throws ParseException {
-		CronTriggerFactoryBean cronTriggerFactoryBean = new CronTriggerFactoryBean();
-		cronTriggerFactoryBean.setJobDetail(jobDetail);
-		cronTriggerFactoryBean.setName("trigger1");
-		cronTriggerFactoryBean.setGroup("test");
-		cronTriggerFactoryBean.setCronExpression("0/1 * * * * ?");
-		cronTriggerFactoryBean.afterPropertiesSet();
-		CronTrigger cronTrigger = cronTriggerFactoryBean.getObject();
-		return cronTrigger;
-	}
 
-	@Bean(name = "jobDetail")
-	public JobDetail jobDetail() {
-		JobDetailFactoryBean jobDetailFactoryBean = new JobDetailFactoryBean();
-		jobDetailFactoryBean.setGroup("test");
-		jobDetailFactoryBean.setName("job1");
-		jobDetailFactoryBean.setGroup("test");
-		jobDetailFactoryBean.setJobClass(Job1.class);
-		jobDetailFactoryBean.afterPropertiesSet();
-		return jobDetailFactoryBean.getObject();
-	}
+	//@Bean(name = "scheduler")
+	//public Scheduler scheduler(CronTrigger cronTrigger) {
+	//	SchedulerFactoryBean factoryBean = new SchedulerFactoryBean();
+	//	factoryBean.setTriggers(cronTrigger);
+	//	Scheduler scheduler = null;
+	//	try {
+	//		factoryBean.afterPropertiesSet();
+	//		scheduler = factoryBean.getScheduler();
+	//		scheduler.start();
+	//	} catch (Exception e) {
+	//		e.printStackTrace();
+	//	}
+	//	return scheduler;
+	//}
+
+	//@Bean(name = "cronTrigger")
+	//public CronTrigger cronTrigger(JobDetail jobDetail) throws ParseException {
+	//	CronTriggerFactoryBean cronTriggerFactoryBean = new CronTriggerFactoryBean();
+	//	cronTriggerFactoryBean.setJobDetail(jobDetail);
+	//	cronTriggerFactoryBean.setName("trigger1");
+	//	cronTriggerFactoryBean.setGroup("test");
+	//	cronTriggerFactoryBean.setCronExpression("0/1 * * * * ?");
+	//	cronTriggerFactoryBean.afterPropertiesSet();
+	//	CronTrigger cronTrigger = cronTriggerFactoryBean.getObject();
+	//	return cronTrigger;
+	//}
+	//
+	//@Bean(name = "jobDetail")
+	//public JobDetail jobDetail() {
+	//	JobDetailFactoryBean jobDetailFactoryBean = new JobDetailFactoryBean();
+	//	jobDetailFactoryBean.setGroup("test");
+	//	jobDetailFactoryBean.setName("job1");
+	//	jobDetailFactoryBean.setGroup("test");
+	//	jobDetailFactoryBean.setJobClass(Job1.class);
+	//	jobDetailFactoryBean.afterPropertiesSet();
+	//	return jobDetailFactoryBean.getObject();
+	//}
 }
