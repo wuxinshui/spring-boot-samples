@@ -1,4 +1,4 @@
-package com.wxs.quartz.util;
+package com.wxs.quartz.common;
 
 import com.alibaba.fastjson.JSON;
 

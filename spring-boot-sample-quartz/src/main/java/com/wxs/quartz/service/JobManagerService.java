@@ -1,19 +1,20 @@
 package com.wxs.quartz.service;
 
+import com.wxs.quartz.common.Result;
 import com.wxs.quartz.conf.ScheduleJobInit;
+import com.wxs.quartz.mapper.JobInfoMapper;
 import com.wxs.quartz.model.JobInfo;
 import com.wxs.quartz.util.LoggerUtil;
 import org.quartz.*;
-import org.quartz.impl.JobDetailImpl;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
+
 
 /**
  * <p>JobManager</p>
@@ -23,107 +24,110 @@ import static org.quartz.TriggerBuilder.newTrigger;
 @Service
 public class JobManagerService {
 
-    @Autowired
-    private Scheduler scheduler;
+	@Autowired
+	private Scheduler scheduler;
 
-    @Autowired
-    private ScheduleJobInit jobConfig;
+	@Autowired
+	private ScheduleJobInit jobConfig;
 
-    public List<JobInfo> selectAllJobs() throws Exception {
-        try {
-            JobDetail jobDetail = new JobDetailImpl();
+	@Autowired
+	private JobInfoMapper jobInfoMapper;
 
-            scheduler.addJob(jobDetail, false);
-            List<JobInfo> jobInfoList = new ArrayList<>();
-            return jobInfoList;
-        } catch (Exception e) {
-            LoggerUtil.error("SchedulingController startJob", e);
-            throw e;
-        }
-    }
+	public Result selectAllJobs() throws Exception {
+		try {
+			List<JobInfo> jobInfoList = jobInfoMapper.selectAll();
+			;
+			Result<List<JobInfo>> infoResult = new Result<>(Result.Code.SUCCESS, null, jobInfoList);
+			return infoResult;
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService selectAllJobs", e);
+			throw e;
+		}
+	}
 
-    public void addJob(JobInfo jobVo) {
-        try {
-            Class jobClass = Class.forName(jobVo.getJobClass());
-            JobDetail job1 = newJob(jobClass)
-                    .withIdentity(jobVo.getJobName(), jobVo.getJobGroup())
-                    .storeDurably()
-                    .build();
-            Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
-                    .withIdentity(jobVo.getTriggerName(), jobVo.getTriggerGroup())
-                    .build();
+	public void addJob(JobInfo jobVo) throws Exception {
+		try {
+			Class jobClass = Class.forName(jobVo.getJobClass());
+			JobDetail job1 = newJob(jobClass)
+					.withIdentity(jobVo.getJobName(), jobVo.getJobGroup())
+					.storeDurably()
+					.build();
+			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
+					.withIdentity(jobVo.getTriggerName(), jobVo.getTriggerGroup())
+					.build();
 
-            scheduler.scheduleJob(job1, trigger);
-        } catch (Exception e) {
-            LoggerUtil.error("SchedulingController addJob", e);
-        }
-    }
+			scheduler.scheduleJob(job1, trigger);
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService addJob", e);
+			throw e;
+		}
+	}
 
-    public void pauseJob(String group, String name) throws Exception {
-        try {
-            JobKey jobKey = new JobKey(name, group);
-            if (scheduler.checkExists(jobKey)) {
-                scheduler.pauseJob(jobKey);
-            }
-        } catch (Exception e) {
-            LoggerUtil.error("SchedulingController pauseJob", e);
-            throw e;
-        }
-    }
+	public void pauseJob(String group, String name) throws Exception {
+		try {
+			JobKey jobKey = new JobKey(name, group);
+			if (scheduler.checkExists(jobKey)) {
+				scheduler.pauseJob(jobKey);
+			}
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService pauseJob", e);
+			throw e;
+		}
+	}
 
-    public void resumeJob(String group, String name) throws Exception {
-        try {
-            JobKey jobKey = new JobKey(name, group);
-            if (scheduler.checkExists(jobKey)) {
-                scheduler.resumeJob(jobKey);
-            }
-        } catch (Exception e) {
-            LoggerUtil.error("SchedulingController pauseJob", e);
-            throw e;
-        }
-    }
+	public void resumeJob(String group, String name) throws Exception {
+		try {
+			JobKey jobKey = new JobKey(name, group);
+			if (scheduler.checkExists(jobKey)) {
+				scheduler.resumeJob(jobKey);
+			}
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService resumeJob", e);
+			throw e;
+		}
+	}
 
 
-    public void deleteJob(String group, String name) throws Exception {
-        try {
-            JobKey jobKey = new JobKey(name, group);
-            if (scheduler.checkExists(jobKey)) {
-                scheduler.deleteJob(jobKey);
-            }
-        } catch (Exception e) {
-            LoggerUtil.error("SchedulingController delJob", e);
-            throw e;
-        }
-    }
+	public void deleteJob(String group, String name) throws Exception {
+		try {
+			JobKey jobKey = new JobKey(name, group);
+			if (scheduler.checkExists(jobKey)) {
+				scheduler.deleteJob(jobKey);
+			}
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService deleteJob", e);
+			throw e;
+		}
+	}
 
-    public void executeJob(String group, String name) throws Exception {
-        try {
-            JobKey jobKey = JobKey.jobKey(name, group);
-            if (scheduler.checkExists(jobKey)) {
-                scheduler.triggerJob(jobKey);
-            }
-        } catch (Exception e) {
-            LoggerUtil.error("SchedulingController delJob", e);
-            throw e;
-        }
-    }
+	public void executeJob(String group, String name) throws Exception {
+		try {
+			JobKey jobKey = JobKey.jobKey(name, group);
+			if (scheduler.checkExists(jobKey)) {
+				scheduler.triggerJob(jobKey);
+			}
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService executeJob", e);
+			throw e;
+		}
+	}
 
-    public void scheduleJobs() throws Exception {
-        try {
-            jobConfig.run();
-        } catch (Exception e) {
-            LoggerUtil.error("SchedulingController delJob", e);
-            throw e;
-        }
-    }
+	public void scheduleJobs() throws Exception {
+		try {
+			jobConfig.run();
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService scheduleJobs", e);
+			throw e;
+		}
+	}
 
-    public void listingAllJobs(Scheduler sched) throws SchedulerException {
-        for (String group : sched.getJobGroupNames()) {
-            // enumerate each job in group
-            for (JobKey jobKey : sched.getJobKeys(GroupMatcher.<JobKey>groupEquals(group))) {
-                System.out.println("Found job identified by: " + jobKey);
-            }
-        }
-    }
+	public void listingAllJobs(Scheduler sched) throws SchedulerException {
+		for (String group : sched.getJobGroupNames()) {
+			// enumerate each job in group
+			for (JobKey jobKey : sched.getJobKeys(GroupMatcher.<JobKey>groupEquals(group))) {
+				System.out.println("Found job identified by: " + jobKey);
+			}
+		}
+	}
 
 }

@@ -1,5 +1,6 @@
 package com.wxs.quartz.controller;
 
+import com.wxs.quartz.common.Result;
 import com.wxs.quartz.model.JobInfo;
 import com.wxs.quartz.service.JobManagerService;
 import com.wxs.quartz.util.LoggerUtil;
@@ -7,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-import static com.wxs.quartz.util.Constant.*;
+import static com.wxs.quartz.common.Constant.*;
 
 /**
  * @ClassName: JobController
@@ -32,12 +31,14 @@ public class JobController extends BaseController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelMap selectAllJobs() {
 		try {
-			List<JobInfo> jobInfoList = jobManagerService.selectAllJobs();
-			return result(SUCCESS_CODE, SUCCESS_MSG, jobInfoList);
+			Result jobInfoList = jobManagerService.selectAllJobs();
+			if (jobInfoList.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, jobInfoList.getData());
+			}
 		} catch (Exception e) {
 			LoggerUtil.error("SchedulingController startJob", e);
-			return result(FAIL_CODE, FAIL_MSG, null);
 		}
+		return result(FAIL_CODE, FAIL_MSG, null);
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)

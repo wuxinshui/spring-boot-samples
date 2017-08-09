@@ -1,4 +1,4 @@
-package com.wxs.quartz.util;
+package com.wxs.quartz.common;
 
 /**
  * <p>JobStatus</p>
