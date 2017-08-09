@@ -1,13 +1,11 @@
 package com.wxs.quartz.conf;
 
+import com.wxs.quartz.common.JobStatus;
 import com.wxs.quartz.mapper.JobInfoMapper;
 import com.wxs.quartz.model.JobInfo;
 import com.wxs.quartz.util.BeanUtils;
 import com.wxs.quartz.vo.JobInfoVo;
-import org.quartz.CronScheduleBuilder;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.Trigger;
+import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -45,14 +43,27 @@ public class ScheduleJobInit implements CommandLineRunner {
 		for (int i = 0; i < jobInfoVoList.size(); i++) {
 			JobInfoVo jobVo = jobInfoVoList.get(i);
 			Class jobClass = Class.forName(jobVo.getJobClass());
+
+			JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
+			TriggerKey triggerKey = TriggerKey.triggerKey(jobVo.getTriggerName(), jobVo.getTriggerGroup());
 			JobDetail job1 = newJob(jobClass)
-					.withIdentity(jobVo.getJobName(), jobVo.getJobGroup())
+					.withIdentity(jobKey)
 					.storeDurably()
 					.build();
 			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
-					.withIdentity(jobVo.getTriggerName(), jobVo.getTriggerGroup())
+					.withIdentity(triggerKey)
 					.build();
-			scheduler.scheduleJob(job1, trigger);
+
+
+			JobStatus jobStatus = JobStatus.valueOf(jobVo.getJobStatus());
+			switch (jobStatus) {
+				case RUNNING:
+					scheduler.scheduleJob(job1, trigger);
+					break;
+				case PAUSE:
+					scheduler.scheduleJob(job1, trigger);
+					scheduler.pauseJob(jobKey);
+			}
 		}
 	}
 }

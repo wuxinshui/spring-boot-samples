@@ -1,5 +1,7 @@
 package com.wxs.quartz.service;
 
+import com.alibaba.druid.util.StringUtils;
+import com.wxs.quartz.common.JobStatus;
 import com.wxs.quartz.common.Result;
 import com.wxs.quartz.conf.ScheduleJobInit;
 import com.wxs.quartz.mapper.JobInfoMapper;
@@ -66,6 +68,9 @@ public class JobManagerService {
 
 			scheduler.scheduleJob(job1, trigger);
 
+			if (StringUtils.isEmpty(jobVo.getJobStatus())) {
+				jobVo.setJobStatus(JobStatus.RUNNING.name());
+			}
 			jobInfoMapper.insert(jobVo);
 		} catch (Exception e) {
 			scheduler.deleteJob(jobKey);
@@ -98,6 +103,7 @@ public class JobManagerService {
 
 			scheduler.addJob(job1, true);
 			scheduler.rescheduleJob(triggerKey, trigger);
+
 			jobInfoMapper.updateByPrimaryKey(jobVo);
 		} catch (Exception e) {
 			LoggerUtil.error("JobManagerService addJob", e);
@@ -118,6 +124,7 @@ public class JobManagerService {
 			}
 
 			scheduler.pauseJob(jobKey);
+			updateJobByJobKey(group, name, JobStatus.PAUSE);
 		} catch (Exception e) {
 			LoggerUtil.error("JobManagerService pauseJob", e);
 			throw e;
@@ -137,6 +144,7 @@ public class JobManagerService {
 			}
 
 			scheduler.resumeJob(jobKey);
+			updateJobByJobKey(group, name, JobStatus.RUNNING);
 		} catch (Exception e) {
 			LoggerUtil.error("JobManagerService resumeJob", e);
 			throw e;
@@ -155,6 +163,39 @@ public class JobManagerService {
 				return result;
 			}
 			scheduler.deleteJob(jobKey);
+
+			updateJobByJobKey(group, name, JobStatus.DELETE);
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService deleteJob", e);
+			throw e;
+		}
+
+		return result;
+	}
+
+	public Result restartJob(String jobGroup,String jobName) throws Exception {
+
+		Result result = new Result();
+
+		try {
+			JobInfo jobInfo=jobInfoMapper.selectJobByJobKey(jobGroup,jobName);
+
+			JobKey jobKey = JobKey.jobKey(jobInfo.getJobName(), jobInfo.getJobGroup());
+			TriggerKey triggerKey = TriggerKey.triggerKey(jobInfo.getTriggerName(), jobInfo.getTriggerGroup());
+			Class jobClass = Class.forName(jobInfo.getJobClass());
+
+			JobDetail job = newJob(jobClass)
+					.withIdentity(jobKey)
+					.storeDurably()
+					.build();
+			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobInfo.getCronExpression()))
+					.withIdentity(triggerKey)
+					.build();
+
+			scheduler.scheduleJob(job,trigger);
+
+			updateJobByJobKey(jobGroup, jobName, JobStatus.RUNNING);
+
 		} catch (Exception e) {
 			LoggerUtil.error("JobManagerService deleteJob", e);
 			throw e;
@@ -188,6 +229,12 @@ public class JobManagerService {
 			LoggerUtil.error("JobManagerService scheduleJobs", e);
 			throw e;
 		}
+		return result;
+	}
+
+	private Result updateJobByJobKey(String jobGroup, String jobName, JobStatus jobStatus) {
+		Result result = new Result();
+		jobInfoMapper.updateJobByJobKey(jobGroup, jobName, jobStatus.name());
 		return result;
 	}
 

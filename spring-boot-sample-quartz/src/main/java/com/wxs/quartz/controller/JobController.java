@@ -117,6 +117,21 @@ public class JobController extends BaseController {
 		}
 	}
 
+	@RequestMapping(value = "/restartJob/{group}/{name}", method = RequestMethod.GET)
+	public ModelMap restartJob(@PathVariable String group, @PathVariable String name) {
+		try {
+			Result result = jobManagerService.restartJob(group, name);
+			if (result.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			} else {
+				return result(FAIL_CODE, result.getMessage(), null);
+			}
+		} catch (Exception e) {
+			LoggerUtil.error("SchedulingController delJob", e);
+			return result(FAIL_CODE, FAIL_MSG, null);
+		}
+	}
+
 	@RequestMapping(value = "/execute/{group}/{name}", method = RequestMethod.GET)
 	public ModelMap executeJob(@PathVariable String group, @PathVariable String name) {
 		try {
