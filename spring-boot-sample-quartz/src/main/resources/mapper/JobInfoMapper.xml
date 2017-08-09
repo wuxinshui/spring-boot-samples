@@ -22,17 +22,22 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <update id="updateJobByJobKey">
-    UPDATE t_job_info j
-    SET j.job_status = #{jobStatus}
-    WHERE
-        j.job_group = #{jobGroup}
-    AND j.job_name = #{jobName};
-  </update>
+    <sql id="Base_Column_List">
+     id,job_name,job_group,job_description,job_status,job_class,trigger_name,trigger_group,trigger_status,
+     trigger_description,cron_expression,create_user,create_time,update_user,update_time
+    </sql>
 
-    <select id="selectJobByJobKey" resultMap="BaseResultMap" >
+    <update id="updateJobByJobKey">
+        UPDATE t_job_info j
+        SET j.job_status = #{jobStatus}
+        WHERE
+            j.job_group = #{jobGroup}
+        AND j.job_name = #{jobName};
+    </update>
+
+    <select id="selectJobByJobKey" resultMap="BaseResultMap">
         select
-        <include refid="BaseResultMap"/>
+        <include refid="Base_Column_List"/>
         FROM t_job_info j
         WHERE
         j.job_group = #{jobGroup}
