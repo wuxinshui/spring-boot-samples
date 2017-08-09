@@ -113,7 +113,7 @@ Response:
             "jobName": "Job1",
             "jobGroup": "JobGroup1",
             "jobDescription": "JobGroup.Job1",
-            "jobStatus": "GOING",
+            "jobStatus": "RUNNING",
             "jobClass": "com.wxs.quartz.job.Job1",
             "triggerName": "trigger1",
             "triggerGroup": "TriggerGroup1",
@@ -121,16 +121,16 @@ Response:
             "triggerDescription": "TriggerGroup.trigger1",
             "cronExpression": "0/1 * * * * ?",
             "createUser": null,
-            "createTime": 1502177110000,
+            "createTime": "2017-08-08 15:25:10",
             "updateUser": null,
-            "updateTime": 1502177110000
+            "updateTime": "2017-08-08 15:25:10"
         },
         {
             "id": 2,
             "jobName": "Job2",
             "jobGroup": "JobGroup2",
             "jobDescription": "JobGroup.Job2",
-            "jobStatus": "GOING",
+            "jobStatus": "RUNNING",
             "jobClass": "com.wxs.quartz.job.Job2",
             "triggerName": "trigger2",
             "triggerGroup": "TriggerGroup2",
@@ -138,9 +138,43 @@ Response:
             "triggerDescription": "TriggerGroup.trigger1",
             "cronExpression": "0/1 * * * * ?",
             "createUser": "",
-            "createTime": 1502177110000,
+            "createTime": "2017-08-08 15:25:10",
             "updateUser": "",
-            "updateTime": 1502177110000
+            "updateTime": "2017-08-08 15:25:10"
+        },
+        {
+            "id": 3,
+            "jobName": "Job2",
+            "jobGroup": "JobGroup3",
+            "jobDescription": "JobGroup.Job2",
+            "jobStatus": "DELETE",
+            "jobClass": "com.wxs.quartz.job.Job2",
+            "triggerName": "trigger2",
+            "triggerGroup": "TriggerGroup3",
+            "triggerStatus": "GOING",
+            "triggerDescription": "TriggerGroup.trigger1",
+            "cronExpression": "0/1 * * * * ?",
+            "createUser": null,
+            "createTime": "2017-08-09 15:42:08",
+            "updateUser": null,
+            "updateTime": "2017-08-09 14:48:47"
+        },
+        {
+            "id": 4,
+            "jobName": "Job2",
+            "jobGroup": "JobGroup1",
+            "jobDescription": "JobGroup1.Job2",
+            "jobStatus": "PAUSE",
+            "jobClass": "com.wxs.quartz.job.Job1",
+            "triggerName": "trigger2",
+            "triggerGroup": "TriggerGroup1",
+            "triggerStatus": "GOING",
+            "triggerDescription": "TriggerGroup1.trigger2",
+            "cronExpression": "0/1 * * * * ?",
+            "createUser": null,
+            "createTime": "2017-08-09 15:42:11",
+            "updateUser": null,
+            "updateTime": "2017-08-09 14:50:17"
         }
     ]
 }
