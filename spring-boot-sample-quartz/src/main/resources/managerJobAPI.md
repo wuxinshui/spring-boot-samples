@@ -11,23 +11,42 @@ Response:
 ```
 
 ## 新增Job
-POST:`http://172.16.36.73:9090/job/add/test/job2`
-
-Response:
-```
- {
-            "jobName": "Job2",
-            "jobGroup": "JobGroup3",
-            "jobDescription": "JobGroup.Job2",
-            "jobStatus": "GOING",
-            "jobClass": "com.wxs.quartz.job.Job2",
-            "triggerName": "trigger2",
-            "triggerGroup": "TriggerGroup3",
-            "triggerStatus": "GOING",
-            "triggerDescription": "TriggerGroup.trigger1",
-            "cronExpression": "0/1 * * * * ?"
-}
-```
+   POST:`http://172.16.36.73:9090/job/add`
+   
+   Response:
+   ```
+    {
+               "jobName": "Job2",
+               "jobGroup": "JobGroup3",
+               "jobDescription": "JobGroup.Job2",
+               "jobStatus": "GOING",
+               "jobClass": "com.wxs.quartz.job.Job2",
+               "triggerName": "trigger2",
+               "triggerGroup": "TriggerGroup3",
+               "triggerStatus": "GOING",
+               "triggerDescription": "TriggerGroup.trigger1",
+               "cronExpression": "0/1 * * * * ?"
+   }
+   ```
+   
+   ## 更新Job
+   POST:`http://172.16.36.73:9090/job/add`
+   
+   Response:
+   ```
+    {
+               "jobName": "Job2",
+               "jobGroup": "JobGroup3",
+               "jobDescription": "JobGroup.Job2",
+               "jobStatus": "GOING",
+               "jobClass": "com.wxs.quartz.job.Job2",
+               "triggerName": "trigger2",
+               "triggerGroup": "TriggerGroup3",
+               "triggerStatus": "GOING",
+               "triggerDescription": "TriggerGroup.trigger1",
+               "cronExpression": "0/1 * * * * ?"
+   }
+   ```
 
 ## 暂停Job
 

@@ -46,17 +46,52 @@ public class JobManagerService {
 	}
 
 	public void addJob(JobInfo jobVo) throws Exception {
+		JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
+		TriggerKey triggerKey = TriggerKey.triggerKey(jobVo.getTriggerName(), jobVo.getTriggerGroup());
 		try {
+			if (scheduler.checkExists(jobKey)) {
+				updateJob(jobVo);
+			} else {
+
+				Class jobClass = Class.forName(jobVo.getJobClass());
+				JobDetail job1 = newJob(jobClass)
+						.withIdentity(jobKey)
+						.storeDurably()
+						.build();
+				Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
+						.withIdentity(triggerKey)
+						.build();
+
+				scheduler.scheduleJob(job1, trigger);
+
+				jobInfoMapper.insert(jobVo);
+			}
+		} catch (Exception e) {
+			scheduler.deleteJob(jobKey);
+			LoggerUtil.error("JobManagerService addJob", e);
+			throw e;
+		}
+	}
+
+	public void updateJob(JobInfo jobVo) throws Exception {
+		JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
+		TriggerKey triggerKey = TriggerKey.triggerKey(jobVo.getTriggerName(), jobVo.getTriggerGroup());
+		try {
+			if (scheduler.checkExists(jobKey)) {
+				scheduler.resumeJob(jobKey);
+			}
 			Class jobClass = Class.forName(jobVo.getJobClass());
 			JobDetail job1 = newJob(jobClass)
-					.withIdentity(jobVo.getJobName(), jobVo.getJobGroup())
+					.withIdentity(jobKey)
 					.storeDurably()
 					.build();
 			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
-					.withIdentity(jobVo.getTriggerName(), jobVo.getTriggerGroup())
+					.withIdentity(triggerKey)
 					.build();
 
-			scheduler.scheduleJob(job1, trigger);
+			scheduler.addJob(job1, true);
+			scheduler.rescheduleJob(triggerKey, trigger);
+			jobInfoMapper.updateByPrimaryKey(jobVo);
 		} catch (Exception e) {
 			LoggerUtil.error("JobManagerService addJob", e);
 			throw e;

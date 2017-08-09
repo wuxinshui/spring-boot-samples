@@ -3,7 +3,7 @@
 -- ----------------------------
 DROP TABLE IF EXISTS t_job_info;
 CREATE TABLE t_job_info (
-  id int(11) NOT NULL,
+  id int(11) NOT NULL AUTO_INCREMENT,
   job_name varchar(255) DEFAULT NULL COMMENT '任务名称',
   job_group varchar(255) DEFAULT NULL COMMENT '任务分组',
   job_description varchar(255) DEFAULT NULL COMMENT '任务描述',
@@ -19,7 +19,7 @@ CREATE TABLE t_job_info (
   update_user varchar(100) DEFAULT NULL COMMENT '修改者',
   update_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_job_info

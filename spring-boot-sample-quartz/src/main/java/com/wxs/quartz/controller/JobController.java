@@ -52,6 +52,17 @@ public class JobController extends BaseController {
 		}
 	}
 
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public ModelMap updateJob(@RequestBody JobInfo jobVo) {
+		try {
+			jobManagerService.updateJob(jobVo);
+			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+		} catch (Exception e) {
+			LoggerUtil.error("SchedulingController addJob", e);
+			return result(FAIL_CODE, FAIL_MSG, null);
+		}
+	}
+
 	@RequestMapping(value = "/pause/{group}/{name}", method = RequestMethod.GET)
 	public ModelMap pauseJob(@PathVariable String group, @PathVariable String name) {
 		try {
