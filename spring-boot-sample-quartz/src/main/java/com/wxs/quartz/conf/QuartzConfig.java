@@ -14,24 +14,16 @@ import java.text.ParseException;
 
 /**
  * @ClassName: JobConfig
- * @author: [FujiRen]
+ * @author: [Wuxinshui]
  * @CreateDate: 2017/8/7 18:02
- * @UpdateUser: [FujiRen]
+ * @UpdateUser: [Wuxinshui]
  * @UpdateDate: 2017/8/7 18:02
  * @UpdateRemark: [说明本次修改内容]
  * @Description: [TODO(用一句话描述该文件做什么)]
  * @version: [V1.0]
  */
 @Configuration
-public class JobConfig {
-
-
-    // @Bean(name = "scheduler")
-    // public Scheduler scheduler() throws SchedulerException {
-    //     SchedulerFactoryBean schedulerFactoryBean=new SchedulerFactoryBean();
-    //     Scheduler scheduler=schedulerFactoryBean.getScheduler();
-    //     return scheduler;
-    // }
+public class QuartzConfig {
 
     @Bean(name = "scheduler")
     public Scheduler scheduler(CronTrigger cronTrigger) {

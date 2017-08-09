@@ -1,5 +1,6 @@
 package com.wxs.quartz.service;
 
+import com.wxs.quartz.conf.ScheduleJobInit;
 import com.wxs.quartz.model.JobInfo;
 import com.wxs.quartz.util.LoggerUtil;
 import org.quartz.*;
@@ -7,12 +8,10 @@ import org.quartz.impl.JobDetailImpl;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.wxs.quartz.util.Constant.*;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
@@ -26,6 +25,9 @@ public class JobManagerService {
 
     @Autowired
     private Scheduler scheduler;
+
+    @Autowired
+    private ScheduleJobInit jobConfig;
 
     public List<JobInfo> selectAllJobs() throws Exception {
         try {
@@ -100,6 +102,15 @@ public class JobManagerService {
             if (scheduler.checkExists(jobKey)) {
                 scheduler.triggerJob(jobKey);
             }
+        } catch (Exception e) {
+            LoggerUtil.error("SchedulingController delJob", e);
+            throw e;
+        }
+    }
+
+    public void scheduleJobs() throws Exception {
+        try {
+            jobConfig.run();
         } catch (Exception e) {
             LoggerUtil.error("SchedulingController delJob", e);
             throw e;

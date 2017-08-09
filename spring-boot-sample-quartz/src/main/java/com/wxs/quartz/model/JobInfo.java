@@ -1,7 +1,7 @@
 package com.wxs.quartz.model;
 
-import java.util.Date;
 import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "t_job_info")
 public class JobInfo {

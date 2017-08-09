@@ -19,16 +19,16 @@ import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
  * @ClassName: InitJobConfig
- * @author: [FujiRen]
+ * @author: [Wuxinshui]
  * @CreateDate: 2017/8/8 14:37
- * @UpdateUser: [FujiRen]
+ * @UpdateUser: [Wuxinshui]
  * @UpdateDate: 2017/8/8 14:37
  * @UpdateRemark: [说明本次修改内容]
  * @Description: [TODO(用一句话描述该文件做什么)]
  * @version: [V1.0]
  */
 @Component
-public class InitJobConfig implements CommandLineRunner {
+public class ScheduleJobInit implements CommandLineRunner {
 
 	@Autowired
 	private JobInfoMapper jobInfoMapper;

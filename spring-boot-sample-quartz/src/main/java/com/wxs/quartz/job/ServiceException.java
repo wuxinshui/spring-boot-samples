@@ -1,9 +1,9 @@
 package com.wxs.quartz.job;
 
 /**
- * 自定义针对service异常
- * @author lance
- * 2015年5月27日 下午5:09:01
+ * 业务异常
+ * @author Wuxinshui
+ *
  */
 public class ServiceException extends RuntimeException {
 	private static final long serialVersionUID = 8624944628363400977L;

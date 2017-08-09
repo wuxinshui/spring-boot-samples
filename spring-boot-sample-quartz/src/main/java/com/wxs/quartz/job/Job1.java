@@ -6,9 +6,9 @@ import org.quartz.JobExecutionException;
 
 /**
  * @ClassName: Job1
- * @author: [FujiRen]
+ * @author: [Wuxinshui]
  * @CreateDate: 2017/8/7 18:21
- * @UpdateUser: [FujiRen]
+ * @UpdateUser: [Wuxinshui]
  * @UpdateDate: 2017/8/7 18:21
  * @UpdateRemark: [说明本次修改内容]
  * @Description: [TODO(用一句话描述该文件做什么)]
