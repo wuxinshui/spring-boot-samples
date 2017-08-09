@@ -44,8 +44,12 @@ public class JobController extends BaseController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelMap addJob(@RequestBody JobInfo jobVo) {
 		try {
-			jobManagerService.addJob(jobVo);
-			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			Result result = jobManagerService.addJob(jobVo);
+			if (result.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			} else {
+				return result(FAIL_CODE, result.getMessage(), null);
+			}
 		} catch (Exception e) {
 			LoggerUtil.error("SchedulingController addJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
@@ -55,8 +59,12 @@ public class JobController extends BaseController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelMap updateJob(@RequestBody JobInfo jobVo) {
 		try {
-			jobManagerService.updateJob(jobVo);
-			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			Result result = jobManagerService.updateJob(jobVo);
+			if (result.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			} else {
+				return result(FAIL_CODE, result.getMessage(), null);
+			}
 		} catch (Exception e) {
 			LoggerUtil.error("SchedulingController addJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
@@ -66,8 +74,12 @@ public class JobController extends BaseController {
 	@RequestMapping(value = "/pause/{group}/{name}", method = RequestMethod.GET)
 	public ModelMap pauseJob(@PathVariable String group, @PathVariable String name) {
 		try {
-			jobManagerService.pauseJob(group, name);
-			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			Result result = jobManagerService.pauseJob(group, name);
+			if (result.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			} else {
+				return result(FAIL_CODE, result.getMessage(), null);
+			}
 		} catch (Exception e) {
 			LoggerUtil.error("SchedulingController pauseJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
@@ -77,8 +89,12 @@ public class JobController extends BaseController {
 	@RequestMapping(value = "/resume/{group}/{name}", method = RequestMethod.GET)
 	public ModelMap resumeJob(@PathVariable String group, @PathVariable String name) {
 		try {
-			jobManagerService.resumeJob(group, name);
-			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			Result result = jobManagerService.resumeJob(group, name);
+			if (result.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			} else {
+				return result(FAIL_CODE, result.getMessage(), null);
+			}
 		} catch (Exception e) {
 			LoggerUtil.error("SchedulingController pauseJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
@@ -89,9 +105,12 @@ public class JobController extends BaseController {
 	@RequestMapping(value = "/del/{group}/{name}", method = RequestMethod.GET)
 	public ModelMap delJob(@PathVariable String group, @PathVariable String name) {
 		try {
-			jobManagerService.deleteJob(group, name);
-
-			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			Result result = jobManagerService.deleteJob(group, name);
+			if (result.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			} else {
+				return result(FAIL_CODE, result.getMessage(), null);
+			}
 		} catch (Exception e) {
 			LoggerUtil.error("SchedulingController delJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
@@ -101,8 +120,12 @@ public class JobController extends BaseController {
 	@RequestMapping(value = "/execute/{group}/{name}", method = RequestMethod.GET)
 	public ModelMap executeJob(@PathVariable String group, @PathVariable String name) {
 		try {
-			jobManagerService.executeJob(group, name);
-			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			Result result = jobManagerService.executeJob(group, name);
+			if (result.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			} else {
+				return result(FAIL_CODE, result.getMessage(), null);
+			}
 		} catch (Exception e) {
 			LoggerUtil.error("SchedulingController delJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
@@ -112,8 +135,12 @@ public class JobController extends BaseController {
 	@RequestMapping(value = "/schedule", method = RequestMethod.GET)
 	public ModelMap scheduleAllJobs() {
 		try {
-			jobManagerService.scheduleJobs();
-			return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			Result result = jobManagerService.scheduleJobs();
+			if (result.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			} else {
+				return result(FAIL_CODE, result.getMessage(), null);
+			}
 		} catch (Exception e) {
 			LoggerUtil.error("SchedulingController delJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
