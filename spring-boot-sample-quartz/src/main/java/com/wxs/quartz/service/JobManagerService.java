@@ -5,13 +5,16 @@ import com.wxs.quartz.common.JobStatus;
 import com.wxs.quartz.common.Result;
 import com.wxs.quartz.conf.ScheduleJobInit;
 import com.wxs.quartz.mapper.JobInfoMapper;
+import com.wxs.quartz.mapper.ScheduleHisMapper;
 import com.wxs.quartz.model.JobInfo;
+import com.wxs.quartz.model.ScheduleHis;
 import com.wxs.quartz.util.LoggerUtil;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.quartz.JobBuilder.newJob;
@@ -34,6 +37,9 @@ public class JobManagerService {
 
 	@Autowired
 	private JobInfoMapper jobInfoMapper;
+
+	@Autowired
+	private ScheduleHisMapper scheduleHisMapper;
 
 	public Result selectAllJobs() throws Exception {
 		try {
@@ -236,6 +242,32 @@ public class JobManagerService {
 		Result result = new Result();
 		jobInfoMapper.updateJobByJobKey(jobGroup, jobName, jobStatus.name());
 		return result;
+	}
+
+	public void saveScheduleHis(JobExecutionContext context) throws Exception {
+		try {
+			ScheduleHis scheduleHis = new ScheduleHis();
+
+			JobKey jobKey = context.getJobDetail().getKey();
+			scheduleHis.setJobGroup(jobKey.getGroup());
+			scheduleHis.setJobName(jobKey.getName());
+
+			TriggerKey triggerKey = context.getTrigger().getKey();
+			scheduleHis.setTriggerGroup(triggerKey.getGroup());
+			scheduleHis.setTriggerName(triggerKey.getName());
+
+			scheduleHis.setFiredTime(context.getFireTime());
+			scheduleHis.setCreateTime(new Date());
+			scheduleHis.setCreateUser("System");
+
+			System.out.println(scheduleHis);
+			System.out.println(scheduleHisMapper);
+
+			//scheduleHisMapper.insert(scheduleHis);
+		} catch (Exception e) {
+			LoggerUtil.error("BaseJob saveScheduleHis", e);
+			throw e;
+		}
 	}
 
 	public Result listingAllJobs(Scheduler sched) throws SchedulerException {
