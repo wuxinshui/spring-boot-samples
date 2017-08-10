@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.impl.matchers.EverythingMatcher.allJobs;
 
 /**
  * @ClassName: InitJobConfig
@@ -64,6 +65,8 @@ public class ScheduleJobInit implements CommandLineRunner {
 					scheduler.scheduleJob(job1, trigger);
 					scheduler.pauseJob(jobKey);
 			}
+			QuartzJobListener quartzJobListener=new QuartzJobListener("quartzListener");
+			scheduler.getListenerManager().addJobListener(quartzJobListener, allJobs());
 		}
 	}
 }
