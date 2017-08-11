@@ -114,7 +114,16 @@ public class JobManagerService {
 		Result result = new Result();
 
 		JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
-		TriggerKey triggerKey = TriggerKey.triggerKey(jobVo.getTriggerName(), jobVo.getTriggerGroup());
+
+		String triggerName=jobVo.getTriggerName();
+		String triggerGroup=jobVo.getTriggerGroup();
+
+		if (StringUtils.isEmpty(triggerGroup) || StringUtils.isEmpty(triggerName)) {
+			triggerName="Trigger_"+jobVo.getJobName();
+			triggerGroup="Trigger_"+jobVo.getJobGroup();
+		}
+
+		TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, triggerGroup);
 		try {
 
 			if (!scheduler.checkExists(jobKey)) {
