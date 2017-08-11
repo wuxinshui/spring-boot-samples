@@ -53,6 +53,22 @@ public class JobManagerService {
 		}
 	}
 
+
+	public Result selectJobByGoupName(String jobGroup, String jobName) throws Exception {
+		Result result = new Result();
+
+		try {
+			JobInfo jobInfo = jobInfoMapper.selectJobByJobKey(jobGroup, jobName);
+
+			result.setData(jobInfo);
+
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService pauseJob", e);
+			throw e;
+		}
+		return result;
+	}
+
 	public Result addJob(JobInfo jobVo) throws Exception {
 		Result result = new Result();
 		JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());

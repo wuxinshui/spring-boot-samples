@@ -41,6 +41,22 @@ public class JobController extends BaseController {
 		return result(FAIL_CODE, FAIL_MSG, null);
 	}
 
+
+	@RequestMapping(value = "/select/{group}/{name}", method = RequestMethod.POST)
+	public ModelMap selectJob(@PathVariable String group, @PathVariable String name) {
+		try {
+			Result result = jobManagerService.selectJobByGoupName(group, name);
+			if (result.isSuccess()) {
+				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+			} else {
+				return result(FAIL_CODE, result.getMessage(), null);
+			}
+		} catch (Exception e) {
+			LoggerUtil.error("SchedulingController addJob", e);
+			return result(FAIL_CODE, FAIL_MSG, null);
+		}
+	}
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelMap addJob(@RequestBody JobInfo jobVo) {
 		try {
