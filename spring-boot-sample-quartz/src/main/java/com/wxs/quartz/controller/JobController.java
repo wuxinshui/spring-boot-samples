@@ -42,7 +42,7 @@ public class JobController extends BaseController {
 	}
 
 
-	@RequestMapping(value = "/select/{group}/{name}", method = RequestMethod.POST)
+	@RequestMapping(value = "/select/{group}/{name}", method = RequestMethod.GET)
 	public ModelMap selectJob(@PathVariable String group, @PathVariable String name) {
 		try {
 			Result result = jobManagerService.selectJobByGoupName(group, name);
