@@ -47,12 +47,12 @@ public class JobController extends BaseController {
 		try {
 			Result result = jobManagerService.selectJobByGoupName(group, name);
 			if (result.isSuccess()) {
-				return result(SUCCESS_CODE, SUCCESS_MSG, null);
+				return result(SUCCESS_CODE, SUCCESS_MSG, result.getData());
 			} else {
 				return result(FAIL_CODE, result.getMessage(), null);
 			}
 		} catch (Exception e) {
-			LoggerUtil.error("SchedulingController addJob", e);
+			LoggerUtil.error("SchedulingController selectJob", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
 		}
 	}
@@ -82,7 +82,7 @@ public class JobController extends BaseController {
 				return result(FAIL_CODE, result.getMessage(), null);
 			}
 		} catch (Exception e) {
-			LoggerUtil.error("SchedulingController addJob", e);
+			LoggerUtil.error("SchedulingController update", e);
 			return result(FAIL_CODE, FAIL_MSG, null);
 		}
 	}
