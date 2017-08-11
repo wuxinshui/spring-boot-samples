@@ -21,6 +21,26 @@ CREATE TABLE t_job_info (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
+-- ----------------------------
+-- Table structure for t_schedule_his
+-- ----------------------------
+DROP TABLE IF EXISTS t_schedule_his;
+CREATE TABLE t_schedule_his (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  job_name varchar(255) NOT NULL COMMENT '任务名称',
+  job_group varchar(255) NOT NULL COMMENT '任务分组',
+  trigger_name varchar(255) DEFAULT NULL COMMENT '触发器状态',
+  trigger_group varchar(255) NOT NULL COMMENT '触发器分组',
+  fired_time datetime DEFAULT NULL COMMENT '执行时间',
+  create_user varchar(100) DEFAULT NULL COMMENT '创建人',
+  create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  update_user varchar(100) DEFAULT NULL COMMENT '修改者',
+  update_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
 -- ----------------------------
 -- Records of t_job_info
 -- ----------------------------
