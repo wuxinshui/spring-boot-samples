@@ -72,7 +72,15 @@ public class JobManagerService {
 	public Result addJob(JobInfo jobVo) throws Exception {
 		Result result = new Result();
 		JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
-		TriggerKey triggerKey = TriggerKey.triggerKey(jobVo.getTriggerName(), jobVo.getTriggerGroup());
+		String triggerName=jobVo.getTriggerName();
+		String triggerGroup=jobVo.getTriggerGroup();
+
+		if (StringUtils.isEmpty(triggerGroup) || StringUtils.isEmpty(triggerName)) {
+			triggerName="Trigger_"+jobVo.getJobName();
+			triggerGroup="Trigger_"+jobVo.getJobGroup();
+		}
+
+		TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, triggerGroup);
 		try {
 			if (scheduler.checkExists(jobKey)) {
 				result.doErrorHandle("[" + jobKey + "]Job已经存在。");
@@ -195,12 +203,12 @@ public class JobManagerService {
 		return result;
 	}
 
-	public Result restartJob(String jobGroup,String jobName) throws Exception {
+	public Result restartJob(String jobGroup, String jobName) throws Exception {
 
 		Result result = new Result();
 
 		try {
-			JobInfo jobInfo=jobInfoMapper.selectJobByJobKey(jobGroup,jobName);
+			JobInfo jobInfo = jobInfoMapper.selectJobByJobKey(jobGroup, jobName);
 
 			JobKey jobKey = JobKey.jobKey(jobInfo.getJobName(), jobInfo.getJobGroup());
 			TriggerKey triggerKey = TriggerKey.triggerKey(jobInfo.getTriggerName(), jobInfo.getTriggerGroup());
@@ -214,7 +222,7 @@ public class JobManagerService {
 					.withIdentity(triggerKey)
 					.build();
 
-			scheduler.scheduleJob(job,trigger);
+			scheduler.scheduleJob(job, trigger);
 
 			updateJobByJobKey(jobGroup, jobName, JobStatus.RUNNING);
 
