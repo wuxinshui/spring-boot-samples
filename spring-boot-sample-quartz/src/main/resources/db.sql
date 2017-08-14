@@ -44,5 +44,7 @@ CREATE TABLE t_schedule_his (
 -- ----------------------------
 -- Records of t_job_info
 -- ----------------------------
-INSERT INTO t_job_info VALUES ('1', 'Job1', 'JobGroup1', 'JobGroup.Job1', 'GOING', 'com.wxs.quartz.job.Job1', 'trigger1', 'TriggerGroup1', 'GOING', 'TriggerGroup.trigger1', '0/1 * * * * ?', null, '2017-08-08 15:25:10', null, '2017-08-08 15:25:10');
-INSERT INTO t_job_info VALUES ('2', 'Job2', 'JobGroup2', 'JobGroup.Job2', 'GOING', 'com.wxs.quartz.job.Job2', 'trigger2', 'TriggerGroup2', 'GOING', 'TriggerGroup.trigger1', '0/1 * * * * ?', '', '2017-08-08 15:25:10', '', '2017-08-08 15:25:10');
+INSERT INTO t_job_info VALUES ('1', 'Job1', 'JobGroup1', 'JobGroup.Job1', 'PAUSE', 'com.wxs.quartz.job.Job1', 'trigger1', 'TriggerGroup1', 'RUNNING', 'TriggerGroup.trigger1', '0/1 * * * * ?', null, '2017-08-08 15:25:10', null, '2017-08-08 15:25:10');
+INSERT INTO t_job_info VALUES ('2', 'Job2', 'JobGroup2', 'JobGroup.Job2', 'PAUSE', 'com.wxs.quartz.job.Job2', 'trigger2', 'TriggerGroup2', 'RUNNING', 'TriggerGroup.trigger1', '0/1 * * * * ?', '', '2017-08-08 15:25:10', '', '2017-08-08 15:25:10');
+INSERT INTO t_job_info VALUES ('3', 'Job3', 'JobGroup3', 'JobGroup3.Job3', 'RUNNING', 'com.wxs.quartz.job.Job2', 'trigger3', 'TriggerGroup3', 'RUNNING', 'TriggerGroup.trigger1', '0/3 * * * * ?', '', '2017-08-08 15:25:10', '', '2017-08-08 15:25:10');
+INSERT INTO t_job_info VALUES ('4', 'Job4', 'JobGroup3', 'JobGroup3.Job3', 'RUNNING', 'com.wxs.quartz.job.Job2', 'trigger4', 'TriggerGroup3', 'RUNNING', 'TriggerGroup.trigger1', '0/3 * * * * ?', '', '2017-08-08 15:25:10', '', '2017-08-08 15:25:10');
