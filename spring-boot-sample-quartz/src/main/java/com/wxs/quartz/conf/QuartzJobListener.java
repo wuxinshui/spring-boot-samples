@@ -52,7 +52,9 @@ public class QuartzJobListener extends JobListenerSupport {
 
 			Date fireTime=context.getFireTime();
 
-			LoggerUtil.info("Job:{},Trigger:{},FireTime:{}",jobKey,triggerKey,fireTime);
+			Class jobClass=context.getJobDetail().getJobClass();
+
+			LoggerUtil.info("JobClass:{},Job:{},Trigger:{},FireTime:{}",jobClass,jobKey,triggerKey,fireTime);
 			//保存执行记录
 			//JobManagerService jobManagerService=new JobManagerService();
 			//jobManagerService.saveScheduleHis(context);
