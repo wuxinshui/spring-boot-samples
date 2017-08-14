@@ -1,9 +1,11 @@
 package com.wxs.quartz.job;
 
-import org.quartz.*;
+import org.quartz.DisallowConcurrentExecution;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +16,11 @@ import java.util.List;
  */
 @DisallowConcurrentExecution
 public class Job3 implements Job {
+    private static List<Integer> list = new ArrayList<>();
+
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        System.out.println("This is a test for concurrent--"+new Date());
+        System.out.println("This is a test for concurrent--" + new Date());
         try {
             print();
         } catch (InterruptedException e) {
@@ -24,9 +28,8 @@ public class Job3 implements Job {
         }
     }
 
-    public  void print() throws InterruptedException {
+    public void print() throws InterruptedException {
         synchronized (this) {
-            List<Integer> list=new ArrayList<>();
             list.add(1);
             list.add(2);
             Thread.sleep(10000);
@@ -34,7 +37,7 @@ public class Job3 implements Job {
             list.add(3);
             list.add(4);
 
-            System.out.println(list.toString()+"---"+new Date());
+            System.out.println(list.toString() + "---" + new Date());
         }
     }
 }
