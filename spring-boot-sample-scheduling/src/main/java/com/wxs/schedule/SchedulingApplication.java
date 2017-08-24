@@ -12,10 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @Author:Wuxinshui
  * @Date:2017/4/18 20:19
  */
-@Controller
-@EnableWebMvc
 @SpringBootApplication
-@ComponentScan(basePackages = "com.wxs.schedule")
 @EnableScheduling
 public class SchedulingApplication {
 	public static void main(String[] args) {
