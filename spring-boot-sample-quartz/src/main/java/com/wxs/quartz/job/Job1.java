@@ -1,5 +1,6 @@
 package com.wxs.quartz.job;
 
+import com.wxs.quartz.util.LoggerUtil;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -18,7 +19,12 @@ public class Job1 implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		System.out.println("Job1:This is quartz print test!!! " + System.currentTimeMillis());
+		try {
+			System.out.println("Job1:This is quartz print test!!! " + System.currentTimeMillis());
+		} catch (Exception e) {
+			LoggerUtil.error("Job1 exception:",e);
+			throw e;
+		}
 	}
 
 }

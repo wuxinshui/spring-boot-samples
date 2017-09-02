@@ -60,7 +60,7 @@ public class QuartzJobListener extends JobListenerSupport {
             //保存Job异常
             jobManagerService.saveScheduleError(context,jobException);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerUtil.error("QuartzListener jobWasExcuted exception: ",e);
         }
     }
 }
