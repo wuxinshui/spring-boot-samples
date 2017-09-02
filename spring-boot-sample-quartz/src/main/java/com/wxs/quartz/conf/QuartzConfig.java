@@ -35,7 +35,8 @@ public class QuartzConfig {
         Scheduler scheduler = factoryBean.getScheduler();
 
         //延迟60秒启动
-        scheduler.startDelayed(60);
+        // scheduler.startDelayed(60);
+        scheduler.start();
         return scheduler;
     }
 

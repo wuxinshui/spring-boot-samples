@@ -29,312 +29,314 @@ import static org.quartz.TriggerBuilder.newTrigger;
 @Service
 public class JobManagerService {
 
-	@Autowired
-	private Scheduler scheduler;
+    @Autowired
+    private Scheduler scheduler;
 
-	@Autowired
-	private ScheduleJobInit jobConfig;
+    @Autowired
+    private ScheduleJobInit jobConfig;
 
-	@Autowired
-	private JobInfoMapper jobInfoMapper;
+    @Autowired
+    private JobInfoMapper jobInfoMapper;
 
-	@Autowired
-	private ScheduleHisMapper scheduleHisMapper;
+    @Autowired
+    private ScheduleHisMapper scheduleHisMapper;
 
-	public Result selectAllJobs() throws Exception {
-		try {
-			List<JobInfo> jobInfoList = jobInfoMapper.selectAll();
-			;
-			Result<List<JobInfo>> infoResult = new Result<>(Result.Code.SUCCESS, null, jobInfoList);
-			return infoResult;
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService selectAllJobs", e);
-			throw e;
-		}
-	}
-
-
-	public Result selectJobByGoupName(String jobGroup, String jobName) throws Exception {
-		Result result = new Result();
-
-		try {
-			JobInfo jobInfo = jobInfoMapper.selectJobByJobKey(jobGroup, jobName);
-
-			result.setData(jobInfo);
-
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService pauseJob", e);
-			throw e;
-		}
-		return result;
-	}
-
-	public Result addJob(JobInfo jobVo) throws Exception {
-		Result result = new Result();
-		JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
-		String triggerName=jobVo.getTriggerName();
-		String triggerGroup=jobVo.getTriggerGroup();
-
-		if (StringUtils.isEmpty(triggerGroup) || StringUtils.isEmpty(triggerName)) {
-			triggerName="Trigger_"+jobVo.getJobName();
-			triggerGroup="Trigger_"+jobVo.getJobGroup();
-		}
-
-		TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, triggerGroup);
-		try {
-			if (scheduler.checkExists(jobKey)) {
-				result.doErrorHandle("[" + jobKey + "]Job已经存在。");
-				return result;
-			}
-
-			Class jobClass = Class.forName(jobVo.getJobClass());
-			JobDetail job1 = newJob(jobClass)
-					.withIdentity(jobKey)
-					.storeDurably()
-					.build();
-			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
-					.withIdentity(triggerKey)
-					.build();
-
-			scheduler.scheduleJob(job1, trigger);
-
-			if (StringUtils.isEmpty(jobVo.getJobStatus())) {
-				jobVo.setJobStatus(JobStatus.RUNNING.name());
-			}
-			jobInfoMapper.insert(jobVo);
-		} catch (Exception e) {
-			scheduler.deleteJob(jobKey);
-			LoggerUtil.error("JobManagerService addJob", e);
-			throw e;
-		}
-		return result;
-	}
-
-	public Result updateJob(JobInfo jobVo) throws Exception {
-		Result result = new Result();
-
-		JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
-
-		String triggerName=jobVo.getTriggerName();
-		String triggerGroup=jobVo.getTriggerGroup();
-
-		if (StringUtils.isEmpty(triggerGroup) || StringUtils.isEmpty(triggerName)) {
-			triggerName="Trigger_"+jobVo.getJobName();
-			triggerGroup="Trigger_"+jobVo.getJobGroup();
-		}
-
-		TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, triggerGroup);
-		try {
-
-			if (!scheduler.checkExists(jobKey)) {
-				result.doErrorHandle("[" + jobKey + "]Job不存在。");
-				return result;
-			}
-
-			Class jobClass = Class.forName(jobVo.getJobClass());
-			JobDetail job1 = newJob(jobClass)
-					.withIdentity(jobKey)
-					.storeDurably()
-					.build();
-			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
-					.withIdentity(triggerKey)
-					.build();
-
-			scheduler.addJob(job1, true);
-			scheduler.rescheduleJob(triggerKey, trigger);
-
-			jobInfoMapper.updateByPrimaryKey(jobVo);
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService addJob", e);
-			throw e;
-		}
-		return result;
-	}
-
-	public Result pauseJob(String group, String name) throws Exception {
-		Result result = new Result();
-
-		try {
-			JobKey jobKey = JobKey.jobKey(name, group);
-
-			if (!scheduler.checkExists(jobKey)) {
-				result.doErrorHandle("[" + jobKey + "]Job不存在。");
-				return result;
-			}
-
-			scheduler.pauseJob(jobKey);
-			updateJobByJobKey(group, name, JobStatus.PAUSE);
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService pauseJob", e);
-			throw e;
-		}
-		return result;
-	}
-
-	public Result resumeJob(String group, String name) throws Exception {
-		Result result = new Result();
-
-		try {
-			JobKey jobKey = JobKey.jobKey(name, group);
-
-			if (!scheduler.checkExists(jobKey)) {
-				result.doErrorHandle("[" + jobKey + "]Job不存在。");
-				return result;
-			}
-
-			scheduler.resumeJob(jobKey);
-			updateJobByJobKey(group, name, JobStatus.RUNNING);
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService resumeJob", e);
-			throw e;
-		}
-		return result;
-	}
+    public Result selectAllJobs() throws Exception {
+        try {
+            List<JobInfo> jobInfoList = jobInfoMapper.selectAll();
+            ;
+            Result<List<JobInfo>> infoResult = new Result<>(Result.Code.SUCCESS, null, jobInfoList);
+            return infoResult;
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService selectAllJobs", e);
+            throw e;
+        }
+    }
 
 
-	public Result deleteJob(String group, String name) throws Exception {
-		Result result = new Result();
+    public Result selectJobByGoupName(String jobGroup, String jobName) throws Exception {
+        Result result = new Result();
 
-		try {
-			JobKey jobKey = JobKey.jobKey(name, group);
-			if (!scheduler.checkExists(jobKey)) {
-				result.doErrorHandle("[" + jobKey + "]Job不存在。");
-				return result;
-			}
-			scheduler.deleteJob(jobKey);
+        try {
+            JobInfo jobInfo = jobInfoMapper.selectJobByJobKey(jobGroup, jobName);
 
-			updateJobByJobKey(group, name, JobStatus.DELETE);
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService deleteJob", e);
-			throw e;
-		}
+            result.setData(jobInfo);
 
-		return result;
-	}
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService pauseJob", e);
+            throw e;
+        }
+        return result;
+    }
 
-	public Result restartJob(String jobGroup, String jobName) throws Exception {
+    public Result addJob(JobInfo jobVo) throws Exception {
+        Result result = new Result();
+        JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
+        String triggerName = jobVo.getTriggerName();
+        String triggerGroup = jobVo.getTriggerGroup();
 
-		Result result = new Result();
+        if (StringUtils.isEmpty(triggerGroup) || StringUtils.isEmpty(triggerName)) {
+            triggerName = "Trigger_" + jobVo.getJobName();
+            triggerGroup = "Trigger_" + jobVo.getJobGroup();
+        }
 
-		try {
-			JobInfo jobInfo = jobInfoMapper.selectJobByJobKey(jobGroup, jobName);
+        TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, triggerGroup);
+        try {
+            if (scheduler.checkExists(jobKey)) {
+                result.doErrorHandle("[" + jobKey + "]Job已经存在。");
+                return result;
+            }
 
-			JobKey jobKey = JobKey.jobKey(jobInfo.getJobName(), jobInfo.getJobGroup());
-			TriggerKey triggerKey = TriggerKey.triggerKey(jobInfo.getTriggerName(), jobInfo.getTriggerGroup());
-			Class jobClass = Class.forName(jobInfo.getJobClass());
+            Class jobClass = Class.forName(jobVo.getJobClass());
+            JobDetail job1 = newJob(jobClass)
+                    .withIdentity(jobKey)
+                    .storeDurably()
+                    .build();
+            Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
+                    .withIdentity(triggerKey)
+                    .build();
 
-			JobDetail job = newJob(jobClass)
-					.withIdentity(jobKey)
-					.storeDurably()
-					.build();
-			Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobInfo.getCronExpression()))
-					.withIdentity(triggerKey)
-					.build();
+            scheduler.scheduleJob(job1, trigger);
 
-			scheduler.scheduleJob(job, trigger);
+            if (StringUtils.isEmpty(jobVo.getJobStatus())) {
+                jobVo.setJobStatus(JobStatus.RUNNING.name());
+            }
+            jobInfoMapper.insert(jobVo);
+        } catch (Exception e) {
+            scheduler.deleteJob(jobKey);
+            LoggerUtil.error("JobManagerService addJob", e);
+            throw e;
+        }
+        return result;
+    }
 
-			updateJobByJobKey(jobGroup, jobName, JobStatus.RUNNING);
+    public Result updateJob(JobInfo jobVo) throws Exception {
+        Result result = new Result();
 
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService deleteJob", e);
-			throw e;
-		}
+        JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
 
-		return result;
-	}
+        String triggerName = jobVo.getTriggerName();
+        String triggerGroup = jobVo.getTriggerGroup();
 
-	public Result executeJob(String group, String name) throws Exception {
-		Result result = new Result();
+        if (StringUtils.isEmpty(triggerGroup) || StringUtils.isEmpty(triggerName)) {
+            triggerName = "Trigger_" + jobVo.getJobName();
+            triggerGroup = "Trigger_" + jobVo.getJobGroup();
+        }
 
-		try {
-			JobKey jobKey = JobKey.jobKey(name, group);
-			if (!scheduler.checkExists(jobKey)) {
-				result.doErrorHandle("[" + jobKey + "]Job不存在。");
-				return result;
-			}
-			scheduler.triggerJob(jobKey);
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService executeJob", e);
-			throw e;
-		}
-		return result;
-	}
+        TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, triggerGroup);
+        try {
 
-	public Result scheduleJobs() throws Exception {
-		Result result = new Result();
-		try {
-			jobConfig.run();
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService scheduleJobs", e);
-			throw e;
-		}
-		return result;
-	}
+            if (!scheduler.checkExists(jobKey)) {
+                result.doErrorHandle("[" + jobKey + "]Job不存在。");
+                return result;
+            }
 
-	private Result updateJobByJobKey(String jobGroup, String jobName, JobStatus jobStatus) {
-		Result result = new Result();
-		jobInfoMapper.updateJobByJobKey(jobGroup, jobName, jobStatus.name());
-		return result;
-	}
+            Class jobClass = Class.forName(jobVo.getJobClass());
+            JobDetail job1 = newJob(jobClass)
+                    .withIdentity(jobKey)
+                    .storeDurably()
+                    .build();
+            Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
+                    .withIdentity(triggerKey)
+                    .build();
 
-	public void saveScheduleHis(JobExecutionContext context) throws JobExecutionException {
-		try {
-			ScheduleHis scheduleHis = new ScheduleHis();
+            scheduler.addJob(job1, true);
+            scheduler.rescheduleJob(triggerKey, trigger);
 
-			JobKey jobKey = context.getJobDetail().getKey();
-			scheduleHis.setJobGroup(jobKey.getGroup());
-			scheduleHis.setJobName(jobKey.getName());
+            jobInfoMapper.updateByPrimaryKey(jobVo);
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService addJob", e);
+            throw e;
+        }
+        return result;
+    }
 
-			TriggerKey triggerKey = context.getTrigger().getKey();
-			scheduleHis.setTriggerGroup(triggerKey.getGroup());
-			scheduleHis.setTriggerName(triggerKey.getName());
+    public Result pauseJob(String group, String name) throws Exception {
+        Result result = new Result();
 
-			scheduleHis.setFiredTime(context.getFireTime());
-			scheduleHis.setCreateTime(new Date());
-			scheduleHis.setCreateUser("System");
+        try {
+            JobKey jobKey = JobKey.jobKey(name, group);
 
-			scheduleHisMapper.insert(scheduleHis);
-		} catch (Exception e) {
-			LoggerUtil.error("BaseJob saveScheduleHis", e);
-			throw e;
-		}
-	}
+            if (!scheduler.checkExists(jobKey)) {
+                result.doErrorHandle("[" + jobKey + "]Job不存在。");
+                return result;
+            }
 
-	public Result listingAllJobs(Scheduler sched) throws SchedulerException {
-		Result result = new Result();
+            scheduler.pauseJob(jobKey);
+            updateJobByJobKey(group, name, JobStatus.PAUSE);
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService pauseJob", e);
+            throw e;
+        }
+        return result;
+    }
 
-		for (String group : sched.getJobGroupNames()) {
-			// enumerate each job in group
-			for (JobKey jobKey : sched.getJobKeys(GroupMatcher.<JobKey>groupEquals(group))) {
-				System.out.println("Found job identified by: " + jobKey);
-			}
-		}
-		return result;
-	}
+    public Result resumeJob(String group, String name) throws Exception {
+        Result result = new Result();
 
-    public void saveScheduleError(JobExecutionContext context, JobExecutionException jobException) throws Exception{
-		try {
-			//持久化异常信息
-			ScheduleHis scheduleHis = new ScheduleHis();
+        try {
+            JobKey jobKey = JobKey.jobKey(name, group);
 
-			JobKey jobKey = context.getJobDetail().getKey();
-			scheduleHis.setJobGroup(jobKey.getGroup());
-			scheduleHis.setJobName(jobKey.getName());
+            if (!scheduler.checkExists(jobKey)) {
+                result.doErrorHandle("[" + jobKey + "]Job不存在。");
+                return result;
+            }
 
-			TriggerKey triggerKey = context.getTrigger().getKey();
-			scheduleHis.setTriggerGroup(triggerKey.getGroup());
-			scheduleHis.setTriggerName(triggerKey.getName());
-
-			scheduleHis.setFiredTime(context.getFireTime());
-			scheduleHis.setCreateTime(new Date());
-			scheduleHis.setCreateUser("System");
+            scheduler.resumeJob(jobKey);
+            updateJobByJobKey(group, name, JobStatus.RUNNING);
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService resumeJob", e);
+            throw e;
+        }
+        return result;
+    }
 
 
-			//暂停Job
-			pauseJob(jobKey.getGroup(),jobKey.getName());
-		} catch (Exception e) {
-			LoggerUtil.error("JobManagerService saveScheduleError exception: ",e);
-			throw e;
-		}
-	}
+    public Result deleteJob(String group, String name) throws Exception {
+        Result result = new Result();
+
+        try {
+            JobKey jobKey = JobKey.jobKey(name, group);
+            if (!scheduler.checkExists(jobKey)) {
+                result.doErrorHandle("[" + jobKey + "]Job不存在。");
+                return result;
+            }
+            scheduler.deleteJob(jobKey);
+
+            updateJobByJobKey(group, name, JobStatus.DELETE);
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService deleteJob", e);
+            throw e;
+        }
+
+        return result;
+    }
+
+    public Result restartJob(String jobGroup, String jobName) throws Exception {
+
+        Result result = new Result();
+
+        try {
+            JobInfo jobInfo = jobInfoMapper.selectJobByJobKey(jobGroup, jobName);
+
+            JobKey jobKey = JobKey.jobKey(jobInfo.getJobName(), jobInfo.getJobGroup());
+            TriggerKey triggerKey = TriggerKey.triggerKey(jobInfo.getTriggerName(), jobInfo.getTriggerGroup());
+            Class jobClass = Class.forName(jobInfo.getJobClass());
+
+            JobDetail job = newJob(jobClass)
+                    .withIdentity(jobKey)
+                    .storeDurably()
+                    .build();
+            Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobInfo.getCronExpression()))
+                    .withIdentity(triggerKey)
+                    .build();
+
+            scheduler.scheduleJob(job, trigger);
+
+            updateJobByJobKey(jobGroup, jobName, JobStatus.RUNNING);
+
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService deleteJob", e);
+            throw e;
+        }
+
+        return result;
+    }
+
+    public Result executeJob(String group, String name) throws Exception {
+        Result result = new Result();
+
+        try {
+            JobKey jobKey = JobKey.jobKey(name, group);
+            if (!scheduler.checkExists(jobKey)) {
+                result.doErrorHandle("[" + jobKey + "]Job不存在。");
+                return result;
+            }
+            scheduler.triggerJob(jobKey);
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService executeJob", e);
+            throw e;
+        }
+        return result;
+    }
+
+    public Result scheduleJobs() throws Exception {
+        Result result = new Result();
+        try {
+            jobConfig.run();
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService scheduleJobs", e);
+            throw e;
+        }
+        return result;
+    }
+
+    private Result updateJobByJobKey(String jobGroup, String jobName, JobStatus jobStatus) {
+        Result result = new Result();
+        jobInfoMapper.updateJobByJobKey(jobGroup, jobName, jobStatus.name());
+        return result;
+    }
+
+    public void saveScheduleHis(JobExecutionContext context) throws JobExecutionException {
+        try {
+            ScheduleHis scheduleHis = new ScheduleHis();
+
+            JobKey jobKey = context.getJobDetail().getKey();
+            scheduleHis.setJobGroup(jobKey.getGroup());
+            scheduleHis.setJobName(jobKey.getName());
+
+            TriggerKey triggerKey = context.getTrigger().getKey();
+            scheduleHis.setTriggerGroup(triggerKey.getGroup());
+            scheduleHis.setTriggerName(triggerKey.getName());
+
+            scheduleHis.setFiredTime(context.getFireTime());
+            scheduleHis.setCreateTime(new Date());
+            scheduleHis.setCreateUser("System");
+
+            scheduleHisMapper.insert(scheduleHis);
+        } catch (Exception e) {
+            LoggerUtil.error("BaseJob saveScheduleHis", e);
+            throw e;
+        }
+    }
+
+    public Result listingAllJobs(Scheduler sched) throws SchedulerException {
+        Result result = new Result();
+
+        for (String group : sched.getJobGroupNames()) {
+            // enumerate each job in group
+            for (JobKey jobKey : sched.getJobKeys(GroupMatcher.<JobKey>groupEquals(group))) {
+                System.out.println("Found job identified by: " + jobKey);
+            }
+        }
+        return result;
+    }
+
+    public void saveScheduleError(JobExecutionContext context, JobExecutionException jobException) throws Exception {
+        try {
+            //持久化异常信息
+            ScheduleHis scheduleHis = new ScheduleHis();
+
+            JobKey jobKey = context.getJobDetail().getKey();
+            scheduleHis.setJobGroup(jobKey.getGroup());
+            scheduleHis.setJobName(jobKey.getName());
+
+            TriggerKey triggerKey = context.getTrigger().getKey();
+            scheduleHis.setTriggerGroup(triggerKey.getGroup());
+            scheduleHis.setTriggerName(triggerKey.getName());
+
+            scheduleHis.setFiredTime(context.getFireTime());
+            scheduleHis.setCreateTime(new Date());
+            scheduleHis.setCreateUser("System");
+
+
+            //暂停Job
+            if (null != jobException) {
+                pauseJob(jobKey.getGroup(), jobKey.getName());
+            }
+        } catch (Exception e) {
+            LoggerUtil.error("JobManagerService saveScheduleError exception: ", e);
+            throw e;
+        }
+    }
 }
