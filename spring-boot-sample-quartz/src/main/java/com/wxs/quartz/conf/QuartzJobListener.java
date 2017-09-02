@@ -27,39 +27,38 @@ import java.util.Date;
  */
 public class QuartzJobListener extends JobListenerSupport {
 
-	private static ApplicationContext applicationContext = null;
+    private static ApplicationContext applicationContext = null;
 
-	@Autowired
-	private JobManagerService jobManagerService;
+    private JobManagerService jobManagerService;
 
-	private String name;
+    private String name;
 
-	public QuartzJobListener(String name) {
-		this.name = name;
-	}
+    public QuartzJobListener(String quartzListener, JobManagerService jobManagerService) {
+        this.name = quartzListener;
+        this.jobManagerService = jobManagerService;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public void jobWasExecuted(JobExecutionContext context,
-							   JobExecutionException jobException) {
-		try {
-			JobKey jobKey = context.getJobDetail().getKey();
+    @Override
+    public void jobWasExecuted(JobExecutionContext context,
+                               JobExecutionException jobException) {
+        try {
+            JobKey jobKey = context.getJobDetail().getKey();
 
-			TriggerKey triggerKey = context.getTrigger().getKey();
+            TriggerKey triggerKey = context.getTrigger().getKey();
 
-			Date fireTime=context.getFireTime();
+            Date fireTime = context.getFireTime();
 
-			Class jobClass=context.getJobDetail().getJobClass();
+            Class jobClass = context.getJobDetail().getJobClass();
 
-			LoggerUtil.info("JobClass:{},Job:{},Trigger:{},FireTime:{}",jobClass,jobKey,triggerKey,fireTime);
-			//保存执行记录
-			//JobManagerService jobManagerService=new JobManagerService();
-			//jobManagerService.saveScheduleHis(context);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+            LoggerUtil.info("JobClass:{},Job:{},Trigger:{},FireTime:{}", jobClass, jobKey, triggerKey, fireTime);
+            //保存执行记录
+            jobManagerService.saveScheduleHis(context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
