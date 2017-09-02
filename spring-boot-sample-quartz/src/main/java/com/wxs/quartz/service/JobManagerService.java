@@ -277,7 +277,7 @@ public class JobManagerService {
 		return result;
 	}
 
-	public void saveScheduleHis(JobExecutionContext context) throws Exception {
+	public void saveScheduleHis(JobExecutionContext context) throws JobExecutionException {
 		try {
 			ScheduleHis scheduleHis = new ScheduleHis();
 
