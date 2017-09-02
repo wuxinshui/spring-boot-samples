@@ -27,8 +27,6 @@ import java.util.Date;
  */
 public class QuartzJobListener extends JobListenerSupport {
 
-    private static ApplicationContext applicationContext = null;
-
     private JobManagerService jobManagerService;
 
     private String name;
