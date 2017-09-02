@@ -293,10 +293,7 @@ public class JobManagerService {
 			scheduleHis.setCreateTime(new Date());
 			scheduleHis.setCreateUser("System");
 
-			System.out.println(scheduleHis);
-			System.out.println(scheduleHisMapper);
-
-			//scheduleHisMapper.insert(scheduleHis);
+			scheduleHisMapper.insert(scheduleHis);
 		} catch (Exception e) {
 			LoggerUtil.error("BaseJob saveScheduleHis", e);
 			throw e;
@@ -315,4 +312,29 @@ public class JobManagerService {
 		return result;
 	}
 
+    public void saveScheduleError(JobExecutionContext context, JobExecutionException jobException) throws Exception{
+		try {
+			//持久化异常信息
+			ScheduleHis scheduleHis = new ScheduleHis();
+
+			JobKey jobKey = context.getJobDetail().getKey();
+			scheduleHis.setJobGroup(jobKey.getGroup());
+			scheduleHis.setJobName(jobKey.getName());
+
+			TriggerKey triggerKey = context.getTrigger().getKey();
+			scheduleHis.setTriggerGroup(triggerKey.getGroup());
+			scheduleHis.setTriggerName(triggerKey.getName());
+
+			scheduleHis.setFiredTime(context.getFireTime());
+			scheduleHis.setCreateTime(new Date());
+			scheduleHis.setCreateUser("System");
+
+
+			//暂停Job
+			pauseJob(jobKey.getGroup(),jobKey.getName());
+		} catch (Exception e) {
+			LoggerUtil.error("JobManagerService saveScheduleError exception: ",e);
+			throw e;
+		}
+	}
 }

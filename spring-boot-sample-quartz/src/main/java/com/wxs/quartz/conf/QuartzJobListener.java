@@ -57,6 +57,8 @@ public class QuartzJobListener extends JobListenerSupport {
             LoggerUtil.info("JobClass:{},Job:{},Trigger:{},FireTime:{}", jobClass, jobKey, triggerKey, fireTime);
             //保存执行记录
             jobManagerService.saveScheduleHis(context);
+            //保存Job异常
+            jobManagerService.saveScheduleError(context,jobException);
         } catch (Exception e) {
             e.printStackTrace();
         }
