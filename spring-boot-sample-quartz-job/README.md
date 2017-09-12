@@ -1,4 +1,4 @@
-# spring-boot-sample-quartz
+# spring-boot-sample-quartz-job
 ## 工程所用技术点
-### 1.Spring boot 集成quartz 动态管理定时任务
+### 1.定时任务平台-抽象Job
 ````
