@@ -1,0 +1,29 @@
+spring:  
+  profiles:  
+    active: dev 
+---  
+spring:  
+  profiles: dev
+server:
+  port: 8090
+logging:
+  level:
+    tk:
+      mybatis: TRACE
+druid:
+  url: jdbc:mysql://127.0.0.1:3306/jobs
+  driver-class: com.mysql.jdbc.Driver
+  username: root
+  password: admin
+  initial-size: 1
+  min-idle: 1
+  max-active: 20
+  test-on-borrow: true
+mybatis:
+  type-aliases-package: com.wxs.quartz.model
+  mapper-locations: classpath:mapper/*.xml
+mapper:
+  mappers:
+    - com.wxs.quartz.util.TKMapper
+  not-empty: false
+  identity: MYSQL
