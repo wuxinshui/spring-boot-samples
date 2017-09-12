@@ -25,6 +25,7 @@
     <module>spring-boot-sample-scheduling</module>
     <module>spring-boot-sample-data-jpa</module>
     <module>spring-boot-sample-quartz</module>
+    <module>spring-boot-sample-amqp</module>
   </modules>
 
   <dependencies>
