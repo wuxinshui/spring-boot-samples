@@ -1,4 +1,5 @@
-# spring-boot-sample-quartz
+# spring-boot-sample-amqp
 ## 工程所用技术点
-### 1.Spring boot 集成quartz 动态管理定时任务
+### 1.Spring boot amqp
+### 2.Spring boot 集成RabbitMq
 ````
