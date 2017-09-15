@@ -11,9 +11,9 @@ logging:
     tk:
       mybatis: TRACE
   rabbitmq:
-    host: 10.18.19.64
-    port: 5674
-    username: admin
-    password: dangerous
-    virtual-host: /msgbus
+    host: 192.168.99.100
+    port: 15672
+    username: guest
+    password: guest
+    virtual-host: /
     enable: true
