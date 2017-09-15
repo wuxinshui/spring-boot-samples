@@ -1,11 +1,13 @@
 package com.wxs.amqp.conf;
 
 import com.wxs.amqp.mq.Receiver;
-import org.springframework.amqp.core.*;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,18 +37,20 @@ public class AmqpInitConfig {
 
     @Bean
     public Binding binding(TopicExchange exchange,Queue queue){
-        return BindingBuilder.bind(queue).to(exchange).with(queueName);
+        return BindingBuilder.bind(queue).to(exchange).with(queueName+"-key");
     }
 
     @Bean
     public SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter){
         SimpleMessageListenerContainer container=new SimpleMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.setMessageListener(listenerAdapter);
         container.addQueueNames(queueName);
         return container;
     }
 
     @Bean
     public MessageListenerAdapter listenerAdapter(Receiver receiver){
-        return new MessageListenerAdapter(receiver,"receiver");
+        return new MessageListenerAdapter(receiver,"receiveMessage");
     }
 }
