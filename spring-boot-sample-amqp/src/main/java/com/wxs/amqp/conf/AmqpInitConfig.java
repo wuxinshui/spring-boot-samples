@@ -20,10 +20,10 @@ import org.springframework.context.annotation.Configuration;
  * To change this template use File | Settings | File Templates.
  */
 @Configuration
-@ConditionalOnProperty(prefix = "spring.rabbitmq",name = "")
+@ConditionalOnProperty(prefix = "spring.rabbitmq",name = "enable", matchIfMissing = false)
 public class AmqpInitConfig {
 
-    final static String queueName="spring-boot";
+    final static String queueName="spring.boot";
 
     @Bean
     public Queue queue(){
@@ -32,12 +32,12 @@ public class AmqpInitConfig {
 
     @Bean
     public TopicExchange exchange(){
-        return new TopicExchange("spring-boot-exchange");
+        return new TopicExchange("spring.boot.exchange");
     }
 
     @Bean
     public Binding binding(TopicExchange exchange,Queue queue){
-        return BindingBuilder.bind(queue).to(exchange).with(queueName+"-key");
+        return BindingBuilder.bind(queue).to(exchange).with(queueName+".key");
     }
 
     @Bean
