@@ -41,37 +41,37 @@ public class ScheduleJobInit implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        //查询数据库中的Job
-        List<JobInfo> jobInfoList = jobInfoMapper.selectAll();
-        List<JobInfoVo> jobInfoVoList = BeanUtils.copyList(jobInfoList, JobInfoVo.class);
-
-        //根据数据库中Job的状态同步scheduler中的状态。
-        for (int i = 0; i < jobInfoVoList.size(); i++) {
-            JobInfoVo jobVo = jobInfoVoList.get(i);
-            Class jobClass = Class.forName(jobVo.getJobClass());
-
-            JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
-            TriggerKey triggerKey = TriggerKey.triggerKey(jobVo.getTriggerName(), jobVo.getTriggerGroup());
-            JobDetail job1 = newJob(jobClass)
-                    .withIdentity(jobKey)
-                    .storeDurably()
-                    .build();
-            Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
-                    .withIdentity(triggerKey)
-                    .build();
-
-            JobStatus jobStatus = JobStatus.valueOf(jobVo.getJobStatus());
-            switch (jobStatus) {
-                case RUNNING:
-                    scheduler.scheduleJob(job1, trigger);
-                    break;
-                case PAUSE:
-                    scheduler.scheduleJob(job1, trigger);
-                    scheduler.pauseJob(jobKey);
-            }
-        }
-        //添加Job监听器
-        QuartzJobListener quartzJobListener = new QuartzJobListener("quartzListener",jobManagerService);
-        scheduler.getListenerManager().addJobListener(quartzJobListener, allJobs());
+        // //查询数据库中的Job
+        // List<JobInfo> jobInfoList = jobInfoMapper.selectAll();
+        // List<JobInfoVo> jobInfoVoList = BeanUtils.copyList(jobInfoList, JobInfoVo.class);
+        //
+        // //根据数据库中Job的状态同步scheduler中的状态。
+        // for (int i = 0; i < jobInfoVoList.size(); i++) {
+        //     JobInfoVo jobVo = jobInfoVoList.get(i);
+        //     Class jobClass = Class.forName(jobVo.getJobClass());
+        //
+        //     JobKey jobKey = JobKey.jobKey(jobVo.getJobName(), jobVo.getJobGroup());
+        //     TriggerKey triggerKey = TriggerKey.triggerKey(jobVo.getTriggerName(), jobVo.getTriggerGroup());
+        //     JobDetail job1 = newJob(jobClass)
+        //             .withIdentity(jobKey)
+        //             .storeDurably()
+        //             .build();
+        //     Trigger trigger = newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(jobVo.getCronExpression()))
+        //             .withIdentity(triggerKey)
+        //             .build();
+        //
+        //     JobStatus jobStatus = JobStatus.valueOf(jobVo.getJobStatus());
+        //     switch (jobStatus) {
+        //         case RUNNING:
+        //             scheduler.scheduleJob(job1, trigger);
+        //             break;
+        //         case PAUSE:
+        //             scheduler.scheduleJob(job1, trigger);
+        //             scheduler.pauseJob(jobKey);
+        //     }
+        // }
+        // //添加Job监听器
+        // QuartzJobListener quartzJobListener = new QuartzJobListener("quartzListener",jobManagerService);
+        // scheduler.getListenerManager().addJobListener(quartzJobListener, allJobs());
     }
 }
