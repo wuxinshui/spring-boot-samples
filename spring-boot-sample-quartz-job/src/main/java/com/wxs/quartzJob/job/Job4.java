@@ -3,9 +3,6 @@ package com.wxs.quartzJob.job;
 import com.wxs.quartzJob.core.JobAware;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 /**
