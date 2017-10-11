@@ -39,8 +39,8 @@ public class LoadAllJobs implements CommandLineRunner,ApplicationContextAware {
            String className=jobAware.getClass().getName();
             Class jobClass = Class.forName(className);
 
-            JobKey jobKey = JobKey.jobKey("test1", "test1");
-            TriggerKey triggerKey = TriggerKey.triggerKey("test1", "test1");
+            JobKey jobKey = JobKey.jobKey(className, className);
+            TriggerKey triggerKey = TriggerKey.triggerKey(className, className);
             JobDetail job1 = newJob(jobClass)
                     .withIdentity(jobKey)
                     .storeDurably()
