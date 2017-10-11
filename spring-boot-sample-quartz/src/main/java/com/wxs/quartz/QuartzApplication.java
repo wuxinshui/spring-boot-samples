@@ -3,6 +3,7 @@ package com.wxs.quartz;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @SpringBootApplication
 @MapperScan(basePackages = "com.wxs.quartz.mapper")
+@ComponentScan(basePackages = "com.wxs")//扫描Job
 public class QuartzApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(QuartzApplication.class, args);
