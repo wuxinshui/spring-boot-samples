@@ -16,8 +16,6 @@
     <name>spring-boot-samples</name>
 
     <modules>
-        <!--基础框架 可集成其他-->
-        <module>spring-boot-sample-base</module>
         <!--集成富文本编辑器-->
         <module>spring-boot-sample-ckeditor</module>
         <!--spring boot 简单示例-->
