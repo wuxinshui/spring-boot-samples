@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
 	public List<User> selectByUsernameAndPassword(User user) {
 		return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 	}
+
+	@Override
+	public User selectByPrimaryKey(int id) {
+		return userRepository.findOne(id);
+	}
 }

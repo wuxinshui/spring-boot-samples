@@ -15,4 +15,7 @@ public interface UserService {
 	User save(User user);
 
 	List<User> selectByUsernameAndPassword(User user);
+
+
+	User selectByPrimaryKey(int id);
 }
