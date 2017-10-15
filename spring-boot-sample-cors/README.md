@@ -1,4 +1,4 @@
 # spring-boot-sample-quartz
 ## 工程所用技术点
-### 1.Spring boot 基础框架
+Java服务器端跨域解决方案
 ````
