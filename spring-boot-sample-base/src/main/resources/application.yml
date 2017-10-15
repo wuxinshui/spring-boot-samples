@@ -20,10 +20,10 @@ druid:
   max-active: 20
   test-on-borrow: true
 mybatis:
-  type-aliases-package: com.qf.openchannel.model
+  type-aliases-package: com.wxs.model
   mapper-locations: classpath:mapper/*.xml
 mapper:
   mappers:
-    - com.qf.openchannel.util.QkMapper
+    - com.wxs.util.QkMapper
   not-empty: false
   identity: MYSQL

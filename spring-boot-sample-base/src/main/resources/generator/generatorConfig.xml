@@ -11,7 +11,7 @@
         <property name="endingDelimiter" value="`"/>
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.qf.openchannel.util.QkMapper"/>
+            <property name="mappers" value="com.wxs.util.QkMapper"/>
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
@@ -20,11 +20,11 @@
                         password="chnlms_Mar13">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.qf.openchannel.model" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.wxs.model" targetProject="src/main/java"/>
 
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="com.qf.openchannel.mapper" targetProject="src/main/java"
+        <javaClientGenerator targetPackage="com.wxs.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
         <table tableName="t_campaign_plan">
