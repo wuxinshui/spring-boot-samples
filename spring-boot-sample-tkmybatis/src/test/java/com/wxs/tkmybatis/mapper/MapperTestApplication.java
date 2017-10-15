@@ -1,4 +1,4 @@
-package com.wxs.schedule.mapper;
+package com.wxs.tkmybatis.mapper;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

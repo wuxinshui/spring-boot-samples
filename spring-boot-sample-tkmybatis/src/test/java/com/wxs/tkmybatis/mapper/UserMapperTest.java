@@ -1,6 +1,6 @@
-package com.wxs.schedule.mapper;
+package com.wxs.tkmybatis.mapper;
 
-import com.wxs.schedule.model.User;
+import com.wxs.tkmybatis.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
