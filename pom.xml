@@ -38,6 +38,8 @@
         <module>spring-boot-sample-quartz-job</module>
         <!--消息队列-->
         <module>spring-boot-sample-amqp</module>
+        <!--Java 服务器端跨域-->
+        <module>spring-boot-sample-cors</module>
     </modules>
 
     <dependencies>
