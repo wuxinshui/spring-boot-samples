@@ -27,7 +27,7 @@
         <javaClientGenerator targetPackage="com.wxs.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="t_campaign_plan">
+        <table tableName="t_test">
             <!--% 全部表-->
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
