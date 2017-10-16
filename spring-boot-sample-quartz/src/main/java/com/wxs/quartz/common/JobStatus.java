@@ -6,7 +6,24 @@ package com.wxs.quartz.common;
  * @author wuxinshui
  */
 public enum JobStatus {
-    RUNNING(100), PAUSE(101), RESUME(102), DELETE(99);
+
+    /**
+     * 运行
+     */
+    RUNNING(100),
+    /**
+     * 暂停
+     */
+    PAUSE(101),
+    /**
+     * 恢复
+     */
+    RESUME(102),
+    /**
+     * 删除
+     */
+    DELETE(99);
+
     private int key;
 
     private JobStatus(int key) {

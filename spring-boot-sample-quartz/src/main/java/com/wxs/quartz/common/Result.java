@@ -19,7 +19,14 @@ public class Result<T> implements Serializable {
 	}
 	
 	public enum Code {
-		SUCCESS, ERROR
+		/**
+		 * 成功
+		 */
+		SUCCESS,
+		/**
+		 * 错误
+		 */
+		ERROR
 	}
 
 	private Code code = Code.SUCCESS;

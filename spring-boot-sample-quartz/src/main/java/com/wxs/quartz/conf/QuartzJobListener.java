@@ -36,6 +36,7 @@ public class QuartzJobListener extends JobListenerSupport {
         this.jobManagerService = jobManagerService;
     }
 
+    @Override
     public String getName() {
         return name;
     }
