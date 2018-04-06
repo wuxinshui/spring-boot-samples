@@ -1,7 +1,9 @@
 package com.wxs.amqp.conf;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
  * Date: 2018/4/6
  * Time: 22:19
  */
-@Configuration
-@ConditionalOnProperty(prefix = "spring.rabbitmq",name = "enable", matchIfMissing = false)
+@Component
+@ConfigurationProperties(prefix = "spring.rabbitmq")
 public class MQConfig {
     private String username;
     private String password;
