@@ -5,11 +5,12 @@ spring:
 spring:  
   profiles: dev
   rabbitmq:
-    host: 192.168.99.100
+    host: 172.16.36.80
     port: 5672
     username: guest
     password: guest
-    virtual-host: /
+    virtual-host1: /msgbus1
+    virtual-host2: /msgbus2
     enable: true
 server:
   port: 8090
