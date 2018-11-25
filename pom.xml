@@ -38,6 +38,7 @@
         <module>spring-boot-sample-amqp</module>
         <!--Java 服务器端跨域-->
         <module>spring-boot-sample-cors</module>
+        <module>spring-boot-sample-jersey</module>
     </modules>
 
     <dependencies>

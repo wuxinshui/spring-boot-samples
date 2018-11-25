@@ -1,0 +1,15 @@
+package com.wxs.jersey.common;
+
+public enum ResultCode {
+    SUCCESS(200, "成功"),
+    PARAM_ERR(400, "参数异常"),
+    SERVER_ERR(500, "系统异常，请稍后重试");
+
+    private int code;
+    private String info;
+
+    ResultCode(int code, String info) {
+        this.code = code;
+        this.info = info;
+    }
+}

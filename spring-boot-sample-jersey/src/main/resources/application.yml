@@ -1,0 +1,106 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 2000
+    min-spare-threads: 10
+spring:
+  profiles:
+    active: dev
+# 禁用jmx
+  jmx:
+    enabled: false
+  application:
+    name: jersey
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  jersey:
+    application-path: /api
+#数据源的配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hangshi?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2b8&useCursorFetch=true
+    username: root
+    password: Zxcv!234
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      driver-class-name: com.mysql.jdbc.Driver
+      minimum-idle: 10
+      maximum-pool-size: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+      pool-name: ${spring.application.name}
+#http的编码配置
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      force-request: true
+      force-response: true
+      enabled: true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.wxs.jersey.entity
+  configuration:
+#     打印SQL日志
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+#    使全局的映射器启用或禁用缓存
+    cache-enabled: true
+#    全局启用或禁用延迟加载。当禁用时，所有关联对象都会即时加载
+    lazy-loading-enabled: true
+#    当启用时，有延迟加载属性的对象在被调用时将会完全加载任意属性。否则，每种属性将会按需要加载
+    aggressive-lazy-loading: true
+#    是否允许单条sql 返回多个数据集  (取决于驱动的兼容性) default:true
+    multiple-result-sets-enabled: true
+#    是否可以使用列的别名 (取决于驱动的兼容性) default:true
+    use-column-label: true
+#    允许JDBC 生成主键。需要驱动器支持。如果设为了true，这个设置将强制使用被生成的主键，有一些驱动器不兼容不过仍然可以执行。  default:false
+    use-generated-keys: false
+#    指定 MyBatis 如何自动映射 数据基表的列 NONE：不隐射　PARTIAL:部分  FULL:全部
+    auto-mapping-behavior: PARTIAL
+#    这是默认的执行类型  （SIMPLE: 简单； REUSE: 执行器可能重复使用prepared statements语句；BATCH: 执行器可以重复执行语句和批量更新）
+    default-executor-type: SIMPLE
+#     使用驼峰命名法转换字段
+    map-underscore-to-camel-case: true
+#    设置本地缓存范围 session:就会有数据的共享  statement:语句范围 (这样就不会有数据的共享 ) defalut:session
+    local-cache-scope: SESSION
+#    设置但JDBC类型为空时,某些驱动程序 要指定值,default:OTHER，插入空值时不需要指定类型
+    jdbc-type-for-null: NULL
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+#  设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用，和startPage中的pageNum效果一样
+  offset-as-page-num: true
+#  设置为true时，使用RowBounds分页会进行count查询，默认false
+  row-bounds-with-count: true
+#  设置为true时，如果pageSize=0或者RowBounds.limit = 0就会查询出全部的结果（相当于没有执行分页查询，但是返回结果仍然是Page类型）
+  page-size-zero: true
+#  <!-- 3.3.0版本可用 - 分页参数合理化，默认false禁用 -->
+#  <!-- 启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页 -->
+#  <!-- 禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据 -->
+  reasonable: false
+#  <!-- 3.5.0版本可用 - 为了支持startPage(Object params)方法 -->
+#  <!-- 增加了一个`params`参数来配置参数映射，用于从Map或ServletRequest中取值 -->
+#  <!-- 可以配置pageNum,pageSize,count,pageSizeZero,reasonable,orderBy,不配置映射的用默认值 -->
+#  <!-- 不理解该含义的前提下，不要随便复制该配置 -->
+  params: count=countSql;pageNum=pageHelperStart;pageSize=pageHelperRows;
+#  支持通过Mapper接口参数来传递分页参数
+  support-methods-arguments: false
+logging:
+  level:
+    root: INFO
+    com.wxs: INFO
+    com.apache.ibtais: DEBUG
+
+mapper:
+  mappers:
+    - com.wxs.jersey.common.BaseMapper
+  not-empty: false
+  identity: MYSQL
+
+swagger:
+  root-enabled: true
