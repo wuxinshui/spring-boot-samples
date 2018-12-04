@@ -17,7 +17,7 @@
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-        connectionURL="jdbc:mysql://localhost:3306/hangshi"
+        connectionURL="jdbc:mysql://localhost:3306/growth_sso"
                         userId="root"
                         password="Zxcv!234">
         </jdbcConnection>
@@ -39,7 +39,7 @@
 
         <javaClientGenerator targetPackage="com.wxs.jersey.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
 
-        <table tableName="t_user" domainObjectName="User" >
+        <table tableName="oauth_user" domainObjectName="OauthUser" >
             <!--% 表示全部表-->
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>

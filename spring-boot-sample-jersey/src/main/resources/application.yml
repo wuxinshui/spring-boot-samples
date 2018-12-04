@@ -16,7 +16,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   jersey:
-    application-path: /api
+    application-path: /
 #数据源的配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver

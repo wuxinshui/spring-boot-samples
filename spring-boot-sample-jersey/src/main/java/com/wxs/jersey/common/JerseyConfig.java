@@ -20,6 +20,7 @@ import com.wxs.jersey.resource.LoginResource;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
+import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -35,9 +36,7 @@ public class JerseyConfig extends ResourceConfig {
 
 	public JerseyConfig() {
 		register(LoginResource.class);
-		register(io.swagger.jaxrs.listing.ApiListingResource.class);
-		register(io.swagger.jaxrs.listing.AcceptHeaderApiListingResource.class);
-		register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+		register(OpenApiResource.class);
 	}
 
 	@PostConstruct
