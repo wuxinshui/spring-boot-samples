@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--<properties controller="application.properties"/>
+	<classPathEntry location="D:/repository/com/oracle/ojdbc6/11.2.0.1.0/ojdbc6-11.2.0.1.0.jar" />
+	-->
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8" />
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.wxs.exception.common.BaseMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/hangshi"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+        <!--connectionURL="jdbc:mysql://172.16.5.4:3308/mqreport"-->
+        <!--userId="mqreport"-->
+        <!--password="mqreport">-->
+        <!--</jdbcConnection>-->
+
+        <!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+                        connectionURL="jdbc:oracle:thin:@10.18.19.33:1521:dbdev2"
+                        userId="sl_main"
+                        password="sl_main">
+        </jdbcConnection> -->
+
+        <javaModelGenerator targetPackage="com.diku.hangshi.entity" targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.diku.hangshi.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+
+
+        <table tableName="tbl_equipment" domainObjectName="Equipment" >
+        <!--% 表示全部表-->
+        <!--mysql 配置-->
+        <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        <!--oracle 配置-->
+        <!--  <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/> -->
+        </table>
+
+        
+    </context>
+</generatorConfiguration>
