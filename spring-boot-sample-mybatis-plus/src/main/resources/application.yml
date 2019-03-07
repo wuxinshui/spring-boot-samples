@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          username: root
+          password: Zxcv!234
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/user_dev1?characterEncoding=UTF-8&useSSL=false
+        slave_1:
+          username: root
+          password: Zxcv!234
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/user_dev2?characterEncoding=UTF-8&useSSL=false
+        slave_2:
+          username: root
+          password: Zxcv!234
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/user_dev3?characterEncoding=UTF-8&useSSL=false
+logging:
+  level:
+    com.baomidou: debug
+flyway:
+  enabled: true
+  locations: classpath:/db
