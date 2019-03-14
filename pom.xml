@@ -44,6 +44,8 @@
         <module>spring-boot-sample-mybatis-plus</module>
         <!--异常统一处理-->
         <module>spring-boot-sample-exception</module>
+        <!--数据库版本管理-->
+        <module>spring-boot-sample-flyway</module>
     </modules>
 
     <dependencies>
