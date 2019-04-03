@@ -47,6 +47,7 @@ public class AuthFilter extends OncePerRequestFilter {
         adminInfo.setAge(23);
         adminInfo.setName("气死");
         //线程隔离术
+        OauthService.local.remove();
         LocalMap localMap=new LocalMap();
         localMap.put("username","气活");
         localMap.put("userage",32);
