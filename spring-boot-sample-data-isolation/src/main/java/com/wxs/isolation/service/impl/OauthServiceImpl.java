@@ -26,4 +26,18 @@ public class OauthServiceImpl implements OauthService {
     public void put(LocalMap localMap) {
         local.set(localMap);
     }
+
+    //public static void main(String[] args) {
+    //    LocalMap localMap=new LocalMap();
+    //    localMap.put("username","玖拾");
+    //    localMap.put("userage",123);
+    //    OauthService service=new OauthServiceImpl();
+    //    service.put(localMap);
+    //    System.out.println(service.getUserAge());
+    //    System.out.println(service.getUsername());
+    //    System.out.println(OauthService.local.get().get("username"));
+    //    System.out.println(OauthService.local.get().get("userage"));
+    //    System.out.println(OauthService.local.get().get("userage1"));
+    //
+    //}
 }
