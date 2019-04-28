@@ -46,6 +46,18 @@
         <module>spring-boot-sample-exception</module>
         <!--数据库版本管理-->
         <module>spring-boot-sample-flyway</module>
+        <!--数据隔离方案-->
+        <module>spring-boot-sample-data-isolation</module>
+        <!--java10-->
+        <module>spring-boot-sample-java10</module>
+        <!--paginator 分页-->
+        <module>spring-boot-sample-paginator</module>
+        <!--aop filter advice-->
+        <!--<module>spring-boot-sample-aop</module>-->
+        <!--elasticsearch-->
+        <!--<module>spring-boot-sample-elasticsearch</module>-->
+        <!--解决方案-->
+        <module>spring-boot-sample-async</module>
     </modules>
 
     <dependencies>
