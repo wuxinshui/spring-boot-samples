@@ -23,7 +23,8 @@ public class UserController {
         //userService.addUser(user);
         //userService.addUseWithResult(user);
         //userService.addUseWithResultCompletableFuture(user);
-        userService.addUseWithResultCompletableFutureThen(user);
+        //userService.addUseWithResultCompletableFutureThen(user);
+        userService.addUseWithListenableResult(user);
         return "success";
     }
 

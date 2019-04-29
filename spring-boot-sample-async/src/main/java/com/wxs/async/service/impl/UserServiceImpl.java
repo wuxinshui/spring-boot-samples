@@ -10,6 +10,7 @@ import com.wxs.async.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -54,6 +55,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         log.info("UserServiceImpl addUseWithResult save user result:{}", JSON.toJSONString(user1));
         log.info("UserServiceImpl addUseWithResult count:{}", count);
+    }
+
+    @Override
+    public void addUseWithListenableResult(User user) throws ExecutionException, InterruptedException {
+        log.info("UserServiceImpl addUseWithListenableResult params:{}", JSON.toJSONString(user));
+        AuditLog auditLog = new AuditLog();
+        auditLog.setBody(JSON.toJSONString(user));
+        ListenableFuture<Integer> result = asyncServiceImpl.saveWithListenableResult(auditLog);
+        result.addCallback(success -> {
+            saveUser(user);
+        }, fail -> {
+            asyncServiceImpl.saveWithListenableResult(auditLog);
+        });
+        log.info("UserServiceImpl addUseWithListenableResult result:{}", JSON.toJSONString(user));
+        log.info("UserServiceImpl addUseWithListenableResult result:{}", result.get());
     }
 
     @Override

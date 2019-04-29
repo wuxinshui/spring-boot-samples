@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.Future;
 
@@ -52,6 +53,19 @@ public class AsyncServiceImpl {
             e.printStackTrace();
         }
         log.info("async saveWithResult save success:{}", result);
+        return new AsyncResult<>(result);
+    }
+
+    @Async
+    public ListenableFuture<Integer> saveWithListenableResult(AuditLog o) {
+        log.info("async saveWithListenableResult save object:{}", JSON.toJSONString(o));
+        int result = auditLogMapper.insert(o);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("async saveWithListenableResult save success:{}", JSON.toJSONString(o));
         return new AsyncResult<>(result);
     }
 

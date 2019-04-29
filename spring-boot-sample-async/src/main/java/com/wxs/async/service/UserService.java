@@ -12,6 +12,8 @@ public interface UserService extends IService<User> {
 
     void addUseWithResult(User user) throws ExecutionException, InterruptedException;
 
+    void addUseWithListenableResult(User user) throws ExecutionException, InterruptedException;
+
     void addUseWithResultCompletableFuture(User user) throws ExecutionException, InterruptedException;
 
 

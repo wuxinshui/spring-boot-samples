@@ -11,13 +11,20 @@
 ### 4. flyway 数据库版本管理
 ### 5. CompletableFuture
 
- 	1. supplyAsync
- 	2. completeAsync
- 	3. thenApply
- 	4. whenCompleteAsync
+   	1. supplyAsync
+   	2. completeAsync
+   	3. thenApply
+   	4. whenCompleteAsync
 
 ### 6. @Async
 
+### 7. ListenableFuture
 
-### 6. @Async
+```
+result.addCallback(success -> {
+            saveUser(user);
+        }, fail -> {
+            asyncServiceImpl.saveWithListenableResult(auditLog);
+        })
+```
 
