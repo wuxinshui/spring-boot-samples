@@ -14,6 +14,10 @@ public interface UserService extends IService<User> {
 
     void addUseWithResultCompletableFuture(User user) throws ExecutionException, InterruptedException;
 
+
+    void addUseWithResultCompletableFutureThen(User user) throws ExecutionException, InterruptedException;
+
+
     User selectById(Integer id);
 
 

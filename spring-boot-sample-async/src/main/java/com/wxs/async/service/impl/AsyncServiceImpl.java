@@ -71,4 +71,18 @@ public class AsyncServiceImpl {
         return result;
     }
 
+    public Integer saveWithResultCompletableFutureThen(AuditLog auditLog) {
+        log.info("async saveWithResultCompletableFutureThen save object:{}", JSON.toJSONString(auditLog));
+        int result = auditLogMapper.insert(auditLog);
+        log.info("async saveWithResultCompletableFutureThen save result:{}", JSON.toJSONString(auditLog));
+        return result;
+    }
+
+    public Integer saveWithResultCompletableFutureWhenCompleteAsync(AuditLog auditLog) {
+        log.info("async saveWithResultCompletableFutureWhenCompleteAsync save object:{}", JSON.toJSONString(auditLog));
+        int result = auditLogMapper.insert(auditLog);
+        log.info("async saveWithResultCompletableFutureWhenCompleteAsync save result:{}", JSON.toJSONString(auditLog));
+        return result;
+    }
+
 }

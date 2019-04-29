@@ -22,7 +22,8 @@ public class UserController {
     public String usersFromHeader(@RequestBody User user) throws ExecutionException, InterruptedException {
         //userService.addUser(user);
         //userService.addUseWithResult(user);
-        userService.addUseWithResultCompletableFuture(user);
+        //userService.addUseWithResultCompletableFuture(user);
+        userService.addUseWithResultCompletableFutureThen(user);
         return "success";
     }
 

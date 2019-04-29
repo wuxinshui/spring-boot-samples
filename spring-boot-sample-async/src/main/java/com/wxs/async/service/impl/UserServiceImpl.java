@@ -78,12 +78,45 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         log.info("UserServiceImpl addUseWithResultCompletableFuture count:{}", count);
     }
 
+
+    @Override
+    public void addUseWithResultCompletableFutureThen(User user) throws ExecutionException, InterruptedException {
+        log.info("UserServiceImpl addUseWithResultCompletableFutureThen params:{}", JSON.toJSONString(user));
+        //AuditLog auditLog = new AuditLog();
+        //auditLog.setBody(JSON.toJSONString(user));
+        //saveUser(user),saveWithResultCompletableFutureThen 俩操作，异步执行
+        //CompletableFuture<Integer> completableFuture =
+        //        CompletableFuture.supplyAsync(() -> saveUser(user)).completeAsync(() -> asyncServiceImpl.saveWithResultCompletableFutureThen(auditLog));
+
+        //saveUser(user)) \saveWithResultCompletableFutureThen，先后顺序，同步执行，依赖上一步的操作结果
+        //CompletableFuture<Integer> completableFuture =
+        //        CompletableFuture.supplyAsync(() ->
+        //                saveUser(user)).thenApply(o -> asyncServiceImpl.saveWithResultCompletableFutureThen(AuditLog.builder().body(JSON.toJSONString(user)).build()));
+
+        AuditLog auditLog = new AuditLog();
+        auditLog.setBody(JSON.toJSONString(user));
+        CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync(() ->
+                saveUser(user)).whenCompleteAsync((a, b) -> {
+            asyncServiceImpl.saveWithResultCompletableFutureWhenCompleteAsync(auditLog);
+        });
+        log.info("UserServiceImpl addUseWithResultCompletableFutureThen result:{}", completableFuture.get());
+        log.info("UserServiceImpl addUseWithResultCompletableFutureThen userId:{}", user.getId());
+    }
+
     @Override
     public User selectById(Integer id) {
         return baseMapper.selectById(id);
     }
 
-    private Integer getTest() {
-        return 1;
+    private Integer saveUser(User user) {
+        log.info("save user:{}", JSON.toJSONString(user));
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Integer result = baseMapper.insert(user);
+        log.info("save user userId:{}", user.getId());
+        return result;
     }
 }
