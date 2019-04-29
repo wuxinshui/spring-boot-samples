@@ -10,7 +10,13 @@
 ### 3. Mysql
 ### 4. flyway 数据库版本管理
 ### 5. CompletableFuture
-### 6. @async
+
+ 	1. supplyAsync
+ 	2. completeAsync
+ 	3. thenApply
+ 	4. whenCompleteAsync
+
+### 6. @Async
 
 
 ### 6. @Async
