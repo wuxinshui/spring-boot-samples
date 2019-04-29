@@ -74,10 +74,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 log.info("UserServiceImpl addUseWithResultCompletableFuture save user result:{}", JSON.toJSONString(user1));
             }
 
-            if (completableFuture.isDone()) {
-                break;
-            }
-
         }
         log.info("UserServiceImpl addUseWithResultCompletableFuture count:{}", count);
     }
