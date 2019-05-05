@@ -64,8 +64,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         auditLog.setBody(JSON.toJSONString(user));
         ListenableFuture<Integer> result = asyncServiceImpl.saveWithListenableResult(auditLog);
         result.addCallback(success -> {
+            log.info("async success");
             saveUser(user);
         }, fail -> {
+            log.info("async fail");
             asyncServiceImpl.saveWithListenableResult(auditLog);
         });
         log.info("UserServiceImpl addUseWithListenableResult result:{}", JSON.toJSONString(user));
