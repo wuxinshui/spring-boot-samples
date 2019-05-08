@@ -17,17 +17,16 @@
 package com.wxs.jersey.common;
 
 import com.wxs.jersey.resource.LoginResource;
-import io.swagger.jaxrs.config.BeanConfig;
-import io.swagger.jaxrs.listing.ApiListingResource;
-import io.swagger.jaxrs.listing.SwaggerSerializers;
-import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
+//import io.swagger.jaxrs.config.BeanConfig;
+//import io.swagger.jaxrs.listing.ApiListingResource;
+//import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-@Component
+//@Component
 public class JerseyConfig extends ResourceConfig {
 
 	@Value("${spring.jersey.application-path}")
@@ -36,29 +35,29 @@ public class JerseyConfig extends ResourceConfig {
 
 	public JerseyConfig() {
 		register(LoginResource.class);
-		register(OpenApiResource.class);
+		//register(OpenApiResource.class);
 	}
 
 	@PostConstruct
 	public void init() {
 		// Register components where DI is needed
-		this.configureSwagger();
+		//this.configureSwagger();
 	}
 
-	private void configureSwagger() {
-		// Available at localhost:port/swagger.json
-		this.register(ApiListingResource.class);
-		this.register(SwaggerSerializers.class);
-		BeanConfig config = new BeanConfig();
-		config.setConfigId("springboot-jersey-swagger-docker-example");
-		config.setTitle("Spring Boot + Jersey + Swagger");
-		config.setVersion("v1");
-		config.setContact("yoyo");
-		config.setSchemes(new String[] { "http", "https" });
-		config.setBasePath(this.apiPath);
-		config.setResourcePackage("com.wxs.jersey.resource");
-		config.setPrettyPrint(true);
-		config.setScan(true);
-	}
+	//private void configureSwagger() {
+	//	// Available at localhost:port/swagger.json
+	//	this.register(ApiListingResource.class);
+	//	this.register(SwaggerSerializers.class);
+	//	BeanConfig config = new BeanConfig();
+	//	config.setConfigId("springboot-jersey-swagger-docker-example");
+	//	config.setTitle("Spring Boot + Jersey + Swagger");
+	//	config.setVersion("v1");
+	//	config.setContact("yoyo");
+	//	config.setSchemes(new String[] { "http", "https" });
+	//	config.setBasePath(this.apiPath);
+	//	config.setResourcePackage("com.wxs.jersey.resource");
+	//	config.setPrettyPrint(true);
+	//	config.setScan(true);
+	//}
 
 }

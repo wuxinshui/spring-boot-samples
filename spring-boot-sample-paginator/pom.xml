@@ -12,9 +12,9 @@
     <name>spring-boot-sample-paginator</name>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.13.RELEASE</version>
+        <groupId>com.wuxinshui.spring.boot</groupId>
+        <artifactId>spring-boot-samples</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>

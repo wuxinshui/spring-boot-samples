@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.wuxinshui.spring.boot</groupId>
-    <artifactId>spring-boot-samples</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.1.RELEASE</version>
   </parent>
 
   <groupId>com.wuxinshui.spring</groupId>

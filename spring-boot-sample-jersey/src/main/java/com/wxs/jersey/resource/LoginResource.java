@@ -2,10 +2,12 @@ package com.wxs.jersey.resource;
 
 import com.wxs.jersey.service.impl.LoginServiceImpl;
 import com.wxs.jersey.vo.VerifyInfo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiResponse;
+//import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 @Component
 @Path("/login")
 @Produces(MediaType.APPLICATION_JSON)
-@Api(value = "/login", tags = "用户登录接口", produces = MediaType.APPLICATION_JSON)
+//@ApiResponse(value = "/login", tags = "用户登录接口", produces = MediaType.APPLICATION_JSON)
 public class LoginResource {
 
     @Autowired
@@ -26,16 +28,16 @@ public class LoginResource {
 
     @Path("/verify")
     @POST
-    @ApiOperation(value = "校验", notes = "校验")
-    @ApiResponses({@ApiResponse(code = 400, message = "失败"), @ApiResponse(code = 500, message = "服务器内部错误")})
+    //@ApiOperation(value = "校验", notes = "校验")
+    //@ApiResponses({@ApiResponse(code = 400, message = "失败"), @ApiResponse(code = 500, message = "服务器内部错误")})
     public int verifyLogin(VerifyInfo verifyInfo) {
         return loginService.verify(verifyInfo.getUsername(), verifyInfo.getPass());
     }
 
     @Path("/test")
     @GET
-    @ApiOperation(value = "测试接口", notes = "测试接口")
-    @ApiResponses({@ApiResponse(code = 400, message = "失败"), @ApiResponse(code = 500, message = "服务器内部错误")})
+    //@ApiOperation(value = "测试接口", notes = "测试接口")
+    //@ApiResponses({@ApiResponse(code = 400, message = "失败"), @ApiResponse(code = 500, message = "服务器内部错误")})
     public String test() {
         return "this is test";
     }
