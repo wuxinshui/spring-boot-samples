@@ -1,8 +1,4 @@
-/**********************************************************************
- * Copyright (c):    2016-2049  bkjk chengdu company, All rights reserved.
- * Technical Support:bkjk chengdu company
- * Contact:          yu.qin@bkjk.com,18030712055
- **********************************************************************/
+
 package com.wxs.aop.common;
 
 public final class HTTPConstants {
