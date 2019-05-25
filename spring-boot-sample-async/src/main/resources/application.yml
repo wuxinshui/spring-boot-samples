@@ -1,9 +1,9 @@
 spring:
-  datasource:
-   username: root
-   password: Zxcv!234
-   driver-class-name: com.mysql.jdbc.Driver
-   url: jdbc:mysql://127.0.0.1:3306/user_dev4?characterEncoding=UTF-8&useSSL=false
+    datasource:
+        username: root
+        password: Zxcv!234
+        driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/user_dev4?characterEncoding=UTF-8&useSSL=false
 logging:
-  level:
-    com.baomidou: debug
+    level:
+        com.baomidou: debug

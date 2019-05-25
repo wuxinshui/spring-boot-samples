@@ -56,8 +56,12 @@
         <!--<module>spring-boot-sample-aop</module>-->
         <!--elasticsearch-->
         <!--<module>spring-boot-sample-elasticsearch</module>-->
-        <!--解决方案-->
+        <!--异步解决方案-->
         <module>spring-boot-sample-async</module>
+        <!--springboot 默认三种servlet 容器-->
+        <module>spring-boot-sample-undertow</module>
+        <module>spring-boot-sample-jetty</module>
+        <module>spring-boot-sample-tomcat</module>
     </modules>
 
     <dependencies>
