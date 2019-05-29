@@ -7,4 +7,7 @@
 
 ### 1. Spring Boot
 ### 2. tomcat
-### 3.压测结果
+### 3. 压测结果
+### 4.${random.int[min,max]}
+### 5.command
+    java -jar spring-boot-sample-tomcat-1.0.0-SNAPSHOT.jar --server.port=9999
