@@ -8,4 +8,6 @@
 ### 2. excel evaluate
 ### 3. excel evaluateFormulaCell
 ### 4. excel evaluateInCell
+### 5. excel upload
+### 6. excel download
 
