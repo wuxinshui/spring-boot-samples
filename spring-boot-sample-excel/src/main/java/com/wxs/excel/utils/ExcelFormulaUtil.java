@@ -61,7 +61,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  * @Date: Created in 2019/6/4 11:20
  */
 public class ExcelFormulaUtil {
-    private static final String filePath = "E:\\project\\platform\\店东贷\\22.xlsx";
+    private static final String filePath = "c:/temp/test.xls";
     private static Set<Object> set=new HashSet<>();
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
