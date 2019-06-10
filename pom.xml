@@ -52,6 +52,7 @@
         <module>spring-boot-sample-java10</module>
         <!--paginator 分页-->
         <module>spring-boot-sample-paginator</module>
+        <module>spring-boot-sample-pagehelper</module>
         <!--aop filter advice-->
         <!--<module>spring-boot-sample-aop</module>-->
         <!--elasticsearch-->
