@@ -65,6 +65,8 @@
         <module>spring-boot-sample-tomcat</module>
         <!--excel 常用-->
         <module>spring-boot-sample-excel</module>
+        <!--i18n 国际化-->
+        <module>spring-boot-sample-i18n</module>
     </modules>
 
     <dependencies>
