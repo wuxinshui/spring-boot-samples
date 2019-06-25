@@ -63,6 +63,8 @@
         <module>spring-boot-sample-undertow</module>
         <module>spring-boot-sample-jetty</module>
         <module>spring-boot-sample-tomcat</module>
+        <!--excel 常用-->
+        <module>spring-boot-sample-excel</module>
     </modules>
 
     <dependencies>
