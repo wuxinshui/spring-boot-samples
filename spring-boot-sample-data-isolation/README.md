@@ -1,5 +1,5 @@
-# spring-boot-sample-flyway
-## 工程所用技术点
+# spring-boot-sample-isolation
+## 技术点
 
 [参考](https://www.jianshu.com/p/a1d4cce7af53)
 

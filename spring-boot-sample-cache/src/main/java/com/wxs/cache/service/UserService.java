@@ -1,8 +1,8 @@
-package com.wxs.flyway.service;
+package com.wxs.cache.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.wxs.flyway.entity.User;
+import com.wxs.cache.entity.User;
 
 public interface UserService extends IService<User> {
 

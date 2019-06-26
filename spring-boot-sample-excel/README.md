@@ -1,5 +1,5 @@
 # spring-boot-sample-excel
-## 工程所用技术点
+## 技术点
 
 [Formula Evaluation](https://poi.apache.org/components/spreadsheet/eval.html)
 

@@ -7,8 +7,3 @@ spring:
 logging:
   level:
     com.baomidou: debug
-flyway:
-  enabled: true
-  locations: classpath:/db
-#  创建记录表，强制数据迁移
-  baseline-on-migrate: true

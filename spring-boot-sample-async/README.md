@@ -1,5 +1,5 @@
 # spring-boot-sample-flyway
-## 工程所用技术点
+## 技术点
 
 [参考](http://blog.didispace.com/spring-boot-flyway-db-version/)
 

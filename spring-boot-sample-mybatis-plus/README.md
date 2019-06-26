@@ -1,5 +1,5 @@
 # spring-boot-sample-mybatis-plus
-## 工程所用技术点
+## 技术点
 
 [基于官方sample](https://github.com/baomidou/dynamic-datasource-spring-boot-starter)，解决了包依赖的问题。
 

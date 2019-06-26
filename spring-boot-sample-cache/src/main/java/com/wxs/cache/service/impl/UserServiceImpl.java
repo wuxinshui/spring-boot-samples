@@ -1,10 +1,10 @@
-package com.wxs.flyway.service.impl;
+package com.wxs.cache.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.wxs.flyway.entity.User;
-import com.wxs.flyway.mapper.UserMapper;
-import com.wxs.flyway.service.UserService;
+import com.wxs.cache.entity.User;
+import com.wxs.cache.mapper.UserMapper;
+import com.wxs.cache.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service

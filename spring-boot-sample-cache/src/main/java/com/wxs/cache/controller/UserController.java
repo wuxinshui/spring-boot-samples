@@ -1,12 +1,12 @@
-package com.wxs.flyway.controller;
+package com.wxs.cache.controller;
 
-import com.wxs.flyway.entity.User;
-import com.wxs.flyway.service.UserService;
+import com.wxs.cache.entity.User;
+import com.wxs.cache.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/mp")
+@RequestMapping("/cache")
 public class UserController {
     @Autowired
     private UserService userService;

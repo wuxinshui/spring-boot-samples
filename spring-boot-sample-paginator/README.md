@@ -1,5 +1,5 @@
 # spring-boot-sample-paginator
-## 工程所用技术点
+## 技术点
 
 ### 1. Spring Boot
 ### 2. Mybatis

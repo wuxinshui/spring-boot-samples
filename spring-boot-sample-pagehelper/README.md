@@ -1,5 +1,5 @@
 # spring-boot-sample-paginator
-## 工程所用技术点
+## 技术点
 
 [参考](https://github.com/abel533/MyBatis-Spring-Boot)
 
