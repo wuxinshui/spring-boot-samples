@@ -16,7 +16,6 @@
 
 [spring-boot-sample-amqp](/spring-boot-sample-amqp/README.md)
 
-
 [spring-boot-sample-admin](/spring-boot-sample-admin/README.md)
 
 [spring-boot-sample-amqp](/spring-boot-sample-amqp/README.md)
