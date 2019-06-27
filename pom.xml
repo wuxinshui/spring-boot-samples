@@ -67,6 +67,8 @@
         <module>spring-boot-sample-excel</module>
         <!--i18n 国际化-->
         <module>spring-boot-sample-i18n</module>
+        <!--sping|boot+servlet-->
+        <module>spring-boot-sample-servlet</module>
     </modules>
 
     <dependencies>
