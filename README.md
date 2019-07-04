@@ -34,8 +34,6 @@
 
 [spring-boot-sample-data-jpa](/spring-boot-sample-data-jpa/README.md)
 
-[spring-boot-sample-elasticsearch](/spring-boot-sample-elasticsearch/README.md)
-
 [spring-boot-sample-excel](/spring-boot-sample-excel/README.md)
 
 [spring-boot-sample-exception](/spring-boot-sample-exception/README.md)
@@ -76,7 +74,10 @@
 
 [spring-boot-sample-undertow](/spring-boot-sample-undertow/README.md)
 
+### TODO
+
 [spring-boot-sample-akka](/spring-boot-sample-akka/README.md)
 
 [spring-boot-sample-Rxjava](/spring-boot-sample-Rxjava/README.md)
 
+[spring-boot-sample-elasticsearch](/spring-boot-sample-elasticsearch/README.md)
