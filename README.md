@@ -76,3 +76,7 @@
 
 [spring-boot-sample-undertow](/spring-boot-sample-undertow/README.md)
 
+[spring-boot-sample-akka](/spring-boot-sample-akka/README.md)
+
+[spring-boot-sample-Rxjava](/spring-boot-sample-Rxjava/README.md)
+
