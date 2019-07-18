@@ -30,3 +30,4 @@ result.addCallback(success -> {
 
 ### 7. akka [参考](https://zhuanlan.zhihu.com/p/43151192)
 
+### 8. [Spring Boot 并发数据聚合库](https://github.com/wuxinshui/spring-boot-data-aggregator)
