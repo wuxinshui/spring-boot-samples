@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.wxs.auth.starter.config.AuthFilterAutoConfiguration
