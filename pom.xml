@@ -69,6 +69,8 @@
         <module>spring-boot-sample-i18n</module>
         <!--sping|boot+servlet-->
         <module>spring-boot-sample-servlet</module>
+        <!--starter-->
+        <module>spring-boot-sample-auth-starter</module>
     </modules>
 
     <dependencies>
