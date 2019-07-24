@@ -71,6 +71,8 @@
         <module>spring-boot-sample-servlet</module>
         <!--starter-->
         <module>spring-boot-sample-auth-starter</module>
+        <!--guava-->
+        <module>spring-boot-sample-guava</module>
     </modules>
 
     <dependencies>
