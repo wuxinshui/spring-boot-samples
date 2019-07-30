@@ -1,7 +1,8 @@
 package com.wxs.rule;
 
 import com.google.common.eventbus.EventBus;
-import com.wxs.rule.eventbus.RegisterEvent;
+import com.ql.util.express.ExpressRunner;
+import com.wxs.rule.eventbus.RegisterEventHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +18,12 @@ public class RuleApplication {
     @Bean
     public EventBus eventBus() {
         EventBus eventBus = new EventBus();
-        eventBus.register(new RegisterEvent());
+        eventBus.register(new RegisterEventHandler());
         return eventBus;
+    }
+
+    @Bean
+    public ExpressRunner expressRunner() {
+        return new ExpressRunner();
     }
 }
