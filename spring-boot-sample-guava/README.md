@@ -1,4 +1,4 @@
-# spring-boot-sample-paginator
+# spring-boot-sample-guava
 ## 技术点
 
 [JMH性能测试](https://www.cnblogs.com/tranquillity/p/9488572.html)
