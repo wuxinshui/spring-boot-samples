@@ -1,4 +1,4 @@
-package com.wxs.guava.controller;
+package com.wxs.micrometer.controller;
 
 import com.google.common.eventbus.EventBus;
 import lombok.extern.slf4j.Slf4j;

@@ -1,17 +1,17 @@
-package com.wxs.guava;
+package com.wxs.micrometer;
 
 import com.google.common.eventbus.EventBus;
-import com.wxs.guava.eventbus.RegisterEvent;
+import com.wxs.micrometer.eventbus.RegisterEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan("com.wxs.guava.dao")
-public class GuavaApplication {
+@MapperScan("com.wxs.micrometer.dao")
+public class MicrometerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(GuavaApplication.class, args);
+        SpringApplication.run(MicrometerApplication.class, args);
     }
 
     @Bean

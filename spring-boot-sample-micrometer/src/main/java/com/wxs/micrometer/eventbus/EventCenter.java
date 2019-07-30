@@ -1,4 +1,4 @@
-package com.wxs.guava.eventbus;
+package com.wxs.micrometer.eventbus;
 
 /**
  * @Author: yoyo

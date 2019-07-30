@@ -1,4 +1,4 @@
-package com.wxs.guava.model;
+package com.wxs.micrometer.model;
 
 import lombok.Data;
 

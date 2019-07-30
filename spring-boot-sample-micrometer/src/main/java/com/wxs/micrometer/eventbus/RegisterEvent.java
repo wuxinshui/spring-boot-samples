@@ -1,4 +1,4 @@
-package com.wxs.guava.eventbus;
+package com.wxs.micrometer.eventbus;
 
 import com.google.common.eventbus.Subscribe;
 import lombok.extern.slf4j.Slf4j;
