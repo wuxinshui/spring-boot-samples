@@ -9,3 +9,5 @@
 ### 5. Micrometer
 
 [使用 Micrometer 记录 Java 应用性能指标](https://www.ibm.com/developerworks/cn/java/j-using-micrometer-to-record-java-metric/index.html)
+
+[Jolokia与Spring JMX监控](https://shift-alt-ctrl.iteye.com/blog/2404036)
