@@ -28,11 +28,21 @@ public class UserInfoPageHelperController {
         return pageInfo;
     }
 
+    /**
+     * 新增
+     *
+     * @param userInfo
+     */
     @PostMapping("/users/add")
     public void addUsers(@RequestBody UserInfo userInfo) {
         userInfoMapper.insert(userInfo);
     }
 
+    /**
+     * 更新
+     *
+     * @param userInfo
+     */
     @PostMapping("/users/update")
     public void updateUsers(@RequestBody UserInfo userInfo) {
         //根据主键更新
