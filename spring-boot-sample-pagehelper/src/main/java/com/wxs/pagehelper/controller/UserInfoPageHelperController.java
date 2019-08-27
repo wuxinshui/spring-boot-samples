@@ -5,10 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.wxs.pagehelper.dao.UserInfoMapper;
 import com.wxs.pagehelper.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,17 @@ public class UserInfoPageHelperController {
         List<UserInfo> userInfoList = userInfoMapper.selectAll();
         PageInfo<UserInfo> pageInfo = new PageInfo<>(userInfoList);
         return pageInfo;
+    }
+
+    @PostMapping("/users/add")
+    public void addUsers(@RequestBody UserInfo userInfo) {
+        userInfoMapper.insert(userInfo);
+    }
+
+    @PostMapping("/users/update")
+    public void updateUsers(@RequestBody UserInfo userInfo) {
+        //根据主键更新
+        userInfoMapper.updateByPrimaryKey(userInfo);
     }
 
 }
