@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author DELL
  */
 @SpringBootApplication
-public class TomcatApplication {
+public class TomcatJVMApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TomcatApplication.class, args);
+        SpringApplication.run(TomcatJVMApplication.class, args);
     }
 
 }
