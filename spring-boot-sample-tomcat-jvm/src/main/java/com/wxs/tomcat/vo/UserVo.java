@@ -1,4 +1,4 @@
-package com.wxs.tomcat.controller.vo;
+package com.wxs.tomcat.vo;
 
 /**
  * @Author: yoyo

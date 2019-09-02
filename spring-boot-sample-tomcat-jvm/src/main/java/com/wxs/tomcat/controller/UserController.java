@@ -1,6 +1,6 @@
 package com.wxs.tomcat.controller;
 
-import com.wxs.tomcat.controller.vo.UserVo;
+import com.wxs.tomcat.vo.UserVo;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
