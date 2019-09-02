@@ -1,4 +1,4 @@
-package com.wxs.guava.eventbus;
+package com.wxs.guava.event;
 
 /**
  * @Author: yoyo

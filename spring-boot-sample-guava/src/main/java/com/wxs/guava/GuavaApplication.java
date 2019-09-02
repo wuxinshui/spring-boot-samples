@@ -1,7 +1,7 @@
 package com.wxs.guava;
 
 import com.google.common.eventbus.EventBus;
-import com.wxs.guava.eventbus.RegisterEvent;
+import com.wxs.guava.subscribers.RegisterSubscriber;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +16,8 @@ public class GuavaApplication {
 
     @Bean
     public EventBus eventBus() {
-        EventBus eventBus = new EventBus();
-        eventBus.register(new RegisterEvent());
+        EventBus eventBus = new EventBus("test");
+        eventBus.register(new RegisterSubscriber());
         return eventBus;
     }
 }

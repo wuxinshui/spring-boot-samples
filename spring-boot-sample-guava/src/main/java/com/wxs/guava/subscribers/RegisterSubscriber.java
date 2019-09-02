@@ -1,4 +1,4 @@
-package com.wxs.guava.eventbus;
+package com.wxs.guava.subscribers;
 
 import com.google.common.eventbus.Subscribe;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @Date: Created in 2019/7/24 13:34
  */
 @Slf4j
-public class RegisterEvent {
+public class RegisterSubscriber {
 
     @Subscribe
     public void register(String message) {
