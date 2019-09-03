@@ -1,6 +1,7 @@
 package com.wxs.guava;
 
 import com.google.common.eventbus.EventBus;
+import com.wxs.guava.subscribers.ExceptionSubscriber;
 import com.wxs.guava.subscribers.RegisterSubscriber;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +19,7 @@ public class GuavaApplication {
     public EventBus eventBus() {
         EventBus eventBus = new EventBus("test");
         eventBus.register(new RegisterSubscriber());
+        eventBus.register(new ExceptionSubscriber());
         return eventBus;
     }
 }

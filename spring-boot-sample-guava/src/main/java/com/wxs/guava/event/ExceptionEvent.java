@@ -3,6 +3,9 @@ package com.wxs.guava.event;
 public class ExceptionEvent {
     private String message;
 
+    public ExceptionEvent() {
+    }
+
     public ExceptionEvent(String message) {
         this.message = message;
     }
