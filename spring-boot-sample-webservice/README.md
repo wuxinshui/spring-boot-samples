@@ -9,6 +9,8 @@
 
 [Axis2 vs JAX-WS RI vs Apache CXF vs Spring-ws](http://programmingerrors.blogspot.com/2011/09/axis2-vs-jax-ws-ri-vs-apache-cxf-vs.html)
 
+[Basic Examples - Java Generation](https://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.2/example_xjc_basic.html)
+
 
 ### 1. Spring Boot
 ### 2. webservice
