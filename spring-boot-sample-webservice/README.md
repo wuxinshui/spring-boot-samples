@@ -11,6 +11,11 @@
 
 [Basic Examples - Java Generation](https://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.2/example_xjc_basic.html)
 
+[Producing a SOAP web service](https://spring.io/guides/gs/producing-web-service/#initial)
+
+[Consuming a SOAP web service](https://spring.io/guides/gs/consuming-web-service/)
+
+
 
 ### 1. Spring Boot
 ### 2. webservice
