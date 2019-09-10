@@ -19,12 +19,13 @@ public class GetSupportCityController {
     private SoapClient soapClient;
 
     private String wsdl_url = "http://http://www.webxml.com.cn/WebServices/WeatherWebService.asmx?wsdl";
+    private String getSupportCity_url = "http://WebXml.com.cn/getSupportCity";
 
 
     @GetMapping("/weather/{city}")
     public Object getSupportCity(@PathVariable("city") String city) {
         GetSupportCitySoapIn soapIn = new GetSupportCitySoapIn(city);
-        Object object = soapClient.call(wsdl_url, soapIn);
+        Object object = soapClient.call(getSupportCity_url, soapIn);
         return object;
     }
 
