@@ -1,6 +1,14 @@
 # spring-boot-sample-webservice
 ## 技术点
 
+### 1. Spring Boot
+### 2. spring-ws
+
+## 扩展
+
+
+[Welcome to Apache Axis2/Java](https://axis.apache.org/axis2/java/core/index.html)
+
 [天气预报WEB服务接口说明 - 天气现象和图例](http://www.webxml.com.cn/zh_cn/weather_icon.aspx)
 
 [getSupportCity](http://www.webxml.com.cn/WebServices/WeatherWebService.asmx?op=getSupportCity)
@@ -14,8 +22,3 @@
 [Producing a SOAP web service](https://spring.io/guides/gs/producing-web-service/#initial)
 
 [Consuming a SOAP web service](https://spring.io/guides/gs/consuming-web-service/)
-
-
-
-### 1. Spring Boot
-### 2. webservice
