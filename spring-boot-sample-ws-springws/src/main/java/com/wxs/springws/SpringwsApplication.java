@@ -1,4 +1,4 @@
-package com.wxs.webservice;
+package com.wxs.springws;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author DELL
  */
 @SpringBootApplication
-public class WebserviceApplication {
+public class SpringwsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WebserviceApplication.class, args);
+        SpringApplication.run(SpringwsApplication.class, args);
     }
 
 }

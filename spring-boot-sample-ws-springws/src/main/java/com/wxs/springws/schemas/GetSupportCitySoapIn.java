@@ -1,4 +1,4 @@
-package com.wxs.webservice.schemas;
+package com.wxs.springws.schemas;
 
 import java.io.Serializable;
 

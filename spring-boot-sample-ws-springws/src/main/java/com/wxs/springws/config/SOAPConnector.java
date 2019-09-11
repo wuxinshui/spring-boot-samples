@@ -1,4 +1,4 @@
-package com.wxs.webservice.config;
+package com.wxs.springws.config;
 
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 

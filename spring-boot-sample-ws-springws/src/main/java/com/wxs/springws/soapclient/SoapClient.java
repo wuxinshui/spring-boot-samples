@@ -1,6 +1,6 @@
-package com.wxs.webservice.soapclient;
+package com.wxs.springws.soapclient;
 
-import com.wxs.webservice.config.SOAPConnector;
+import com.wxs.springws.config.SOAPConnector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

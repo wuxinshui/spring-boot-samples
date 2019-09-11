@@ -1,4 +1,4 @@
-package com.wxs.webservice.config;
+package com.wxs.springws.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ public class Config {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 		// this is the package name specified in the <generatePackage> specified in
 		// pom.xml
-		marshaller.setContextPath("com.wxs.webservice.schemas");
+		marshaller.setContextPath("com.wxs.springws.schemas");
 		return marshaller;
 	}
 

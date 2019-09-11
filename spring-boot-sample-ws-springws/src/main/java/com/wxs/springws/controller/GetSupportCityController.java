@@ -1,7 +1,7 @@
-package com.wxs.webservice.controller;
+package com.wxs.springws.controller;
 
-import com.wxs.webservice.schemas.GetSupportCitySoapIn;
-import com.wxs.webservice.soapclient.SoapClient;
+import com.wxs.springws.schemas.GetSupportCitySoapIn;
+import com.wxs.springws.soapclient.SoapClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

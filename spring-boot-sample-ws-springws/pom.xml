@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.wuxinshui.spring</groupId>
-    <artifactId>spring-boot-sample-webservice</artifactId>
+    <artifactId>spring-boot-sample-ws-springws</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
