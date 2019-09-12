@@ -49,10 +49,12 @@ import java.util.concurrent.TimeUnit;
 @Threads(8)
 @Fork(2)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-public class JmhService {
+public class JmhStringService {
+    public static final String LOG_BASE_PATH="D:\\git\\github\\spring-boot-samples\\spring-boot-sample-jmh\\src\\main\\resources\\log\\";
+    public static final String LOG_PATH="benchmark-string.log";
 
     public static void main(String[] args) throws RunnerException {
-        Options options = new OptionsBuilder().include(JmhService.class.getSimpleName()).output("/benchmark.log").build();
+        Options options = new OptionsBuilder().include(JmhStringService.class.getSimpleName()).output(LOG_BASE_PATH+LOG_PATH).build();
         new Runner(options).run();
     }
 
@@ -60,7 +62,7 @@ public class JmhService {
     public void stringAdd() {
         String string = "1";
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             string += i;
         }
         System.out.println(string);
@@ -70,7 +72,7 @@ public class JmhService {
     public void stringBuilderAdd() {
         StringBuilder stringBuilder = new StringBuilder("1");
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             stringBuilder.append(i);
         }
         System.out.println(stringBuilder);
