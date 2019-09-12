@@ -1,0 +1,111 @@
+# JMH version: 1.21
+# VM version: JDK 10.0.1, Java HotSpot(TM) 64-Bit Server VM, 10.0.1+10
+# VM invoker: C:\Program Files\Java\jdk-10.0.1\bin\java.exe
+# VM options: -javaagent:D:\Program Files\JetBrains\IntelliJ IDEA 2018.1.5\lib\idea_rt.jar=54163:D:\Program Files\JetBrains\IntelliJ IDEA 2018.1.5\bin -Dfile.encoding=UTF-8
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.wxs.jmh.services.JmhService.stringAdd
+
+# Run progress: 0.00% complete, ETA 00:05:20
+# Fork: 1 of 2
+# Warmup Iteration   1: 6.756 ops/ms
+# Warmup Iteration   2: 7.056 ops/ms
+# Warmup Iteration   3: 7.728 ops/ms
+Iteration   1: 7.945 ops/ms
+Iteration   2: 7.947 ops/ms
+Iteration   3: 7.913 ops/ms
+Iteration   4: 8.056 ops/ms
+Iteration   5: 8.033 ops/ms
+Iteration   6: 7.595 ops/ms
+Iteration   7: 7.668 ops/ms
+Iteration   8: 7.755 ops/ms
+Iteration   9: 7.715 ops/ms
+Iteration  10: 7.722 ops/ms
+
+# Run progress: 25.00% complete, ETA 00:04:03
+# Fork: 2 of 2
+# Warmup Iteration   1: 5.012 ops/ms
+# Warmup Iteration   2: 5.884 ops/ms
+# Warmup Iteration   3: 5.598 ops/ms
+Iteration   1: 6.250 ops/ms
+Iteration   2: 6.254 ops/ms
+Iteration   3: 6.949 ops/ms
+Iteration   4: 7.250 ops/ms
+Iteration   5: 7.742 ops/ms
+Iteration   6: 7.839 ops/ms
+Iteration   7: 7.567 ops/ms
+Iteration   8: 7.347 ops/ms
+Iteration   9: 7.483 ops/ms
+Iteration  10: 7.352 ops/ms
+
+
+Result "com.wxs.jmh.services.JmhService.stringAdd":
+  7.519 ±(99.9%) 0.448 ops/ms [Average]
+  (min, avg, max) = (6.250, 7.519, 8.056), stdev = 0.516
+  CI (99.9%): [7.071, 7.967] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 10.0.1, Java HotSpot(TM) 64-Bit Server VM, 10.0.1+10
+# VM invoker: C:\Program Files\Java\jdk-10.0.1\bin\java.exe
+# VM options: -javaagent:D:\Program Files\JetBrains\IntelliJ IDEA 2018.1.5\lib\idea_rt.jar=54163:D:\Program Files\JetBrains\IntelliJ IDEA 2018.1.5\bin -Dfile.encoding=UTF-8
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.wxs.jmh.services.JmhService.stringBuilderAdd
+
+# Run progress: 50.00% complete, ETA 00:02:42
+# Fork: 1 of 2
+# Warmup Iteration   1: 5.682 ops/ms
+# Warmup Iteration   2: 6.405 ops/ms
+# Warmup Iteration   3: 7.535 ops/ms
+Iteration   1: 16.215 ops/ms
+Iteration   2: 16.021 ops/ms
+Iteration   3: 16.209 ops/ms
+Iteration   4: 16.179 ops/ms
+Iteration   5: 16.166 ops/ms
+Iteration   6: 15.877 ops/ms
+Iteration   7: 16.040 ops/ms
+Iteration   8: 16.182 ops/ms
+Iteration   9: 15.960 ops/ms
+Iteration  10: 15.732 ops/ms
+
+# Run progress: 75.00% complete, ETA 00:01:21
+# Fork: 2 of 2
+# Warmup Iteration   1: 6.011 ops/ms
+# Warmup Iteration   2: 5.633 ops/ms
+# Warmup Iteration   3: 5.145 ops/ms
+Iteration   1: 15.089 ops/ms
+Iteration   2: 16.045 ops/ms
+Iteration   3: 16.165 ops/ms
+Iteration   4: 15.967 ops/ms
+Iteration   5: 16.219 ops/ms
+Iteration   6: 16.326 ops/ms
+Iteration   7: 16.160 ops/ms
+Iteration   8: 16.069 ops/ms
+Iteration   9: 15.965 ops/ms
+Iteration  10: 14.863 ops/ms
+
+
+Result "com.wxs.jmh.services.JmhService.stringBuilderAdd":
+  15.973 ±(99.9%) 0.321 ops/ms [Average]
+  (min, avg, max) = (14.863, 15.973, 16.326), stdev = 0.370
+  CI (99.9%): [15.652, 16.294] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:05:24
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                     Mode  Cnt   Score   Error   Units
+JmhService.stringAdd         thrpt   20   7.519 ± 0.448  ops/ms
+JmhService.stringBuilderAdd  thrpt   20  15.973 ± 0.321  ops/ms
