@@ -1,0 +1,5 @@
+server:
+  port: ${random.int[8090,9090]}
+management:
+  security:
+    enabled: false

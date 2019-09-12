@@ -73,6 +73,8 @@
         <module>spring-boot-sample-auth-starter</module>
         <!--guava-->
         <module>spring-boot-sample-guava</module>
+        <!--JMH，方法性能测试框架-->
+        <module>spring-boot-sample-jmh</module>
     </modules>
 
     <dependencies>
