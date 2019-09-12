@@ -1,13 +1,11 @@
-package com.wxs.pagehelper;
+package com.wxs.jmh;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan("com.wxs.pagehelper.dao")
-public class PageHelperApplication {
+public class JMHPerformanceApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(PageHelperApplication.class, args);
+		SpringApplication.run(JMHPerformanceApplication.class, args);
 	}
 }
