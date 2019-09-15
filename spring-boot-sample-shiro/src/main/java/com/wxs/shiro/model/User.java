@@ -1,4 +1,4 @@
-package com.wxs.guava.model;
+package com.wxs.shiro.model;
 
 import lombok.Data;
 

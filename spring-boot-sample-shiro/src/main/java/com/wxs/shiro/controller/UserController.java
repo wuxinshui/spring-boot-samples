@@ -1,9 +1,9 @@
-package com.wxs.guava.controller;
+package com.wxs.shiro.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wxs.guava.dao.UserMapper;
-import com.wxs.guava.model.User;
+import com.wxs.shiro.dao.UserMapper;
+import com.wxs.shiro.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

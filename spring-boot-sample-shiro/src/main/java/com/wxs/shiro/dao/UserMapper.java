@@ -1,6 +1,6 @@
-package com.wxs.guava.dao;
+package com.wxs.shiro.dao;
 
-import com.wxs.guava.model.User;
+import com.wxs.shiro.model.User;
 import tk.mybatis.mapper.common.BaseMapper;
 
 public interface UserMapper extends BaseMapper<User> {

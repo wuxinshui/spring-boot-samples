@@ -1,4 +1,4 @@
-package com.wxs.guava.event;
+package com.wxs.shiro.event;
 
 public class ExceptionEvent {
     private String message;

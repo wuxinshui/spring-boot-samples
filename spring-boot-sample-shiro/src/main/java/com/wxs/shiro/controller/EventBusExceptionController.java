@@ -1,7 +1,7 @@
-package com.wxs.guava.controller;
+package com.wxs.shiro.controller;
 
 import com.google.common.eventbus.EventBus;
-import com.wxs.guava.event.ExceptionEvent;
+import com.wxs.shiro.event.ExceptionEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

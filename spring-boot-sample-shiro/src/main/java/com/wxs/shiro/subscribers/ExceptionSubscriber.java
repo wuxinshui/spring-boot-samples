@@ -1,7 +1,7 @@
-package com.wxs.guava.subscribers;
+package com.wxs.shiro.subscribers;
 
 import com.google.common.eventbus.Subscribe;
-import com.wxs.guava.event.ExceptionEvent;
+import com.wxs.shiro.event.ExceptionEvent;
 import lombok.extern.slf4j.Slf4j;
 
 /**

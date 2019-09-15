@@ -1,4 +1,4 @@
-package com.wxs.guava.subscribers;
+package com.wxs.shiro.subscribers;
 
 import com.google.common.eventbus.Subscribe;
 import lombok.extern.slf4j.Slf4j;
