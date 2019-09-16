@@ -13,6 +13,9 @@
 
 ### 了解基本概念
 
+authenticate：认证
+authorize：授权
+
 [第一章 Shiro简介——《跟我学Shiro》](https://www.iteye.com/blog/jinnianshilongnian-2018936)
 
 [Integrating Apache Shiro into Spring-Boot Applications](https://shiro.apache.org/spring-boot.html)
