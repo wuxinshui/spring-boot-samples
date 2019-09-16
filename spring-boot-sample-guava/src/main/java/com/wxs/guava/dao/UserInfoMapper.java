@@ -1,4 +1,4 @@
-package com.wxs.pagehelper.dao;
+package com.wxs.guava.dao;
 
 import com.wxs.pagehelper.model.UserInfo;
 import tk.mybatis.mapper.common.BaseMapper;

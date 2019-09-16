@@ -1,4 +1,4 @@
-package com.wxs.pagehelper.model;
+package com.wxs.guava.model;
 
 import lombok.Data;
 
