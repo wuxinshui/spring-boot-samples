@@ -19,6 +19,8 @@
 
 [Apache Shiro + Spring CLI Example](https://github.com/apache/shiro/tree/master/samples/spring-boot)
 
+[zhangkaitao/shiro-example](https://github.com/zhangkaitao/shiro-example)
+
 
 
 ### 授权应用
