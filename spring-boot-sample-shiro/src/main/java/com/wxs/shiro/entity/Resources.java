@@ -19,8 +19,8 @@
  */
 package com.wxs.shiro.entity;
 
-import com.zyd.shiro.business.enums.ResourceTypeEnum;
-import com.zyd.shiro.persistence.beans.SysResources;
+
+import com.wxs.shiro.dao.entity.SysResources;
 
 import java.util.Date;
 import java.util.List;
@@ -63,13 +63,13 @@ public class Resources {
         this.sysResources.setName(name);
     }
 
-    public ResourceTypeEnum getType() {
-        return this.sysResources.getType() != null ? ResourceTypeEnum.valueOf(this.sysResources.getType()) : null;
-    }
-
-    public void setType(ResourceTypeEnum type) {
-        this.sysResources.setType(type.toString());
-    }
+    //public ResourceTypeEnum getType() {
+    //    return this.sysResources.getType() != null ? ResourceTypeEnum.valueOf(this.sysResources.getType()) : null;
+    //}
+    //
+    //public void setType(ResourceTypeEnum type) {
+    //    this.sysResources.setType(type.toString());
+    //}
 
     public String getUrl() {
         return this.sysResources.getUrl();

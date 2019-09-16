@@ -23,7 +23,9 @@
  */
 package com.wxs.shiro.dao.mapper;
 
+import com.wxs.shiro.dao.entity.SysRoleResources;
 import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.common.BaseMapper;
 
 /**
  * @author yadong.zhang (yadong.zhang0415(a)gmail.com)

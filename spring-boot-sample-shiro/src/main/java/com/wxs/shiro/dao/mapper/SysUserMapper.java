@@ -23,10 +23,9 @@
  */
 package com.wxs.shiro.dao.mapper;
 
-import com.zyd.shiro.business.vo.UserConditionVO;
-import com.zyd.shiro.persistence.beans.SysUser;
-import com.zyd.shiro.plugin.BaseMapper;
+import com.wxs.shiro.dao.entity.SysUser;
 import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.common.BaseMapper;
 
 import java.util.List;
 
@@ -39,8 +38,8 @@ import java.util.List;
  */
 @Repository
 public interface SysUserMapper extends BaseMapper<SysUser> {
-
-    List<SysUser> findPageBreakByCondition(UserConditionVO vo);
+    //
+    //List<SysUser> findPageBreakByCondition(UserConditionVO vo);
 
     List<SysUser> listByRoleId(Long roleId);
 

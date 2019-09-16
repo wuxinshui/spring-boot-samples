@@ -20,9 +20,7 @@
 package com.wxs.shiro.service;
 
 import com.github.pagehelper.PageInfo;
-import com.zyd.shiro.business.entity.Resources;
-import com.zyd.shiro.business.vo.ResourceConditionVO;
-import com.zyd.shiro.framework.object.AbstractService;
+import com.wxs.shiro.entity.Resources;
 
 import java.util.List;
 import java.util.Map;

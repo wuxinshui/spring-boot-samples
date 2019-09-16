@@ -19,10 +19,10 @@
  */
 package com.wxs.shiro.service.impl;
 
-import com.zyd.shiro.business.entity.RoleResources;
-import com.zyd.shiro.business.service.SysRoleResourcesService;
-import com.zyd.shiro.persistence.beans.SysRoleResources;
-import com.zyd.shiro.persistence.mapper.SysRoleResourcesMapper;
+import com.wxs.shiro.dao.entity.SysRoleResources;
+import com.wxs.shiro.dao.mapper.SysRoleResourcesMapper;
+import com.wxs.shiro.entity.RoleResources;
+import com.wxs.shiro.service.SysRoleResourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

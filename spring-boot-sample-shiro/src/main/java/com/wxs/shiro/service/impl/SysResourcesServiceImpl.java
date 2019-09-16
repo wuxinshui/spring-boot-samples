@@ -21,7 +21,9 @@ package com.wxs.shiro.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.wxs.shiro.dao.entity.SysResources;
 import com.wxs.shiro.dao.mapper.SysResourceMapper;
+import com.wxs.shiro.entity.Resources;
 import com.wxs.shiro.service.SysResourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

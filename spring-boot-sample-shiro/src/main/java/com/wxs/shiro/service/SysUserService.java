@@ -21,9 +21,7 @@ package com.wxs.shiro.service;
 
 
 import com.github.pagehelper.PageInfo;
-import com.zyd.shiro.business.entity.User;
-import com.zyd.shiro.business.vo.UserConditionVO;
-import com.zyd.shiro.framework.object.AbstractService;
+import com.wxs.shiro.entity.User;
 
 import java.util.List;
 

@@ -21,9 +21,7 @@ package com.wxs.shiro.service;
 
 
 import com.github.pagehelper.PageInfo;
-import com.zyd.shiro.business.entity.Role;
-import com.zyd.shiro.business.vo.RoleConditionVO;
-import com.zyd.shiro.framework.object.AbstractService;
+import com.wxs.shiro.entity.Role;
 
 import java.util.List;
 import java.util.Map;

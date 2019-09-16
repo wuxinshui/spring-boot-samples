@@ -19,9 +19,9 @@
  */
 package com.wxs.shiro.entity;
 
+import com.wxs.shiro.dao.entity.SysUser;
 import com.zyd.shiro.business.enums.*;
 import com.zyd.shiro.framework.object.AbstractBO;
-import com.zyd.shiro.persistence.beans.SysUser;
 import com.zyd.shiro.util.PasswordUtil;
 import org.springframework.util.StringUtils;
 

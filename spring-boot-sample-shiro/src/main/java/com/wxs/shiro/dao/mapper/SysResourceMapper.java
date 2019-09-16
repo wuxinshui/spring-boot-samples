@@ -19,7 +19,9 @@
  */
 package com.wxs.shiro.dao.mapper;
 
+import com.wxs.shiro.dao.entity.SysResources;
 import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.common.BaseMapper;
 
 import java.util.List;
 import java.util.Map;
@@ -40,7 +42,7 @@ public interface SysResourceMapper extends BaseMapper<SysResources> {
      * @param vo
      * @return
      */
-    List<SysResources> findPageBreakByCondition(ResourceConditionVO vo);
+    //List<SysResources> findPageBreakByCondition(ResourceConditionVO vo);
 
     List<SysResources> listUserResources(Map<String, Object> map);
 

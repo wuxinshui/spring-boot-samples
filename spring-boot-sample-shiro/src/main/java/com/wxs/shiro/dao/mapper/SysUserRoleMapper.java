@@ -23,9 +23,9 @@
  */
 package com.wxs.shiro.dao.mapper;
 
-import com.zyd.shiro.persistence.beans.SysUserRole;
-import com.zyd.shiro.plugin.BaseMapper;
+import com.wxs.shiro.dao.entity.SysUserRole;
 import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.common.BaseMapper;
 
 import java.util.List;
 

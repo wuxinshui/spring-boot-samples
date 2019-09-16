@@ -19,7 +19,7 @@
  */
 package com.wxs.shiro.entity;
 
-import com.zyd.shiro.persistence.beans.SysUserRole;
+import com.wxs.shiro.dao.entity.SysUserRole;
 
 import java.util.Date;
 

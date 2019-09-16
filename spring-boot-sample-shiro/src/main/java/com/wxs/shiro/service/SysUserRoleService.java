@@ -20,8 +20,7 @@
 package com.wxs.shiro.service;
 
 
-import com.zyd.shiro.business.entity.UserRole;
-import com.zyd.shiro.framework.object.AbstractService;
+import com.wxs.shiro.entity.UserRole;
 
 /**
  * 用户角色

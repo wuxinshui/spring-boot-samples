@@ -19,6 +19,8 @@
  */
 package com.wxs.shiro.service.impl;
 
+import com.wxs.shiro.entity.Resources;
+import com.wxs.shiro.entity.User;
 import com.wxs.shiro.service.ShiroService;
 import com.wxs.shiro.service.SysResourcesService;
 import com.wxs.shiro.service.SysUserService;

@@ -20,6 +20,8 @@
 package com.wxs.shiro.entity;
 
 
+import com.wxs.shiro.dao.entity.SysRole;
+
 import java.util.Date;
 
 /**

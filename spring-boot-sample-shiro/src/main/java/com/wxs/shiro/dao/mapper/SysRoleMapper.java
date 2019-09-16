@@ -40,7 +40,7 @@ public interface SysRoleMapper<SysRole> extends BaseMapper<SysRole> {
      * @param vo
      * @return
      */
-    List<SysRole> findPageBreakByCondition(RoleConditionVO vo);
+    //List<SysRole> findPageBreakByCondition(RoleConditionVO vo);
 
     /**
      * 该节代码参考自http://blog.csdn.net/poorcoder_/article/details/71374002

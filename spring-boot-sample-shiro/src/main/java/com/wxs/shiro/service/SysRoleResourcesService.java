@@ -20,8 +20,7 @@
 package com.wxs.shiro.service;
 
 
-import com.zyd.shiro.business.entity.RoleResources;
-import com.zyd.shiro.framework.object.AbstractService;
+import com.wxs.shiro.entity.RoleResources;
 
 /**
  * 角色资源
