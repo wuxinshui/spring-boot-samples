@@ -1,0 +1,15 @@
+server:
+  port: ${random.int[8090,9090]}
+management:
+  security:
+    enabled: false
+spring:
+  session:
+    store-type: redis
+    redis:
+      flush-mode: on_save
+      namespace: spring:session
+  redis:
+    host: host
+    password:
+    port: 6379
