@@ -44,20 +44,20 @@ public class CsvUtils {
         }
     }
 
-    public static <T> void writeCsv(Writer writer, List<T> records, Class<T> clazz) throws CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
-        var columnMapping = Stream.of(T.class.getDeclaredFields())
-                .map(Field::getName)
-                .collect(Collectors.toMap(Function.identity(), Function.identity()));
-
-        var mappingStrategy = new CustomizedHeaderNameMapping<T>();
-        mappingStrategy.setType(clazz);
-        mappingStrategy.setColumnMapping(columnMapping);
-        StatefulBeanToCsv<T> beanToCsv = new StatefulBeanToCsvBuilder(writer)
-                .withMappingStrategy(mappingStrategy)
-                .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
-                .build();
-        beanToCsv.write(records);
-    }
+    //public static <T> void writeCsv(Writer writer, List<T> records, Class<T> clazz) throws CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
+    //    var columnMapping = Stream.of(T.class.getDeclaredFields())
+    //            .map(Field::getName)
+    //            .collect(Collectors.toMap(Function.identity(), Function.identity()));
+    //
+    //    var mappingStrategy = new CustomizedHeaderNameMapping<T>();
+    //    mappingStrategy.setType(clazz);
+    //    mappingStrategy.setColumnMapping(columnMapping);
+    //    StatefulBeanToCsv<T> beanToCsv = new StatefulBeanToCsvBuilder(writer)
+    //            .withMappingStrategy(mappingStrategy)
+    //            .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
+    //            .build();
+    //    beanToCsv.write(records);
+    //}
 
     private static boolean nonEmptyStringArrays(String[] lines) {
         return !ArrayUtils.isEmpty(lines) &&
