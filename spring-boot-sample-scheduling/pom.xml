@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.wuxinshui.spring.boot</groupId>
+        <groupId>com.wuxinshui.springboot</groupId>
         <artifactId>spring-boot-samples</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.wuxinshui.spring</groupId>
+    <groupId>com.wuxinshui.springboot</groupId>
     <artifactId>spring-boot-sample-scheduling</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 

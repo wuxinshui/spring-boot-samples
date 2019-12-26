@@ -8,7 +8,7 @@
         <version>2.1.8.RELEASE</version>
     </parent>
 
-    <groupId>com.wuxinshui.spring.boot</groupId>
+    <groupId>com.wuxinshui.springboot</groupId>
     <artifactId>spring-boot-samples</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
@@ -25,7 +25,7 @@
         <!--集成mybatis框架-->
         <module>spring-boot-sample-mybatis</module>
         <!--集成redis-->
-        <module>spring-boot-sample-redis</module>
+        <module>spring-boot-sample-data-redis</module>
         <!--Spring boot注解实现定时任务-->
         <module>spring-boot-sample-scheduling</module>
         <!--data jpa样例-->
