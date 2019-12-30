@@ -1,10 +1,9 @@
 package com.wxs.springboot.mongo.controller;
 
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.wxs.springboot.mongo.domain.Customer;
+import com.wxs.springboot.mongo.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description:
@@ -15,10 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/customer")
 public class CustomerController {
 
+    @Autowired
+    private CustomerRepository customerRepository;
 
-    @GetMapping(value = "/queyr")
-    public ModelMap selectGet(@PathVariable Integer id) {
-        return new ModelMap();
+
+    @PostMapping(value = "/add")
+    public Object add(@RequestBody Customer customer) {
+        return customerRepository.save(customer);
+    }
+
+    @GetMapping(value = "/query")
+    public Object selectGet(@RequestParam String name) {
+        return customerRepository.findByFirstName(name);
     }
 
 }
