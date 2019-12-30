@@ -16,3 +16,20 @@
 
 ```docker run --link test-mongo:mongo -p 8081:8081 mongo-express```
 
+
+```java
+http://localhost:9091/customer/add
+
+
+{
+  "id": "1",
+  "firstName": "Wuxinshui",
+  "lastName": "wuxinshui"
+}
+
+http://localhost:9091/customer/query?name=Wuxinshui
+
+
+
+```
+
