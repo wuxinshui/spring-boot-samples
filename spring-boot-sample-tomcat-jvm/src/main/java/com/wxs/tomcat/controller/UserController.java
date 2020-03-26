@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * simple string
+ * simple stringdeduplication
  *
  * @author DELL
  */

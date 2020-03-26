@@ -10,7 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.wuxinshui.spring</groupId>
+    <groupId>com.wuxinshui.springboot</groupId>
     <artifactId>spring-boot-sample-data-isolation</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
