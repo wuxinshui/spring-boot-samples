@@ -9,6 +9,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+/**
+ * 正确响应微信发送的Token验证
+ */
 @RestController
 public class WechatCheckController {
 

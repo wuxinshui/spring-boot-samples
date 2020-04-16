@@ -10,21 +10,21 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 微信测试
+ * 微信测试-snsapi_base
  */
 @Controller
 @RequestMapping("/success")
 @Slf4j
-public class WechatTestController {
+public class WechatSnsapiBaseController {
 
-    public static final String BASE_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxaee4080cd8554f5d&secret=69bced1876f2e7a6e8226e9ea223a948&code=";
+    public static final String BASE_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxaee4080cd8554f5d&secret=cc0585d9fbf0b987b239f7b3f9bce5fb&code=";
     public static final String postFix = "&grant_type=authorization_code";
 
     @Autowired
     private RestTemplate restTemplate;
 
     @GetMapping
-    public String index(String code, String state, @RequestParam(required = false,defaultValue = "false") boolean key) {
+    public ModelAndView index(String code, String state, @RequestParam(required = false,defaultValue = "true") boolean key) {
         log.info("用户同意授权，获取code-code:{},state:{}", code, state);
         StringBuilder sb = new StringBuilder(BASE_URL);
         sb.append(code);
@@ -36,11 +36,11 @@ public class WechatTestController {
             openid = code;
         }
 
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("success");
 
         mv.addObject("username", openid);
 
-        return "success";
+        return mv;
     }
 
 
