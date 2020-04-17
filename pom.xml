@@ -75,6 +75,8 @@
         <module>spring-boot-sample-guava</module>
         <!--JMH，方法性能测试框架-->
         <module>spring-boot-sample-jmh</module>
+        <!--        微信公众号测试-->
+        <module>spring-boot-sample-wechat</module>
     </modules>
 
     <dependencies>
