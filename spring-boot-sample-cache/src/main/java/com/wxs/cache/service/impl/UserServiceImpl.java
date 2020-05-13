@@ -8,7 +8,7 @@ import com.wxs.cache.service.UserService;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-@Cacheable()
+@Cacheable
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
@@ -17,6 +17,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         baseMapper.insert(user);
     }
 
+    @Cacheable(value = "user",key = "#id")
     @Override
     public User selectById(Integer id) {
         return baseMapper.selectById(id);

@@ -14,6 +14,8 @@ spring:
         trace: false
         web-allow-others: false
       enabled: true
+  redis:
+    host: 10.241.1.89
 logging:
   level:
     com.baomidou: debug
