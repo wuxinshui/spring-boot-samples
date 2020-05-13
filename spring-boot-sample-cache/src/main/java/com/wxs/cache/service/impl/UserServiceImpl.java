@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wxs.cache.entity.User;
 import com.wxs.cache.mapper.UserMapper;
 import com.wxs.cache.service.UserService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+@Cacheable()
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
