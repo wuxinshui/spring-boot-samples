@@ -1,5 +1,6 @@
 package com.wxs.rest.httpclient.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONPObject;
 import com.wxs.rest.httpclient.bo.Stu;
 import com.wxs.rest.httpclient.config.RestHttpClient;
@@ -39,10 +40,10 @@ public class ClientController {
     }
 
     @GetMapping("/json")
-    public Map index() throws IOException {
+    public Map json() throws IOException {
         log.info("client......");
 
-        HttpResponse response = restHttpClient.doPost("json", Stu.builder().age("12").name("aa").build());
+        HttpResponse response = restHttpClient.doPost("json", JSON.toJSONString(Stu.builder().age("12").name("aa").build()));
 
         log.info("response:{}", response.getEntity());
 
