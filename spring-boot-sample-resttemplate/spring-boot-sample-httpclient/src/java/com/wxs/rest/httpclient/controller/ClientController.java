@@ -34,7 +34,7 @@ public class ClientController {
         log.info("client......");
         HttpResponse response= restHttpClient.doGet("/");
 
-        log.info("response", response.getEntity());
+        log.info("response:{}", response.getEntity());
 
         // return Map.of("code",200,"data",response);
         return Map.of("code",200,"data","success");
