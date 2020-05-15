@@ -11,17 +11,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.wuxinshui.springboot</groupId>
-    <artifactId>spring-boot-sample-resttemplate</artifactId>
+    <artifactId>spring-boot-sample-httpclient</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>spring-boot-sample-resttemplate-client</module>
-        <module>spring-boot-sample-resttemplate-server</module>
-        <module>spring-boot-sample-httpclient</module>
-    </modules>
+    <packaging>jar</packaging>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.6</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
