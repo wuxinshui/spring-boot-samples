@@ -1,17 +1,14 @@
 package com.wxs.rest.httpclient.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.alibaba.fastjson.JSONPObject;
+import com.wxs.rest.httpclient.bo.Stu;
 import com.wxs.rest.httpclient.config.RestHttpClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.Map;
@@ -38,6 +35,19 @@ public class ClientController {
 
         // return Map.of("code",200,"data",response);
         return Map.of("code",200,"data","success");
+
+    }
+
+    @GetMapping("/json")
+    public Map index() throws IOException {
+        log.info("client......");
+
+        HttpResponse response = restHttpClient.doPost("json", Stu.builder().age("12").name("aa").build());
+
+        log.info("response:{}", response.getEntity());
+
+        // return Map.of("code",200,"data",response);
+        return Map.of("code", 200, "data", "success");
 
     }
 

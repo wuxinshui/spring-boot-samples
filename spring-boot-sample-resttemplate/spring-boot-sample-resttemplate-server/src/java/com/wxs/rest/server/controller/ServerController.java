@@ -1,10 +1,8 @@
 package com.wxs.rest.server.controller;
 
+import com.wxs.rest.server.bo.Stu;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -27,6 +25,12 @@ public class ServerController {
     public Map map(@RequestParam("age")Integer age, @RequestParam("name") String name) {
         log.info("server......map,params age:{},name:{}",age,name);
         return Map.of("age",age,"name",name);
+    }
+
+    @PostMapping("/json")
+    public Map json(@RequestBody Stu stu) {
+        log.info("server......map,params stu:{}",stu);
+        return Map.of("age",stu.getAge(),"name",stu.getName());
     }
 
     // @GetMapping("/map")
