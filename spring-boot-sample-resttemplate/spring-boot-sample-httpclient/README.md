@@ -18,3 +18,6 @@
 ```
 
 [HttpAsyncClient Examples](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/examples.html)
+
+
+[Using RestTemplate with Apaches HttpClient](https://springframework.guru/using-resttemplate-with-apaches-httpclient/)
