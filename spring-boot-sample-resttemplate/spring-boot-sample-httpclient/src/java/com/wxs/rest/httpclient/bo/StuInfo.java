@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Builder
 @Data
-public class Stu {
+public class StuInfo {
     private String age;
     private String name;
 }

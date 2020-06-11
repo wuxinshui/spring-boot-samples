@@ -1,8 +1,7 @@
 package com.wxs.rest.httpclient.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONPObject;
-import com.wxs.rest.httpclient.bo.Stu;
+import com.wxs.rest.httpclient.bo.StuInfo;
 import com.wxs.rest.httpclient.config.RestHttpClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
@@ -43,7 +42,7 @@ public class ClientController {
     public Map json() throws IOException {
         log.info("client......");
 
-        HttpResponse response = restHttpClient.doPost("json", JSON.toJSONString(Stu.builder().age("12").name("aa").build()));
+        HttpResponse response = restHttpClient.doPost("json", JSON.toJSONString(StuInfo.builder().age("12").name("aa").build()));
 
         log.info("response:{}", response.getEntity());
 
@@ -52,21 +51,23 @@ public class ClientController {
 
     }
 
-    // @GetMapping("/map")
-    // public Map map() {
-    //     Map<String,Object> map=Map.of("age",11,"name","aaa");
-    //     log.info("client......map,params:{}",map);
-    //     // return restTemplate.getForObject(url+"/map?age={age}",Map.class,map);
-    //     return restTemplate.getForObject(url+"/map?age={age}&name={name}",Map.class,map);
-    // }
-    //
-    // @GetMapping("/uriVariables")
-    // public Map uriVariables() {
-    //     Map<String,Object> map=Map.of("age",11,"name","aaa");
-    //     log.info("client......uriVariables,params:{}",map);
-    //     // return restTemplate.getForObject(url+"/uriVariables?age={age}&name={name}",Map.class,11,"we");
-    //     // return restTemplate.getForObject(url+"/uriVariables",Map.class,11,"we");
-    //     return restTemplate.getForObject(url+"/uriVariables?age={age}",Map.class,11,"we");
-    // }
+    @GetMapping("/map")
+    public Map map() {
+        Map<String, Object> map = Map.of("age", 11, "name", "aaa");
+        log.info("client......map,params:{}", map);
+        // return restTemplate.getForObject(url+"/map?age={age}",Map.class,map);
+        // return restHttpClient.doGet(url+"/map?age={age}&name={name}",Map.class,map);
+        return null;
+    }
+
+    @GetMapping("/uriVariables")
+    public Map uriVariables() {
+        Map<String, Object> map = Map.of("age", 11, "name", "aaa");
+        log.info("client......uriVariables,params:{}", map);
+        // return restTemplate.getForObject(url+"/uriVariables?age={age}&name={name}",Map.class,11,"we");
+        // return restTemplate.getForObject(url+"/uriVariables",Map.class,11,"we");
+        // return restHttpClient.getForObject(url+"/uriVariables?age={age}",Map.class,11,"we");
+        return null;
+    }
 
 }
