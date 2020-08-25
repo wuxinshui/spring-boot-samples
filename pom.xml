@@ -54,7 +54,7 @@
         <module>spring-boot-sample-paginator</module>
         <module>spring-boot-sample-pagehelper</module>
         <!--aop filter advice-->
-        <!--<module>spring-boot-sample-aop</module>-->
+        <module>spring-boot-sample-aop</module>
         <!--elasticsearch-->
         <!--<module>spring-boot-sample-elasticsearch</module>-->
         <!--异步解决方案-->

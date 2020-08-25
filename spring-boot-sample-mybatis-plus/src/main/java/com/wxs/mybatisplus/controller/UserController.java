@@ -43,5 +43,18 @@ public class UserController {
 
     }
 
+    @GetMapping("/test1")
+    public List<User> test1() {
+        log.info("usersFromSession...");
+        QueryWrapper<User> queryWrapper = new QueryWrapper();
+        queryWrapper.gt("age", "22");
+        queryWrapper.lt("age", "26");
+
+        queryWrapper.inSql()
+
+        return userMapper.selectList(queryWrapper);
+
+    }
+
 
 }
