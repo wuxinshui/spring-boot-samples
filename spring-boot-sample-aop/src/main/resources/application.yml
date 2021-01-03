@@ -20,9 +20,9 @@ spring:
 #数据源的配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/hangshi?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2b8&useCursorFetch=true
+    url: jdbc:mysql://localhost:3307/hangshi?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2b8&useCursorFetch=true
     username: root
-    password: Zxcv!234
+    password: abcd.1234
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       driver-class-name: com.mysql.jdbc.Driver

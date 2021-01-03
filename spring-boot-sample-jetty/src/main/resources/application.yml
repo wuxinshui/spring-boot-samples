@@ -1,2 +1,5 @@
 server:
   port: 5050
+#  jetty:
+#    acceptors: 100
+#    selectors: 100

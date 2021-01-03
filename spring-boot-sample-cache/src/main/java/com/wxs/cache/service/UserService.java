@@ -10,5 +10,7 @@ public interface UserService extends IService<User> {
 
     User selectById(Integer id);
 
+    User selectById2(Integer id);
+
 
 }
