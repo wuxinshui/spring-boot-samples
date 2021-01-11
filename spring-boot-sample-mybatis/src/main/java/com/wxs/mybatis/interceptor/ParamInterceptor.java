@@ -2,10 +2,12 @@ package com.wxs.mybatis.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
+import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.plugin.*;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
@@ -31,9 +33,17 @@ public class ParamInterceptor implements Interceptor {
             PreparedStatement ps = (PreparedStatement) invocation.getArgs()[0];
 
             // 反射获取 BoundSql 对象，此对象包含生成的sql和sql的参数map映射
-			/*Field boundSqlField = parameterHandler.getClass().getDeclaredField("boundSql");
+			Field boundSqlField = parameterHandler.getClass().getDeclaredField("boundSql");
 			boundSqlField.setAccessible(true);
-			BoundSql boundSql = (BoundSql) boundSqlField.get(parameterHandler);*/
+			BoundSql boundSql = (BoundSql) boundSqlField.get(parameterHandler);
+
+            Method method=invocation.getMethod();
+
+            Object[] args=invocation.getArgs();
+
+            // 反射获取 参数对像
+            // Method parameterMethod =
+            //         parameterHandler.getClass().getDeclaredMethod("parameterObject");
 
             // 反射获取 参数对像
             Field parameterField =
