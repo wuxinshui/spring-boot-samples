@@ -87,6 +87,17 @@
       </if>
     </trim>
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    insert into t_user (id, username, password,
+    create_user, create_time, update_user,
+    update_time)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.username,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR},
+      #{item.createUser,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateUser,jdbcType=VARCHAR},
+      #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wxs.mybatis.model.User">
     update t_user
     <set>
