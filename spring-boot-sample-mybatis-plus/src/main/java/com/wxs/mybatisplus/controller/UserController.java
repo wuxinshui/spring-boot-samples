@@ -50,7 +50,7 @@ public class UserController {
         queryWrapper.gt("age", "22");
         queryWrapper.lt("age", "26");
 
-        queryWrapper.inSql()
+        // queryWrapper.inSql();
 
         return userMapper.selectList(queryWrapper);
 
