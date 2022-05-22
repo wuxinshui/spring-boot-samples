@@ -21,6 +21,11 @@
     from t_user
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultType="com.wxs.mybatis.model.User">
+    select
+    <include refid="Base_Column_List"/>
+    from t_user
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
@@ -81,6 +86,17 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
+  </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    insert into t_user (id, username, password,
+    create_user, create_time, update_user,
+    update_time)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.username,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR},
+      #{item.createUser,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateUser,jdbcType=VARCHAR},
+      #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wxs.mybatis.model.User">
     update t_user

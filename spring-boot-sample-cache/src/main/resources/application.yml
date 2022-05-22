@@ -1,11 +1,21 @@
 spring:
   datasource:
-   username: root
-   password: Zxcv!234
-   driver-class-name: com.mysql.jdbc.Driver
-   url: jdbc:mysql://127.0.0.1:3306/user_dev1?characterEncoding=UTF-8&useSSL=false
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
+  #   url: jdbc:h2:file:./db/V1_0__init
+  h2:
+    console:
+      path: /h2
+      settings:
+        trace: false
+        web-allow-others: false
+      enabled: true
+  redis:
+    host: 10.241.1.89
 logging:
   level:
     com.baomidou: debug
-server:
-  servlet-path:

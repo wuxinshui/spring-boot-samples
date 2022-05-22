@@ -1,0 +1,8 @@
+server:
+  port: 8090
+
+rocketmq:
+  name-server: 10.241.1.240:9876
+  producer:
+    group: demo
+    customized-trace-topic: user

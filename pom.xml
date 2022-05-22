@@ -54,7 +54,7 @@
         <module>spring-boot-sample-paginator</module>
         <module>spring-boot-sample-pagehelper</module>
         <!--aop filter advice-->
-        <!--<module>spring-boot-sample-aop</module>-->
+        <module>spring-boot-sample-aop</module>
         <!--elasticsearch-->
         <!--<module>spring-boot-sample-elasticsearch</module>-->
         <!--异步解决方案-->
@@ -75,6 +75,8 @@
         <module>spring-boot-sample-guava</module>
         <!--JMH，方法性能测试框架-->
         <module>spring-boot-sample-jmh</module>
+        <!--        微信公众号测试-->
+        <module>spring-boot-sample-wechat</module>
     </modules>
 
     <dependencies>

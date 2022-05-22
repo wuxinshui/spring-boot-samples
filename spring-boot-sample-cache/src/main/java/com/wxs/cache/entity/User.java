@@ -3,7 +3,9 @@ package com.wxs.cache.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Integer id;

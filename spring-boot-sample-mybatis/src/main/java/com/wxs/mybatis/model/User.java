@@ -1,13 +1,16 @@
 package com.wxs.mybatis.model;
 
+import com.wxs.mybatis.interceptor.EncryptField;
+
 import java.util.Date;
 
 public class User {
     private Integer id;
 
-    private String username;
-
+    @EncryptField
     private String password;
+
+    private String username;
 
     private String createUser;
 
